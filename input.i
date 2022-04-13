@@ -29,19 +29,13 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$[Mazzocco, Musile, Tagliabue]$$$$$$
 *crdno   Initialtime[s]
 200           0.
 *crdno   Endtime[s] Mindt[s]  Maxdt[s]   ctrl  Minedit  Majedit   Rst
-201        550.     1.e-8      0.01     00003   500      500     500
+201        1.        1.e-8     0.001     00003   500      500     500
 *
 *crdno   Endtime[s] Mindt[s]  Maxdt[s]   ctrl  Minedit  Majedit   Rst
-202        2500.     1.e-8      0.04     00003   200      200     200
+202        10.       1.e-8      0.01     00003   200      200     200
 *
 *crdno   Endtime[s] Mindt[s]  Maxdt[s]   ctrl  Minedit  Majedit   Rst
-203        3000.     1.e-7      0.04     00003   500      500     500
-*
-*crdno   Endtime[s] Mindt[s]  Maxdt[s]   ctrl  Minedit  Majedit   Rst
-204        5000.     1.e-7      0.04     00003  1000     1000    1000
-*
-*crdno   Endtime[s] Mindt[s]  Maxdt[s]   ctrl  Minedit  Majedit   Rst
-205       30000.     1.e-7      0.04     00003  6000     6000    6000
+203        100.      1.e-8      0.04     00003   200      200     200
 *
 * (201 writes every 5 s)
 * (202 writes every 8 s)
