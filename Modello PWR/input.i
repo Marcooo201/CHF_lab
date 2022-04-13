@@ -4,7 +4,7 @@ $$                                                                           $$
 $$                            PWR HEATED CHANNEL                             $$
 $$                                                                           $$
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$[Mazzocco, Musile, Tagliabue]$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$[Mazzocco, Musile Tanzi, Tagliabue]$$$$$$
 *
 *Titlecard
 =pwr_channel
@@ -12,8 +12,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$[Mazzocco, Musile, Tagliabue]$$$$$$
 *crdno  Probtype    Option
 100       new      transnt
 *
-*crdno  CheckorRun
-101 run
+*crdno  Check_or_Run
+101         run
 *101 inp-chk
 *
 *crdno   Inunits  Outunits
@@ -58,12 +58,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$[Mazzocco, Musile, Tagliabue]$$$$$$
 **
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $                                                                             $
-$                        COMPONENT 100 - Lower Reservoir                      $
+$                        COMPONENT 100 - LOWER RESERVOIR                      $
 $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno       Name        Type
-1000000   lower_tank    tmdpvol
+1000000     l_tank    tmdpvol
 *
 *crdno    Volflowarea[m^2]   Vollength[m]   Volvolume[m^3]
 1000101       1.e+5               1.             0.
@@ -112,63 +112,117 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $                                                                             $
-$                      COMPONENT 555 - HEATED CHANNEL                         $
+$                      COMPONENT 555 - HEATED CHANNEL   VA CAMBIATA LA FORMA!!!                      $
 $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno      Name     Type
-1200000    channel   pipe
+5550000    channel   pipe
 *
 *crdno   Number of volumes
-1200001         ??? (nv)
+5550001         ??? (nv)
 *
 *crdno  Volflowarea[m^2]  Volno
-1200101       ???          (nv)
+5550101       ???          (nv)
 *
 *crdno Junctionflowarea[m^2] Junno
-1200201        0.            (nv-1)
+5550201        0.            (nv-1)
 *
 *crdno  Vollength[m]  Volno
-1200301     ???        (nv)
+5550301     ???        (nv)
 *
 *crdno   Volumevol[m^3]    Volno
-1200401       0.           (nv)
+5550401       0.           (nv)
 *
 *crdno   Azangle  Volno
-1200501     0.    (nv)
+5550501     0.    (nv)
 *
 *crdno   Vertangle  Volno
-1200601    0.       (nv)
+5550601    0.       (nv)
 *
 *crdno   Elevchange[m]  Volno
-1200701     0.          (nv)
+5550701     0.          (nv)
 *
 *crdno    Rough[m]    Dhyd[m]   Volno
-1200801   1.52e-6     0.07366    (nv)
+5550801   1.52e-6     0.07366    (nv)
 *
 *crdno   Forloss  Revloss  Junno
-1200901    0.      0.      (nv-1)
+5550901    0.      0.      (nv-1)
 *
 *crdno   Volume Control Flags   Volno
-1201001        0000000           (nv)
+5551001        0000000           (nv)
 *
 *
 *crdno   Junction Control Flags   Junno
-1201101        0001000            (nv-1)
+5551101        0001000            (nv-1)
 *
 *
 *--------------------------- VOLUMES IC -------------------------------
 *
 *crdno    ebt    P[Pa]     T[K]    W4   W5   W6    Volno
-1201201   003   15.51e+6   566.25   0.   0.   0.    20
+5551201   003   15.51e+6   566.25   0.   0.   0.    (nv)
 *
 *-------------------------- JUNCTIONS IC ------------------------------
 *
 *crdno   Control Word
-1201300       1
+5551300       1
 *
 *crdno   Ml[kg/s]     Mg[kg/s]   Vint[m/s]   Junno
-1201301    0.           0.         0.         19
-*
+5551301    0.           0.         0.        (nv-1)
+* ?= Non so se è più veloce porre queste a zero o al mass flow rate nominale per arrivare a steady state prima
 *-----------------------------------------------------------------------------
+*
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                                                             $
+$                       COMPONENT 200 - UPPER RESERVOIR                       $
+$                                                                             $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+*
+*crdno     Name      Type
+2000000   u_tank    snglvol
+*
+*crdno    Volflowarea[m^2]   Vollength[m]   Volvolume[m^3]
+2000101       1.e+5               1.             0.
+*
+*crdno    Azangle   Vertangle   Elevchange[m]
+2000102      0.        90.          1.
+*
+*crdno   Rough[m]  Dhyd[m]    Control Flags
+2000103      0.       0.           0000000
+*
+*--------------------------- VOLUME DATA ----------------------------
+*
+*crdno   ebt   W2   W3
+2000200  003
+*
+*crdno    P[Pa]     T[K]
+1000201  1.0e+6    293.15
+*------------------------------------------------------------------------------
+*
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                                                             $
+$                      COMPONENT 210 - OUTLET JUNCTION                        $
+$                                                                             $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+*
+*crdno     Name     Type
+2100000   outlet   sngljun
+*
+*crdno       From        To      Junarea[m^2]
+2100101   555??0002   200000000      0.
+*
+*crdno
+2100102
+*
+*--------------------------- JUNCTION DATA ----------------------------
+*
+*crdno    Controlword    W2   W3   W4
+2100200       1 *  (0 = velocity ; 1 = mass flow rate)
+*
+*crdno    Time[s]   Ml[kg/s]   Mv[kg/s]   Vint[m/s]
+*
+2100201      0.        ???         0.          0.
+2100202    100.        ???         0.          0.
+*
+*----------------------------------------------------------------------
 *
