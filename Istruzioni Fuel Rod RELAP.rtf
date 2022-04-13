@@ -1,0 +1,55 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww36200\viewh19880\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Devo usare una 
+\f1\b HEAT STRUCTURE
+\f0\b0  che rappersenta la fuel rod (fuel pellet, helium gap e cladding)\
+\
+Il Sample Input di riferimento \'e8 rupture.i e in particolare le heat structures numero 10021000 e 10031000. \
+\
+\
+\
+1.	La fuel rod \'e8 una SINGOLA Heat Structure CILINDRICA con left boundary coordinate nulla (1CCCG000 W5 = 0.)\
+\
+2. 	Bisogna dare una pressione all\'92elio nel gap tra pellet e cladding. Questo si fa con la card Gap Data (1CCCG001)\
+	Dalla legge dei gas ideali so che p(t) = (p0 / T0) * T(t). Mi serve quindi una p0 (che inserisco nella word W1) e mi servono T(t) e T0.\
+	Le temperature le prendo UGUALI ALL\'92ACQUA DI FIANCO AL GAS. Dunque metto nella W2 il volume di una componente idrodinamica di fianco al gas.\
+	Le istruzioni dicono che \'e8 meglio indicare il volume pi\'f9 vicino alla fuel pin pi\'f9 alta nello stack (quella con z maggiore).\
+\
+	L\'92uso della card Gap Data (1CCCG001) da una serie di obblighi, in particolare:\
+						- W1 della card 1CCCG100 deve essere 0\
+						- le card 1CCCG011-G099 sono obbligatorie\
+						- le card 1CCCG201-G299 sono obbligatorie\
+						- W2 della card 201MMM00 deve essere 3\
+						- nelle card 201MMM01-49 va inserita la composizione molare del gas\
+\
+3.	Nelle card 1CCCG011-1CCCG099 inseriamo una serie di informazioni su dettagli della geometria. Consiglio di copiare a man bassa il Sample Input.\
+\
+4.	Nella card 1CCCG100 inseriamo la flag per indicare come dare gli input riguardanti la mesh.\
+\
+5.	Nella card 1CCCG101 inseriamo le informazioni sulla mesh (rispettando il format indicato al punto 4).\
+\
+6.	Nella card 1CCCG201 inseriamo le informazioni sui materiali radiali (solo da mettere se card 1CCCG100 la W1 \'e8 0).\
+\
+7.	Nella card 1CCCG301 inseriamo le informazioni sulla potenza generata dentro alla rod (per ogni intervallo radiale). Dovremmo quindi mettere la potenza SOLO nei fuel pellet.\
+\
+8. 	Nella card 1CCCG401 inseriamo le temperature iniziali per ogni meshing point radiale.\
+\
+9.	Nella card 1CCCG501 inseriamo le informazioni sullo scambio termico del left boundary (che da noi non esiste). Direi scrivere copiando Sample Input e cambiando se necessario.\
+\
+10. 	Nella card 1CCCG601 inseriamo le informazioni sullo scambio termico del right boundary (quello a contatto con l\'92acqua). Dobbiamo guardare queste card con molta calma e perizia.\
+\
+11.	Nella card 1CCCG701 inseriamo informazioni sulla distribuzione assiale della potenza generata nella fuel rod. Da guardare con calma e perizia.\
+\
+12.	Nella card 1CCCG901 \'e8 per le additional right boundary conditions, sembrerebbe importante per il CHF. Da guardare con calma.\
+\
+\
+13.	Bisogna creare la table per i materiali 201MMM00 \'85 (guardare Sample Input)\
+\
+14.	Bisogna creare una general table per dare informazioni sulla potenza generata. Card 202TTT00 e 202TTT01-99. (guardare Sample Input)\
+\
+}
