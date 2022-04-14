@@ -1,0 +1,65 @@
+1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
+1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
+0Execute file: relap5.exe                                                                      
+0Effective command line parameters:
+    -f ftb1                                                                                        -i input_strip.i                                                                           
+    -o output_strip                                                                                -p plotfl                                                                                  
+    -r []                                                                                          -s stripf                                                                                  
+    -j jbinfo                                                                                      -n null                                                                                    
+    -c cdffile                                                                                     -a coupfl                                                                                  
+    -X                                                                                             -C 0                                                                                       
+    -A dumpfil1                                                                                    -B dumpfil2                                                                                
+    -S snapdata                                                                                    -P 5009                                                                                    
+    -O                                                                                             -R []                                                                                      
+    -w [tpfh2o]                                                                                    -d [tpfd2o]                                                                                
+    -h [tpfh2]                                                                                     -l [tpfli]                                                                                 
+    -k [tpfk]                                                                                      -b [tpfhe]                                                                                 
+    -e [tpfn2]                                                                                     -m [tpfna]                                                                                 
+    -q [tpfnak]                                                                                    -t [tpflipb]                                                                               
+    -u [tpfnh3]                                                                                    -W [tpfh2on]                                                                               
+    -g [tpfglyc]                                                                                   -H [tpfblood]                                                                              
+    -Z [tpfh2onew]                                                                             
+
+    [] = tentative file name (may be overridden by input data)
+
+0Environmental library version number is: 3.3gl   
+0Table of update define values
+ apollo   off         bigfa    on          blkdta   off         bufr     off         cdccra   off
+ cos      off         cray     off         ctss     off         debth    off         decalp90 off
+ decalpha off         decrisc  off         decrisc2 off         erf      on          extjun   off
+ extj20   off         extsys   off         extvol   off         extv20   off         extv100  off
+ fourbyt  on          g77      off         hp       off         ibm      off         ibmrisc  off
+ ieee     off         in32     on          laheyf77 off         lcm      off         linux    off
+ loadhi   on          loadlo   off         makemap  off         mac      off         medfa    off
+ nanscr   off         nopen    off         npa      off         nreac    off         parcs    on 
+ ploc     on          pvmcoupl off         readnonb off         selap    off         sgi      off
+ smallfa  off         sun      off         unicos   off         unix     on          vax      off
+ win32cvf on          win32g77 off
+ listing of input data for case  1                                                                        
+                                                                                                          
+     1    =strip_input                                                                                    
+     2                                                                                                    
+     3    0000100 strip fmtout                                                                            
+     4    103 0                                                                                           
+     5                                                                                                    
+     6                                                                                                    
+     7    1001 p     555490000                                                                            
+     8    1002 tempf 555490000                                                                            
+     9    .                                                                                               
+0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
+0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
+  strip_input                                                                     14-Apr-22    18:30:05      
+1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
+1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
+  strip_input                                                                     14-Apr-22    18:30:05      
+0Processing type is strip   
++                                       problem option is fmtout  
+0inp-chk, run option is run.    
+0Restart input file was written by program   RELAP5/3.3gl           on 14-Apr-22    18:22:43   , transient run.
+0         Strip variable requests
+ req.num.    variable code    parameter
+     1001      p              555490000
+     1002      tempf          555490000
+0$$$$$$$$ Input processing completed successfully.
+
+0Successful end of strip processing.
