@@ -42,27 +42,28 @@
      3    0000100 strip fmtout                                                                            
      4    103 0                                                                                           
      5                                                                                                    
-     6                                                                                                    
-     7    1001 p     555490000                                                                            
-     8    1002 tempf 555490000                                                                            
-     9    1003 mflowj    555490000                                                                        
+     6    1001 p         555010000                                                                        
+     7    1002 p         555490000                                                                        
+     8    1003 tempf     555490000                                                                        
+     9    1004 mflowj    555490000                                                                        
     10                                                                                                    
     11    .                                                                                               
 0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     14-Apr-22    20:08:22      
+  strip_input                                                                     14-Apr-22    23:21:12      
 1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     14-Apr-22    20:08:22      
+  strip_input                                                                     14-Apr-22    23:21:12      
 0Processing type is strip   
 +                                       problem option is fmtout  
 0inp-chk, run option is run.    
-0Restart input file was written by program   RELAP5/3.3gl           on 14-Apr-22    20:08:12   , transient run.
+0Restart input file was written by program   RELAP5/3.3gl           on 14-Apr-22    23:06:49   , transient run.
 0         Strip variable requests
  req.num.    variable code    parameter
-     1001      p              555490000
-     1002      tempf          555490000
-     1003      mflowj         555490000
+     1001      p              555010000
+     1002      p              555490000
+     1003      tempf          555490000
+     1004      mflowj         555490000
 0$$$$$$$$ Input processing completed successfully.
 
 0Successful end of strip processing.
