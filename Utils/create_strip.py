@@ -65,3 +65,7 @@ for v in volumes:
 
 f.writelines(strip_lines_tempf)
 f.write("* \n* \n")
+
+
+
+f.write(".")
