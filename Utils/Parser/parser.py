@@ -26,7 +26,7 @@ variables = var_part.split()
 
 # HEADER
 header = [variables[i]+" "+components[i] for i in range(0,len(variables))]
-header = ', '.join(header)
+header = ';'.join(header)
 
 
 #########################
@@ -48,4 +48,4 @@ matrix = np.array(matrix, dtype=np.float32)
 #         CSV           #
 #########################
 
-np.savetxt('data.csv', matrix, delimiter=', ', fmt='%.6e', header=header)
+np.savetxt('data.csv', matrix, delimiter=';', fmt='%.6e', comments='', header=header)
