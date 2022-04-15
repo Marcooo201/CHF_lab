@@ -1,78 +1,53 @@
-#############################
-#    VARIABLES TO STRIP     #
-#############################
+######################################
+#                 INPUT              #
+######################################
 
-p = True
-tempf = True
+vol_vars = ['p', 'tempf', 'rho', 'tempv']
+jun_vars = ['mflowj', 'mflowjf']
 
-f = open('input_strip.i', 'w+')    # Se volessi appendere alla fine del file senza sostituire userei 'a'
+CCC = '555'
+nv = 50
+nj = nv-1
+initial_card = 1001
 
 
-#############################
-#            INTRO          #
-#############################
+
+
+####################### INTRO #######################
+
+f = open('input_strip.i', 'w+')
 
 f.write("=strip_input \n \n")
 f.write("0000100 strip fmtout \n")
 f.write("103 0 \n \n \n")
 
 
-####################
-nv = 50
-nj = nv-1
+#####################################################
 
-CCC = "555"
 VV = [str(vn).zfill(2) for vn in list(range(1,nv+1))]
 JJ = [str(jn).zfill(2) for jn in list(range(1,nj+1))]
 
 volumes = [CCC+vn+"0000" for vn in VV]
 junctions = [CCC+jn+"0000" for jn in JJ]
 
-#############################
-#              P            #
-#############################
-initial_card_p = 1001
-i=0
-strip_lines_p = []
-for v in volumes:
-    strip_lines_p.append(str(initial_card_p+i)+" p "+v+"\n")
-    i=i+1
+card = initial_card
+strip_lines = []
 
+############## WRITES VOLUME VARIABLES ##############
+for var in vol_vars:
+    for v in volumes:
+        strip_lines.append(str(card)+" "+var+" "+v+"\n")
+        card = card+1
+    strip_lines.append("* \n* \n")
 
-f.writelines(strip_lines_p)
-f.write("* \n* \n")
+############## WRITES JUNCTION VARIABLES ############
+for var in jun_vars:
+    for j in junctions:
+        strip_lines.append(str(card)+" "+var+" "+j+"\n")
+        card = card+1
+    strip_lines.append("* \n* \n")
 
+strip_lines.append(".")
 
-
-#############################
-#           tempf           #
-#############################
-initial_card_tempf = 1051
-
-i=0
-strip_lines_tempf = []
-for v in volumes:
-    strip_lines_tempf.append(str(initial_card_tempf+i)+" tempf "+v+"\n")
-    i=i+1
-
-
-f.writelines(strip_lines_tempf)
-f.write("* \n* \n")
-
-
-#############################
-#           rho             #
-#############################
-initial_card_rho = 1101
-
-i=0
-strip_lines_rho = []
-for v in volumes:
-    strip_lines_rho.append(str(initial_card_rho+i)+" rho "+v+"\n")
-    i=i+1
-
-
-f.writelines(strip_lines_rho)
-f.write("* \n* \n")
-
-f.write(".")
+# Writes lines on actual file
+f.writelines(strip_lines)
