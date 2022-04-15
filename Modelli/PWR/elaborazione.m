@@ -1,1 +1,1 @@
-data = readtable("data.csv", "Delimiter", ";")
+data = readtable("data.csv", 'Delimiter', ';')

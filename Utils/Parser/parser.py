@@ -1,5 +1,4 @@
 import numpy as np
-import csv
 
 f = open('stripf', 'r')
 
@@ -49,4 +48,4 @@ matrix = np.array(matrix, dtype=np.float32)
 #         CSV           #
 #########################
 
-np.savetxt('data.csv', matrix, delimiter=',', fmt='%.6e', header=header)
+np.savetxt('data.csv', matrix, delimiter=', ', fmt='%.6e', header=header)
