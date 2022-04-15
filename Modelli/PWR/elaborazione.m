@@ -1,3 +1,1 @@
-data = readtable("data.csv", "Delimiter",";");
-
-data.p55020000
+data = readtable("data.csv", "Delimiter", ";")
