@@ -1,6 +1,6 @@
-del stripf
-del output_strip
+del out\stripf
+del out\output_strip
 
-relap5.exe -i input_strip.i -o output_strip -s stripf
+..\..\utils\execution\relap5.exe -i input_strip.i -o out\output_strip -r out\rstplt -s out\stripf
 
-graf.exe <stripf> "data.csv"
+py ..\..\utils\other\parser.py
