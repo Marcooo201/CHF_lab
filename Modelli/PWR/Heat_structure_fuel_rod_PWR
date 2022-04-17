@@ -9,21 +9,21 @@
 *
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $                                                                             $
-$                    HEAT STRUCTURE 200-Pipe                                  $
+$                    HEAT STRUCTURE 200-Fuel rod                              $
 $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno    Naxial  Nradial  Geomtype  SSFlag  Leftboundary[m]
-12000000   20        5        2        1       0.03683
-*
+12000000   50        4        2        1       0.0           $ho messo np=4 perchè considero: centro del fuel pellet + esterno del fuel pellet (raggio di 0.004096 m) + interno del cladding + esterno del cladding$
+*                                                            $con la SSFlag=1 tutti i dati di partenza sono presi da un modello steady state che abbiamo fatto partitre prima (è giusto così??)$
 *crdno     Meshlocationflag    Meshformatflag
 12000100          0                  1
 *
 *crdno     Nointervals   Rightcoord[m]    
-12000101       4            0.04445         
+12000101       3            0.0047506         
 *
 *crdno     Compositionno    Intervalno    
-12000201       101              4             
+12000201       101              3            $ho chiamato la heat structure composition (sezione A12 input manual): 101$             
 *
 *crdno     Source    Meshintervalno
 12000301     1.            4
@@ -31,8 +31,11 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *crdno     Initialtempflag
 12000400         0
 *
+*crdno      T[K]    Meshpointno     
+12000401   1673.15      1         
+*
 *crdno      T[K]    Meshpointno
-12000401   293.15        5
+12000402   768.15       2
 *
 *---------------------- LEFT BOUNDARY CONDITION -------------------------
 *
