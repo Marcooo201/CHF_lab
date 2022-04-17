@@ -16,6 +16,13 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *crdno    Naxial  Nradial  Geomtype  SSFlag  Leftboundary[m]
 12000000   50        4        2        1       0.0           $ho messo np=4 perchè considero: centro del fuel pellet + esterno del fuel pellet (raggio di 0.004096 m) + interno del cladding + esterno del cladding$
 *                                                            $con la SSFlag=1 tutti i dati di partenza sono presi da un modello steady state che abbiamo fatto partitre prima (è giusto così??)$
+*crdno     Initial He Pressure [Pa]    ReferenceVolume
+12000001         2000000.0                  555120000               $la pressione iniziale è presa da pagina 454 del Todreas, Kazimi per il caso FRAPCON 3.3 (le dimensioni della rod tornano col caso Seabrook station reactor PWR)$ 
+*                                                                  $Il reference volume è l'hydrodynanic volume più alto lungo z. Il numero lo ha messo Lollo nel parte HEATED CHANNEL$
+*
+*crdno      FuelRoughness    CladdingRoughness   FIssionGasRadialDisplacement   CreepDownRadialDisplacement   HeatStructureNumber   
+12000011                                                  
+*
 *crdno     Meshlocationflag    Meshformatflag
 12000100          0                  1
 *
