@@ -1,0 +1,68 @@
+* Taken from Todreas, Kazimi (Appendix K)
+* Subchannel data (int)
+
+
+
+-------------- INLET WATER THERMODYNAMIC STATE --------------
+
+P [Pa]    7.14e+6        [1000201/0202 W2]
+  [bar]   71.4
+
+T [°C]    278.30          [1000201/0202 W3]
+  [°K]    551.45
+
+
+delta_P_core [Pa]	    1.71e+5
+	           [bar]    1.71
+
+
+
+
+------------- OUTLET WATER THERMODYNAMIC STATE --------------
+
+P [Pa]    6.969e+6        [1000201/0202 W2]
+  [bar]   69.69
+
+T [°C]    286.10          [1000201/0202 W3]
+  [°K]    559.25
+
+
+
+
+-------------------- MASS FLOW RATE -------------------
+
+m_ch [kg/s]         0.175	[1100201\0202 W2]
+
+G_ch [kg/s/m^2]     1625
+
+
+
+
+
+--------------------- CHANNEL GEOMETRY ----------------------
+
+A_ch     [m^2]     1.08e-4      [5550101 W1]
+P        [m]       14.37e-3
+
+L_total  [m]       4.090
+L_heated [m]       3.588
+
+D        [m]       11.2e-3
+t_clad   [m]       7.10e-4
+t_gap    [m]       9.00e-5
+D_f      [m]       9.60e-3
+
+
+
+
+
+
+------------------------ RELAP MODEL ------------------------
+
+nv         50          [5550001 W1]
+L_v  [m]   0.08180     [5550201 W1]
+Dhyd [m]   1.227767e-2  [5550801 W2]
+
+
+* L_v = L_total/nv
+* Dhyd = 4*(area)/(wetted perimeter) = 4*(A_ch)/(pi*D)
