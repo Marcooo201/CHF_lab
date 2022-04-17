@@ -1,0 +1,158 @@
+=FUEL ROD HEAT STRUCTURE 
+
+*ITER: sa vogliamo adottare il GAP CONDUCTANCE MODEL devo guardre la sezione 4.11 del Vol1*
+*se voglio anche il CLADDING DEFORMATION MODEL guarda la sezione 4.14: il cladding si deforma plasticamente, espandendosi, eper colpa della differenza di temperatura ( e di pressione tra in e out per LOCA) può rompersi o allargarsi così tanto da bloccare un canale di passaggio del coolant**
+*per l'elio dobbiamo ottenere diversi dati da cui far partire il modello, quali? Sono scritti nel Vol1 del manuale e si ottengono a partire dalle formule nel Vol1 (Ullman,...)*
+*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*|||||||||||||||||||||||||||    HEAT STRUCTURES    ||||||||||||||||||||||||||||
+*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                                                             $
+$                    HEAT STRUCTURE 200-Pipe                                  $
+$                                                                             $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+*
+*crdno    Naxial  Nradial  Geomtype  SSFlag  Leftboundary[m]
+12000000   20        5        2        1       0.03683
+*
+*crdno     Meshlocationflag    Meshformatflag
+12000100          0                  1
+*
+*crdno     Nointervals   Rightcoord[m]    
+12000101       4            0.04445         
+*
+*crdno     Compositionno    Intervalno    
+12000201       101              4             
+*
+*crdno     Source    Meshintervalno
+12000301     1.            4
+*
+*crdno     Initialtempflag
+12000400         0
+*
+*crdno      T[K]    Meshpointno
+12000401   293.15        5
+*
+*---------------------- LEFT BOUNDARY CONDITION -------------------------
+*
+*crdno   Boundaryvolno  Increment    BCtype   SAcode   SAfactor     Heatstno
+12000501   120010000       10000        1       1       0.5          20
+*
+*                                         *BCtype 1=Upflow vertical duct
+*---------------------- RIGHT BOUNDARY CONDITION ------------------------
+*
+*crdno   Tableno         Increment   BCtype  SAcode  SAfactor   Heatstno
+12000601  -201               0       4202    1       0.5          20
+*
+*                                   *BCtype 4202=convective boundary condition (4) where the heat transfer coefficient is specified in table 202
+*------------------------------ SOURCE DATA -------------------------------
+*
+*crdno   Sourcetype  Sourcemult  DMHMleft  DMHMright  Heatstno
+12000701    900          1.         0.       0.         20
+*
+*------------------ ADDITIONAL LEFT BOUNDARY CONDITION --------------------
+*
+*crdno    W1
+12000800  0   *9 word format
+*
+*crdno    Dth[m]   W2  W3  W4  W5  W6  W7   W8   Heatstno
+12000801    0.     15. 15. 0.  0.  0.  0.   1.     20
+*
+*                      
+*------------------ ADDITIONAL RIGHT BOUNDARY CONDITION -------------------
+*
+*crdno    W1
+12000900  0   *9 word format
+*
+*crdno       Dth[m]  W2  W3  W4  W5  W6  W7   W8   Heatstno
+12000901      0.     15. 15. 0.  0.  0.  0.   1.     20
+*                   
+*--------------------------------------------------------------------------
+*
+*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*|||||||||||||||||||||||||||      GENERAL TABLES      |||||||||||||||||||||||||
+*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*
+*
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                                                             $
+$                  TABLE 101- Stainless steel  AISI 1010                      $
+$                                                                             $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+*-------------------------------*---------------------------------------------*
+*  A. F. Mills, 'Heat Transfer', Irwin, 1992                                  *
+*-------------------------------*---------------------------------------------*
+*
+*crdno     Material   Kflag   Cflag
+20110100   tbl/fctn    1       1
+*
+*crdno      T[K]   K[W/mK]
+*
+20110101    200.    68.4  *Extrapolated  * Linear Interpolation
+20110102    300.    64.0                 * 
+20110103    400.    59.0                 * K=77.9-0.048*T  [corr=-0.999]
+20110104    500.    54.0                 *
+20110105    600.    49.0
+20110106    800.    39.0
+20110107   1000.    31.0
+20110108   12000.   20.7  *Extrapolated
+*
+*crdno      T[K]   roCp[J/m^3K]
+*
+20110151    200.    2.98323e+6  *Extrapolated
+20110152    300.    3.39822e+6
+20110153    400.    3.81321e+6
+20110154    500.    4.07160e+6
+20110155    600.    4.37697e+6
+20110156    800.    5.36355e+6
+20110157   1000.    9.14544e+6
+20110158   12000.   12.9273e+6  *Extrapolated
+*
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                                                             $
+$                  TABLE 201-ENVIRONMENT TEMPERATURE vs TIME                  $
+$                                                                             $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+*
+*crdno     Tabletype   Trip   Factors
+20220100     temp
+*
+*crdno         t[s]      T[K]
+*
+20220101        0.       300.
+20220102      1.e+6      300.
+*
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                                                             $
+$          TABLE 202-DISSIPATIVE HEAT TRANSFER COEFF. vs TEMPERATURE          $
+$                                                                             $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+*
+*crdno      Tabletype   Trip   Factors
+20220200     htc-temp
+*
+*crdno         T[K]      h[W/m^2K]
+*
+20220201       200.          0.
+20220202       300.          0.
+20220203       400.          5.
+20220204       500.         10.
+20220205       600.         20.
+20220206       700.         40.
+*
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                                                             $
+$          TABLE 900-GENERATED POWER vs time                                  $
+$                                                                             $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+*
+*crdno      Tabletype   Trip   Factors
+20290000     power
+*
+*crdno         t[s]     Power [W]
+*
+20290001         0.     0.
+20290002         100.    250.0e3
+20290003         10000.  250.0e3
+*
