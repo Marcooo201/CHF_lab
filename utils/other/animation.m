@@ -13,7 +13,7 @@ for i = 1:length(t)
     clearpoints(h);
     addpoints(h, T(i,:), 1:50);
     drawnow nocallbacks
-    exportgraphics(gca,"movie.gif","Append",true)
+    exportgraphics(gca,'movie.gif','Append',true)
     %pause(0.5)
 end
 
