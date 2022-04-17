@@ -12,16 +12,16 @@ T [°C]    293.10          [1000201/0202 W3]
   [°K]    566.25
 
 
-delta_P_core [Pa]	1.71e+5
-	     [bar]      1.71
+delta_P_core [Pa]	1.97e+5
+	     [bar]      1.97
 
 
 
 
-------------- OUTLET WATER THERMODYNAMIC STATE --------------
+------------- OUTLET RESERVOIR THERMODYNAMIC STATE --------------
 
-P [Pa]    1.5339e+7        [1000201/0202 W2]
-  [bar]   153.39
+P [Pa]    1.5313e+7        [1000201/0202 W2]
+  [bar]   153.13
 
 T [°C]    293.10          [1000201/0202 W3]
   [°K]    566.25
