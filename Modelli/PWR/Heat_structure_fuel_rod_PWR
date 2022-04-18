@@ -14,20 +14,20 @@ $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno    Naxial  Nradial  Geomtype  SSFlag  Leftboundary[m]
-12000000   50        4        2        1       0.0           $ho messo np=4 perchè considero: centro del fuel pellet + esterno del fuel pellet (raggio di 0.004096 m) + interno del cladding + esterno del cladding$
-*                                                            $con la SSFlag=1 tutti i dati di partenza sono presi da un modello steady state che abbiamo fatto partitre prima (è giusto così??)$
+12000000   50        4        2        0          0.0           $ho messo np=4 perchè considero: centro del fuel pellet + esterno del fuel pellet (raggio di 0.004096 m) + interno del cladding + esterno del cladding$
+*                                                               $con la SSFlag=1 tutti i dati di partenza sono presi da un modello steady state che abbiamo fatto partitre prima (è giusto così??)$
 *crdno     Initial He Pressure [Pa]    ReferenceVolume
-12000001         2000000.0                  555120000               $la pressione iniziale è presa da pagina 454 del Todreas, Kazimi per il caso FRAPCON 3.3 (le dimensioni della rod tornano col caso Seabrook station reactor PWR)$ 
-*                                                                  $Il reference volume è l'hydrodynanic volume più alto lungo z. Il numero lo ha messo Lollo nel parte HEATED CHANNEL$
-*
+12000001         2000000.0                555120000               $la pressione iniziale è presa da pagina 454 del Todreas, Kazimi per il caso FRAPCON 3.3 (le dimensioni della rod tornano col caso Seabrook station reactor PWR)$ 
+*                                                                 $Il reference volume è l'hydrodynanic volume più alto lungo z. Il numero lo ha messo Lollo nel parte HEATED CHANNEL$
+*                                                                 $La card 12000004 non ci interessa verso? cladding deformation
 *crdno      FuelRoughness    CladdingRoughness   FIssionGasRadialDisplacement   CreepDownRadialDisplacement   HeatStructureNumber   
-12000011                                                  
+12000011         ???.?              ???.?                    ???.?                         ???.?                     50              $sono costretto a mettere dopo la card 201MMM01-49
 *
 *crdno     Meshlocationflag    Meshformatflag
 12000100          0                  1
 *
 *crdno     Nointervals   Rightcoord[m]    
-12000101       3            0.0047506         
+12000101       3           0.0047506              $da controllare        
 *
 *crdno     Compositionno    Intervalno    
 12000201       101              3            $ho chiamato la heat structure composition (sezione A12 input manual): 101$             
@@ -42,12 +42,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 12000401   1673.15      1         
 *
 *crdno      T[K]    Meshpointno
-12000402   768.15       2
+12000402   768.15       2                  $DOMANDA: devo mettere la temperatura per ogni mesh point np???
 *
 *---------------------- LEFT BOUNDARY CONDITION -------------------------
 *
 *crdno   Boundaryvolno  Increment    BCtype   SAcode   SAfactor     Heatstno
-12000501   120010000       10000        1       1       0.5          20
+12000501      0             0         1xxx       1       0.            3
 *
 *                                         *BCtype 1=Upflow vertical duct
 *---------------------- RIGHT BOUNDARY CONDITION ------------------------
