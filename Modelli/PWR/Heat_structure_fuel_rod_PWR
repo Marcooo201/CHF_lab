@@ -1,4 +1,3 @@
-=FUEL ROD HEAT STRUCTURE 
 
 *ITER: sa vogliamo adottare il GAP CONDUCTANCE MODEL devo guardre la sezione 4.11 del Vol1*
 *se voglio anche il CLADDING DEFORMATION MODEL guarda la sezione 4.14: il cladding si deforma plasticamente, espandendosi, eper colpa della differenza di temperatura ( e di pressione tra in e out per LOCA) può rompersi o allargarsi così tanto da bloccare un canale di passaggio del coolant**
@@ -14,62 +13,67 @@ $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno    Naxial  Nradial  Geomtype  SSFlag  Leftboundary[m]
-12000000   50        4        2        0          0.0           $ho messo np=4 perchè considero: centro del fuel pellet + esterno del fuel pellet (raggio di 0.004096 m) + interno del cladding + esterno del cladding$
-*                                                               $con la SSFlag=1 tutti i dati di partenza sono presi da un modello steady state che abbiamo fatto partitre prima (è giusto così??)$
+12000000   50        4        2        1       0.0           
+$ ho messo np=4 perchè considero: centro del fuel pellet + esterno del fuel pellet (raggio di 0.004096 m) + interno del cladding + esterno del cladding$
+$ con la SSFlag=1 RELAP prende le temperature iniziali date in input nelle card 1CCCG402-G499 e si porta in steady-state (credo sia l'opzione migliore, così possiamo $
+$ analizzare i transitori partendo da una condizione di regime). Se SSFlag=0, RELAP prende come temperature iniziali quelle nella card 1CCCG401 e non si porta in $
+$ steady-state condition $
+*                                                            
 *crdno     Initial He Pressure [Pa]    ReferenceVolume
-12000001         2000000.0                555120000               $la pressione iniziale è presa da pagina 454 del Todreas, Kazimi per il caso FRAPCON 3.3 (le dimensioni della rod tornano col caso Seabrook station reactor PWR)$ 
-*                                                                 $Il reference volume è l'hydrodynanic volume più alto lungo z. Il numero lo ha messo Lollo nel parte HEATED CHANNEL$
-*                                                                 $La card 12000004 non ci interessa verso? cladding deformation
+12000001         2000000.0                  555120000               
+$ la pressione iniziale è presa da pagina 454 del Todreas, Kazimi per il caso FRAPCON 3.3 (le dimensioni della rod tornano col caso Seabrook station reactor PWR)$                                                                  
+$ Il reference volume è l'hydrodynanic volume più alto lungo z. Il numero lo ha messo Lollo nel parte HEATED CHANNEL$
+*
 *crdno      FuelRoughness    CladdingRoughness   FIssionGasRadialDisplacement   CreepDownRadialDisplacement   HeatStructureNumber   
-12000011         ???.?              ???.?                    ???.?                         ???.?                     50              $sono costretto a mettere dopo la card 201MMM01-49
+12000011         .0                  .0                     .0                              .0                        0
 *
 *crdno     Meshlocationflag    Meshformatflag
 12000100          0                  1
 *
 *crdno     Nointervals   Rightcoord[m]    
-12000101       3           0.0047506              $da controllare        
+12000101       3            0.0047506         
 *
 *crdno     Compositionno    Intervalno    
 12000201       101              3            $ho chiamato la heat structure composition (sezione A12 input manual): 101$             
+$ MI SEMBRA CHE TUTTA LA COMPOSITION E LA GENERAL TABLE RELATIVA AI MATERIALI SIANO DA RIVEDERE $
 *
 *crdno     Source    Meshintervalno
-12000301     1.            4
+12000301     1.            3
 *
 *crdno     Initialtempflag
 12000400         0
 *
 *crdno      T[K]    Meshpointno     
-12000401   1673.15      1         
+12000401   1673.15      2         
 *
 *crdno      T[K]    Meshpointno
-12000402   768.15       2                  $DOMANDA: devo mettere la temperatura per ogni mesh point np???
+12000402   768.15       4
 *
 *---------------------- LEFT BOUNDARY CONDITION -------------------------
 *
 *crdno   Boundaryvolno  Increment    BCtype   SAcode   SAfactor     Heatstno
-12000501      0             0         1xxx       1       0.            3
+12000501       0           0           0         0        0           50
 *
 *                                         *BCtype 1=Upflow vertical duct
 *---------------------- RIGHT BOUNDARY CONDITION ------------------------
 *
-*crdno   Tableno         Increment   BCtype  SAcode  SAfactor   Heatstno
-12000601  -201               0       4202    1       0.5          20
+*crdno      Tableno     Increment   BCtype  SAcode  SAfactor   Heatstno
+12000601   555000004      10000       1       1     0.07752       50
+$ ho messo come altezza di ogni heat structure 0.07752 m, cioè 1/50 dell'altezza totale della fuel rod indicata dal Kazimi per il PWR: 3.876 m . Tuttavia viene $
+$ indicata un'altezza leggermente minore relativa alla porzione di fuel rod scaldata: va chiarito quale delle 2 inserire e se/come considerare il profilo di $
+$ temperatura e di potenza scambiata lungo la fuel rod $
+$ la W3 andrebbe controllata meglio, ho messo 1 ad indicare uno scambio termico convettivo di default ma si può andare più nello specifico$
 *
 *                                   *BCtype 4202=convective boundary condition (4) where the heat transfer coefficient is specified in table 202
 *------------------------------ SOURCE DATA -------------------------------
 *
 *crdno   Sourcetype  Sourcemult  DMHMleft  DMHMright  Heatstno
-12000701    900          1.         0.       0.         20
+12000701    888          1.         0.       0.02        50
+$ se la SSFlag nella W4 della card 1CCCG000 è 1 allora devo dare in input una potenza iniziale, se invece è 0 non ce n'è bisogno $
+$ dalla general table 888 ricevo in input la potenza termica generata nella fuel rod. La W1 indica la frazione di questa potenza che viene ceduta al fluido lungo la $
+$ direzione assiale (questa word ci permette di descrivere l'andamento della potenza lungo la rod), mentre W2 e W3 indicano la frazione ceduta a left e right $
+$ boundaries rispettivamente (nel nostro caso viene quindi ceduta tutta nel right boundary e in particolare ogni) heat structure cede 0.02 = 1/50 della potenza totale $
 *
-*------------------ ADDITIONAL LEFT BOUNDARY CONDITION --------------------
-*
-*crdno    W1
-12000800  0   *9 word format
-*
-*crdno    Dth[m]   W2  W3  W4  W5  W6  W7   W8   Heatstno
-12000801    0.     15. 15. 0.  0.  0.  0.   1.     20
-*
-*                      
 *------------------ ADDITIONAL RIGHT BOUNDARY CONDITION -------------------
 *
 *crdno    W1
@@ -77,6 +81,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno       Dth[m]  W2  W3  W4  W5  W6  W7   W8   Heatstno
 12000901      0.     15. 15. 0.  0.  0.  0.   1.     20
+$ DA SISTEMARE, SI PARLA DI CHF MA NON è CHIARO IL SIGNIFICATO DI ALCUNE WORDS $
 *                   
 *--------------------------------------------------------------------------
 *
@@ -153,16 +158,14 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $                                                                             $
-$          TABLE 900-GENERATED POWER vs time                                  $
+$          TABLE 888-GENERATED POWER vs time                                  $
 $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno      Tabletype   Trip   Factors
-20290000     power
+20288800     power
 *
 *crdno         t[s]     Power [W]
-*
-20290001         0.     0.
-20290002         100.    250.0e3
-20290003         10000.  250.0e3
+20288801        0.     69.2536e+3
+$ potenza ottenuta moltiplicando la potenza media del core (17.86 kW/m) per la l'altezza totale della fuel rod (3.876 m) basandosi sui dati del Kazimi $
 *
