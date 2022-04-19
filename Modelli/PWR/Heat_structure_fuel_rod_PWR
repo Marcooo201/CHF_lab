@@ -30,11 +30,11 @@ $ Il reference volume è l'hydrodynanic volume più alto lungo z. Il numero lo h
 *crdno     Meshlocationflag    Meshformatflag
 12000100          0                  1
 *
-*crdno     Nointervals   Rightcoord[m]    
-12000101       3            0.0047506         
+*crdno     Nointervals   Rightcoord[m]   Nointervals   Rightcoord[m]     Nointervals   Rightcoord[m]  
+12000101        1          0.004069           2         0.0041786            3           0.0047506         
 *
-*crdno     Compositionno    Intervalno    
-12000201       101              3            $ho chiamato la heat structure composition (sezione A12 input manual): 101$             
+*crdno     Compositionno    Intervalno   Compositionno    Intervalno   Compositionno    Intervalno  
+12000201        111             1             222             2             333             3           $ho chiamato la heat structure composition (sezione A12 input manual): 101$             
 $ MI SEMBRA CHE TUTTA LA COMPOSITION E LA GENERAL TABLE RELATIVA AI MATERIALI SIANO DA RIVEDERE $
 *
 *crdno     Source    Meshintervalno
@@ -90,71 +90,26 @@ $ DA SISTEMARE, SI PARLA DI CHF MA NON è CHIARO IL SIGNIFICATO DI ALCUNE WORDS 
 *||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 *
 *
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$                                                                             $
-$                  TABLE 101- Stainless steel  AISI 1010                      $
-$                                                                             $
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-*-------------------------------*---------------------------------------------*
-*  A. F. Mills, 'Heat Transfer', Irwin, 1992                                  *
-*-------------------------------*---------------------------------------------*
-*
-*crdno     Material   Kflag   Cflag
-20110100   tbl/fctn    1       1
-*
-*crdno      T[K]   K[W/mK]
-*
-20110101    200.    68.4  *Extrapolated  * Linear Interpolation
-20110102    300.    64.0                 * 
-20110103    400.    59.0                 * K=77.9-0.048*T  [corr=-0.999]
-20110104    500.    54.0                 *
-20110105    600.    49.0
-20110106    800.    39.0
-20110107   1000.    31.0
-20110108   12000.   20.7  *Extrapolated
-*
-*crdno      T[K]   roCp[J/m^3K]
-*
-20110151    200.    2.98323e+6  *Extrapolated
-20110152    300.    3.39822e+6
-20110153    400.    3.81321e+6
-20110154    500.    4.07160e+6
-20110155    600.    4.37697e+6
-20110156    800.    5.36355e+6
-20110157   1000.    9.14544e+6
-20110158   12000.   12.9273e+6  *Extrapolated
+****************************************************************************
+*  material properties tables  ******  table  ******************************
+****************************************************************************
+20111100  uo2
+20122200  gap
+20133300  zr
 *
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $                                                                             $
-$                  TABLE 201-ENVIRONMENT TEMPERATURE vs TIME                  $
-$                                                                             $
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-*
-*crdno     Tabletype   Trip   Factors
-20220100     temp
-*
-*crdno         t[s]      T[K]
-*
-20220101        0.       300.
-20220102      1.e+6      300.
-*
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$                                                                             $
-$          TABLE 202-DISSIPATIVE HEAT TRANSFER COEFF. vs TEMPERATURE          $
+$          TABLE 777-DISSIPATIVE HEAT TRANSFER COEFF. vs TIME                 $   $Forse questo  un parametro da lasciare libero?
 $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno      Tabletype   Trip   Factors
-20220200     htc-temp
+20277700     htc-t
 *
 *crdno         T[K]      h[W/m^2K]
 *
-20220201       200.          0.
-20220202       300.          0.
-20220203       400.          5.
-20220204       500.         10.
-20220205       600.         20.
-20220206       700.         40.
+20277701        0.          0.7
+20277702       100.         0.7    $forse devo tenere solo il valore iniziale, poi è il transitorio a dirmi come cambia??
 *
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $                                                                             $
@@ -167,5 +122,6 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno         t[s]     Power [W]
 20288801        0.     69.2536e+3
+20288802       100.    69.2536e+3 
 $ potenza ottenuta moltiplicando la potenza media del core (17.86 kW/m) per la l'altezza totale della fuel rod (3.876 m) basandosi sui dati del Kazimi $
 *
