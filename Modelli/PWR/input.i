@@ -242,8 +242,8 @@ $ steady-state condition $
 *crdno     Initial He Pressure [Pa]    ReferenceVolume
 12000001         5000000.0                555480000
 *
-*crdno      FuelRough    CladRough   FGRadialDispl   CreepDownRadialDispl   HeatStructureNo
-12000011     1.0e-6       2.0e-6          0.0                0.0                   50
+*crdno   FuelRough CladRough  FGDispl CDRDispl  HeatStructureNo
+12000011   1.0e-6    2.0e-6    0.0     0.2         50
 *
 *crdno     MeshLocationFlag    MeshFormatFlag
 12000100          0                  1
@@ -259,7 +259,7 @@ $ steady-state condition $
 12000203        333             9
 *
 *crdno     Source    MeshIntervalno   Source    MeshIntervalno
-12000301   0.16667        6             0.           9
+12000301   0.16667        6             0.            9
 *
 *crdno     Initialtempflag
 12000400         0
