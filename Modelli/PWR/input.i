@@ -296,9 +296,9 @@ $$$$$ PROFILO ASSIALE DELLA POTENZA TERMICA NELLA FUEL ROD DA SISTEMARE $$$$$
 *crdno    W1
 12000900  0   * 9 word format
 *
-*crdno       Dth[m]   W2  W3   W4  W5  W6  W7   W8   Heatstno
-12000901      ???    ???  ???  0.  0.  0.  0.   1.     50
-$$$$$ DA RIVEDERE PREFERIBILMENTE COL PROF $$$$$
+*crdno       Dth[m]      W2   W3   W4  W5  W6  W7   W8   Heatstno
+12000901   1.17808e-2    15.  15.  0.  0.  0.  0.   1.     50
+$$$$$ LA W2 e W3 SONO DA RIFAREEEEE $$$$$
 *
 *
 *--------------------------------------------------------------------------
