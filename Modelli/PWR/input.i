@@ -243,7 +243,7 @@ $ steady-state condition $
 12000001         5000000.0                555480000
 *
 *crdno      FuelRoughness    CladdingRoughness   FissionGasRadialDisplacement   CreepDownRadialDisplacement   HeatStructureNumber
-12000011        1e-6               2e-6                     0.                              0.                        50
+12000011        1.0e-6             2.0e-6                   0.                             0.                         50
 *
 *crdno     MeshLocationFlag    MeshFormatFlag
 12000100          0                  1
