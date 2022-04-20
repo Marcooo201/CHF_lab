@@ -282,7 +282,7 @@
    243    12000001         5000000.0                555480000                                             
    244    *                                                                                               
    245    *crdno      FuelRough    CladRough   FGRadialDispl   CreepDownRadialDispl   HeatStructureNo     
-   246    12000011     1.0e-6       2.0e-6          0.0                0.0                   50           
+   246    *12000011     1.0e-6       2.0e-6          0.0                0.0                   50          
    247    *                                                                                               
    248    *crdno     MeshLocationFlag    MeshFormatFlag                                                   
    249    12000100          0                  1                                                          
@@ -358,35 +358,38 @@
    319    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                 
    320    *                                                                                               
    321    20111100  uo2                                                                                   
-   322    20122200  gap                                                                                   
-   323    20133300  zr                                                                                    
-   324    $ la card 001 della heat structure richiede che la W2 della card 00 sia 3. Ma la W2 in teoria è
-   325    $ i dati sui materiali, quindi non dovrebbe essere necessaria. Vediamo se il codice funziona o n
-   326    *                                                                                               
-   327    *                                                                                               
-   328    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                 
-   329    $                                                                             $                 
-   330    $                  TABLE 888 - GENERATED POWER vs TIME                        $                 
-   331    $                                                                             $                 
-   332    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                 
-   333    *                                                                                               
-   334    *crdno      Tabletype   Trip   Factors                                                          
-   335    20288800     power                                                                              
+   322    20122200  tbl/fctn  3   1       * gas mixture                                                   
+   323    20122201  nitrogen  0.4                                                                         
+   324    20122202  xenon     0.6                                                                         
+   325    20122251  7.5000e-5                                                                             
+   326    20133300  zr                                                                                    
+   327    $ la card 001 della heat structure richiede che la W2 della card 00 sia 3. Ma la W2 in teoria è
+   328    $ i dati sui materiali, quindi non dovrebbe essere necessaria. Vediamo se il codice funziona o n
+   329    *                                                                                               
+   330    *                                                                                               
+   331    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                 
+   332    $                                                                             $                 
+   333    $                  TABLE 888 - GENERATED POWER vs TIME                        $                 
+   334    $                                                                             $                 
+   335    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                 
    336    *                                                                                               
-   337    *crdno         t[s]     Power [W]                                                               
-   338    20288801        0.      66351.88                                                                
-   339    20288802       100.     66351.88                                                                
-   340    $ potenza ottenuta moltiplicando la potenza media del core (17.86 kW/m) per la l'altezza totale 
-   341    $ 100 secondi è il tempo finale della simulazione $                                            
-   342    *                                                                                               
-   343                                                                                                    
-   344    .                                                                                               
+   337    *crdno      Tabletype   Trip   Factors                                                          
+   338    20288800     power                                                                              
+   339    *                                                                                               
+   340    *crdno         t[s]     Power [W]                                                               
+   341    20288801        0.      66351.88                                                                
+   342    20288802       100.     66351.88                                                                
+   343    $ potenza ottenuta moltiplicando la potenza media del core (17.86 kW/m) per la l'altezza totale 
+   344    $ 100 secondi è il tempo finale della simulazione $                                            
+   345    *                                                                                               
+   346                                                                                                    
+   347    .                                                                                               
 0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  pwr_channel                                                                     20-Apr-22    15:26:30      
+  pwr_channel                                                                     20-Apr-22    15:35:19      
 1  RELAP5/3.3gl          Reactor Loss Of Coolant Analysis Program                                
 1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  pwr_channel                                                                     20-Apr-22    15:26:30      
+  pwr_channel                                                                     20-Apr-22    15:35:19      
 0Processing type is new     
 +                                       problem option is transnt 
 0inp-chk, run option is run.    
@@ -803,7 +806,7 @@
       7,  1.666700E-01     10,  0.000000E+00
 0mesh point number, initial temperature (K)     (initial temperature constant between indicated mesh points)
      10,  1.573150E+03
-0******** too few numbers on cards  12000011 through  12000099
+0******** cards  12000011 through  12000099 missing
 0******** Gap deformation data cards are missing.
 0Structure      source       internal source
     number        code       factor
@@ -1099,9 +1102,9 @@
      2.873150E+03     6.582538E+06           2.973150E+03     6.713317E+06
      3.113150E+03     6.800503E+06           4.699817E+03     6.800503E+06
 0                             Data for composition 222
- Internally stored thermal property, gap     ,requested.
-0Thermal conductivity is constant at     7.193279E-01 (Watts/m-K)      
-0Volumetric heat capacity is constant at     5.029958E+00 (J/m3-K)      
+0 Gas mole fraction table
+   nitrogen   4.0000000E-01   xenon      6.0000000E-01
+0Volumetric heat capacity is constant at     7.500000E-05 (J/m3-K)      
 0                             Data for composition 333
  Internally stored thermal property, zr      ,requested.
 0Thermal conductivity table
