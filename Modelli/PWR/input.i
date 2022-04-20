@@ -82,11 +82,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *crdno   Time[s]      P[Pa]      T[K]
 *
 1000201     0.      1.551e+7    566.25
-1000202    25.      1.551e+7    566.25
-1000203    30.      1.551e+7    266.25
-1000204    40.      1.551e+7    266.25
-1000205    80.      1.551e+7    666.25
-1000206   100.      1.551e+7    666.25
+1000202   100.      1.551e+7    566.25
 *
 *------------------------------------------------------------------------------
 *
@@ -228,56 +224,56 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $                                                                             $
-$                      HEAT STRUCTURE 200 - FUEL ROD                          $
+$                      HEAT STRUCTURE 555 - FUEL ROD                          $
 $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno    Naxial  Nradial  Geomtype  SSFlag  Leftboundary[m]
-12000000   50       10        2        0         0.0
+15550000   50       10        2        0         0.0
 $ ho messo np=4 perchè considero: centro del fuel pellet + esterno del fuel pellet (raggio di 0.004096 m) + interno del cladding + esterno del cladding$
 $ con la SSFlag=1 RELAP prende le temperature iniziali date in input nelle card 1CCCG402-G499 e si porta in steady-state (credo sia l'opzione migliore, così possiamo $
 $ analizzare i transitori partendo da una condizione di regime). Se SSFlag=0, RELAP prende come temperature iniziali quelle nella card 1CCCG401 e non si porta in $
 $ steady-state condition $
 *
 *crdno     Initial He Pressure [Pa]    ReferenceVolume
-12000001         5000000.0                555480000
+15550001         5000000.0                555480000
 *
 *crdno   FuelRough CladRough  FGDispl CDRDispl  HeatStructureNo
-12000011   1.0e-6    2.0e-6    0.0     0.2         50
+15550011   1.0e-6    2.0e-6    0.0     0.2         50
 *
 *crdno     MeshLocationFlag    MeshFormatFlag
-12000100          0                  1
+15550100          0                  1
 *
 *crdno     NoIntervals   Rightcoord[m]
-12000101        6          0.004069
-12000102        1          0.0041786
-12000103        2          0.0047506
+15550101        6          0.004069
+15550102        1          0.0041786
+15550103        2          0.0047506
 *
 *crdno     Compositionno    Intervalno
-12000201        111             6
-12000202        222             7
-12000203        333             9
+15550201        111             6
+15550202        222             7
+15550203        333             9
 *
 *crdno     Source    MeshIntervalno   Source    MeshIntervalno
-12000301   0.16667        6             0.            9
+15550301   0.16667        6             0.            9
 *
 *crdno     Initialtempflag
-12000400         0
+15550400         0
 *
 *crdno   Initial T[K]    MeshPointNo
-12000401   1573.15           10
+15550401   1000.0             10
 *
 *
 *---------------------- LEFT BOUNDARY CONDITION -------------------------
 *
 *crdno   Boundaryvolno  Increment    BCtype    SAcode   SAfactor     Heatstno
-12000501       0            0           0        1      0.07752         50
+15550501       0            0           0        1      0.07752         50
 *
 *
 *---------------------- RIGHT BOUNDARY CONDITION ------------------------
 *
 *crdno      Tableno     Increment   BCtype  SAcode  SAfactor   Heatstno
-12000601   555010004      10000        1      1     0.07752       50
+15550601   555010004      10000        1      1     0.07752       50
 $ ho messo come altezza di ogni heat structure 0.07752 m, cioè 1/50 dell'altezza totale della fuel rod indicata dal Kazimi per il PWR: 3.876 m . Tuttavia viene $
 $ indicata un'altezza leggermente minore relativa alla porzione di fuel rod scaldata: va chiarito quale delle 2 inserire e se/come considerare il profilo di $
 $ temperatura e di potenza scambiata lungo la fuel rod $
@@ -287,7 +283,7 @@ $ la W3 andrebbe controllata meglio, ho messo 1 ad indicare uno scambio termico 
 *------------------------------ SOURCE DATA -------------------------------
 *
 *crdno   Sourcetype  SourceMult  DMHMleft  DMHMright  Heatstno
-12000701    888         0.02         0.       0.         50
+15550701    888         0.02         0.       0.         50
 $ se la SSFlag nella W4 della card 1CCCG000 è 1 allora devo dare in input una potenza iniziale, se invece è 0 non ce n'è bisogno $
 $ dalla general table 888 ricevo in input nella W1 la potenza termica generata nella fuel rod. La W2 indica la frazione di questa $
 $ potenza totale associata a ciascuna heat structure. Le W3 e W4 indicano quanta di questa potenza è trasferita per irraggiamento $
@@ -298,10 +294,10 @@ $$$$$ PROFILO ASSIALE DELLA POTENZA TERMICA NELLA FUEL ROD DA SISTEMARE $$$$$
 *------------------ ADDITIONAL RIGHT BOUNDARY CONDITION -------------------
 *
 *crdno    W1
-12000900  0   * 9 word format
+15550900  0   * 9 word format
 *
 *crdno       Dth[m]      W2   W3   W4  W5  W6  W7   W8   Heatstno
-12000901   1.17808e-2    15.  15.  0.  0.  0.  0.   1.     50
+15550901   1.17808e-2    15.  15.  0.  0.  0.  0.   1.     50
 $$$$$ LA W2 e W3 SONO DA RIFAREEEEE $$$$$
 *
 *

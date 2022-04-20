@@ -1,0 +1,93 @@
+1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
+1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
+0Execute file: ..\..\utils\execution\relap5.exe                                                
+0Effective command line parameters:
+    -f ftb1                                                                                        -i input_strip.i                                                                           
+    -o out\output_strip                                                                            -p plotfl                                                                                  
+    -r [out\rstplt]                                                                                -s out\stripf                                                                              
+    -j jbinfo                                                                                      -n null                                                                                    
+    -c cdffile                                                                                     -a coupfl                                                                                  
+    -X                                                                                             -C 0                                                                                       
+    -A dumpfil1                                                                                    -B dumpfil2                                                                                
+    -S snapdata                                                                                    -P 5009                                                                                    
+    -O                                                                                             -R []                                                                                      
+    -w [tpfh2o]                                                                                    -d [tpfd2o]                                                                                
+    -h [tpfh2]                                                                                     -l [tpfli]                                                                                 
+    -k [tpfk]                                                                                      -b [tpfhe]                                                                                 
+    -e [tpfn2]                                                                                     -m [tpfna]                                                                                 
+    -q [tpfnak]                                                                                    -t [tpflipb]                                                                               
+    -u [tpfnh3]                                                                                    -W [tpfh2on]                                                                               
+    -g [tpfglyc]                                                                                   -H [tpfblood]                                                                              
+    -Z [tpfh2onew]                                                                             
+
+    [] = tentative file name (may be overridden by input data)
+
+0Environmental library version number is: 3.3gl   
+0Table of update define values
+ apollo   off         bigfa    on          blkdta   off         bufr     off         cdccra   off
+ cos      off         cray     off         ctss     off         debth    off         decalp90 off
+ decalpha off         decrisc  off         decrisc2 off         erf      on          extjun   off
+ extj20   off         extsys   off         extvol   off         extv20   off         extv100  off
+ fourbyt  on          g77      off         hp       off         ibm      off         ibmrisc  off
+ ieee     off         in32     on          laheyf77 off         lcm      off         linux    off
+ loadhi   on          loadlo   off         makemap  off         mac      off         medfa    off
+ nanscr   off         nopen    off         npa      off         nreac    off         parcs    on 
+ ploc     on          pvmcoupl off         readnonb off         selap    off         sgi      off
+ smallfa  off         sun      off         unicos   off         unix     on          vax      off
+ win32cvf on          win32g77 off
+ listing of input data for case  1                                                                        
+                                                                                                          
+     1    =strip_input                                                                                    
+     2                                                                                                    
+     3    0000100 strip fmtout                                                                            
+     4    103 0                                                                                           
+     5                                                                                                    
+     6                                                                                                    
+     7    1001 tempf 555010000                                                                            
+     8    1002 tempf 555250000                                                                            
+     9    1003 tempf 555500000                                                                            
+    10    *                                                                                               
+    11    1004 htvat 5550001                                                                              
+    12    1005 htvat 5550025                                                                              
+    13    1006 htvat 5550050                                                                              
+    14    *                                                                                               
+    15    1007 httemp 555000101                                                                           
+    16    1008 httemp 555002501                                                                           
+    17    1009 httemp 555005001                                                                           
+    18    *                                                                                               
+    19    1010 httemp 555000108                                                                           
+    20    1011 httemp 555002508                                                                           
+    21    1012 httemp 555005008                                                                           
+    22    *                                                                                               
+    23    * Additional input variables card for interior meshing points                                   
+    24    20800001 httemp 5550001                                                                         
+    25    *20800002 httemp 555002508                                                                      
+    26    *                                                                                               
+    27    .                                                                                               
+0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
+0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
+  strip_input                                                                     20-Apr-22    17:44:13      
+1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
+1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
+  strip_input                                                                     20-Apr-22    17:44:13      
+0Processing type is strip   
++                                       problem option is fmtout  
+0inp-chk, run option is run.    
+0Restart input file was written by program   RELAP5/3.3gl           on 20-Apr-22    17:30:55   , transient run.
+0         Strip variable requests
+ req.num.    variable code    parameter
+     1001      tempf          555010000
+     1002      tempf          555250000
+     1003      tempf          555500000
+     1004      htvat            5550001
+     1005      htvat            5550025
+     1006      htvat            5550050
+     1007      httemp         555000101
+     1008      httemp         555002501
+     1009      httemp         555005001
+     1010      httemp         555000108
+     1011      httemp         555002508
+     1012      httemp         555005008
+0******** the following cards were not used:
+           20800001        
+0******** Errors detected during input processing.

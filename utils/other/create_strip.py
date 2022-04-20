@@ -2,8 +2,8 @@
 #                 INPUT              #
 ######################################
 
-vol_vars = ['p', 'tempf', 'rho', 'tempv']
-jun_vars = ['mflowj', 'mflowjf']
+vol_vars = ['p', 'tempf', 'tempv', 'tempv']
+jun_vars = []
 
 CCC = '555'
 nv = 50
