@@ -243,16 +243,20 @@ $ steady-state condition $
 12000001         5000000.0                555480000
 *
 *crdno      FuelRoughness    CladdingRoughness   FissionGasRadialDisplacement   CreepDownRadialDisplacement   HeatStructureNumber
-12000011         .0                  .0                     .0                              .0                        0
+12000011        1e-6               2e-6                     0.                              0.                        50
 *
 *crdno     MeshLocationFlag    MeshFormatFlag
 12000100          0                  1
 *
-*crdno     NoIntervals   Rightcoord[m]   NoIntervals   Rightcoord[m]     NoIntervals   Rightcoord[m]
-12000101        6          0.004069           1         0.0041786              2         0.0047506
+*crdno     NoIntervals   Rightcoord[m]
+12000101        6          0.004069
+12000102        1          0.0041786
+12000103        2          0.0047506
 *
-*crdno     Compositionno    Intervalno   Compositionno    Intervalno   Compositionno    Intervalno
-12000201        111             6             222             1             333             2
+*crdno     Compositionno    Intervalno
+12000201        111             6
+12000202        222             7
+12000203        333             9
 *
 *crdno     Source    MeshIntervalno   Source    MeshIntervalno
 12000301   0.16667        6             0.           9
@@ -273,7 +277,7 @@ $ steady-state condition $
 *---------------------- RIGHT BOUNDARY CONDITION ------------------------
 *
 *crdno      Tableno     Increment   BCtype  SAcode  SAfactor   Heatstno
-12000601   555000004      10000        1      1     0.07752       50
+12000601   555010004      10000        1      1     0.07752       50
 $ ho messo come altezza di ogni heat structure 0.07752 m, cioè 1/50 dell'altezza totale della fuel rod indicata dal Kazimi per il PWR: 3.876 m . Tuttavia viene $
 $ indicata un'altezza leggermente minore relativa alla porzione di fuel rod scaldata: va chiarito quale delle 2 inserire e se/come considerare il profilo di $
 $ temperatura e di potenza scambiata lungo la fuel rod $
