@@ -16,9 +16,6 @@
 1008 httemp 555002501
 1009 httemp 555005001
 *
-1010 cntrlvar 101
-1011 cntrlvar 102
-1012 cntrlvar 103
 1013 cntrlvar 110
 *
 *
