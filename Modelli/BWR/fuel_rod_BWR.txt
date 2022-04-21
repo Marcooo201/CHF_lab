@@ -15,21 +15,21 @@ $ con la SSFlag=1 RELAP prende le temperature iniziali date in input nelle card 
 $ analizzare i transitori partendo da una condizione di regime). Se SSFlag=0, RELAP prende come temperature iniziali quelle nella card 1CCCG401 e non si porta in $
 $ steady-state condition $
 *
-*crdno     Initial He Pressure [Pa]    ReferenceVolume #####
-15550001         5000000.0                555480000 
+*crdno     Initial He Pressure [Pa]    ReferenceVolume
+15550001         690000.0                555480000
 *
-*crdno   FuelRough CladRough  FGDispl CDRDispl  HeatStructureNo #####
-15550011   1.0e-6    2.0e-6    0.0     0.2         50 
+*crdno   FuelRough CladRough  FGDispl CDRDispl  HeatStructureNo
+15550011   1.0e-6    2.0e-6    0.0     0.0         50
 *
 *crdno     MeshLocationFlag    MeshFormatFlag
-15550100          0                  1 
+15550100          0                  1
 *
 *crdno     NoIntervals   Rightcoord[m]
-15550101        6          0.0048
+15550101        6          0.00480
 15550102        1          0.00489
-15550103        2          0.0056
+15550103        2          0.00560
 *
-*crdno     Compositionno    Intervalno #####
+*crdno     Compositionno    Intervalno
 15550201        111             6
 15550202        222             7
 15550203        333             9
@@ -40,7 +40,7 @@ $ steady-state condition $
 *crdno     Initialtempflag
 15550400         0
 *
-*crdno   Initial T[K]    MeshPointNo #####
+*crdno   Initial T[K]    MeshPointNo
 15550401   1000.0             10
 *
 *
@@ -126,8 +126,8 @@ $$$$$ PROFILO ASSIALE DELLA POTENZA TERMICA NELLA FUEL ROD DA SISTEMARE $$$$$
 *crdno    W1
 15550900  0   * 9 word format
 *
-*crdno       Dth[m]      W2   W3   W4  W5  W6  W7   W8   Heatstno #####
-15550901   1.17808e-2    15.  15.  0.  0.  0.  0.   1.     50
+*crdno       Dth[m]      W2   W3   W4  W5  W6  W7   W8   Heatstno
+15550901   1.227767e-2    15.  15.  0.  0.  0.  0.   1.     50
 $$$$$ LA W2 e W3 SONO DA RIFAREEEEE $$$$$
 *
 *
@@ -144,8 +144,8 @@ $                               TABLE - MATERIALS                             $
 $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
-20111100  uo2 
-20122200  tbl/fctn  3   1       * gas mixture #####
+20111100  uo2
+20122200  tbl/fctn  3   1       * gas mixture
 20122201  nitrogen  0.4
 20122202  xenon     0.6
 20122251  7.5000e-5
@@ -161,7 +161,7 @@ $                                                                             $
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 *
 *crdno      Tabletype   Trip   Factors
-20288800     power
+20288800      power
 *
 *crdno         t[s]     Power [W]
 20288801        0.       63148.8

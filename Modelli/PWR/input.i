@@ -241,10 +241,10 @@ $ analizzare i transitori partendo da una condizione di regime). Se SSFlag=0, RE
 $ steady-state condition $
 *
 *crdno     Initial He Pressure [Pa]    ReferenceVolume
-15550001         5000000.0                555480000
+15550001         2410000.0                555480000
 *
 *crdno   FuelRough CladRough  FGDispl CDRDispl  HeatStructureNo
-15550011   1.0e-6    2.0e-6    0.0     0.2         50
+15550011   1.0e-6    2.0e-6    0.0     0.0         50
 *
 *crdno     MeshLocationFlag    MeshFormatFlag
 15550100          0                  1
