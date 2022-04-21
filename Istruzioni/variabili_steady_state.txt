@@ -1,0 +1,21 @@
+PWR
+- Potenza totale scambiata
+- Temperatura acqua in uscita
+- Temperatura max fuel pellet (low, medium, high)
+- Temperatura max cladding (low, medium, high)
+- Profilo di temperatura radiale rod (volume 25)
+- Perdite pressione nel channel
+- Modalità di heat transfer (low, medium, high)
+- CHFR (low, medium, high)
+
+
+BWR
+- Potenza totale scambiata
+- Temperatura acqua in uscita
+- Titolo vapore in uscita
+- Temperatura max fuel pellet
+- Temperatura max cladding
+- Profilo di temperatura radiale rod
+- Perdite pressione nel channel
+- Modalità di heat transfer (low, medium, high)
+- CHFR (low, medium, high)

@@ -43,50 +43,78 @@
      4    103 0                                                                                           
      5                                                                                                    
      6                                                                                                    
-     7    1001 tempf 555010000                                                                            
-     8    1002 tempf 555250000                                                                            
-     9    1003 tempf 555500000                                                                            
+     7    1001 cntrlvar 110                       $ Potenza Totale                                        
+     8    *                                                                                               
+     9    1002 tempf 555500000                    $ Temperatura in uscita                                 
     10    *                                                                                               
-    11    1004 htvat 5550001                                                                              
-    12    1005 htvat 5550025                                                                              
-    13    1006 htvat 5550050                                                                              
+    11    1003 httemp 555000101                   $ Temperatura max fuel pellet (low, medium, high)       
+    12    1004 httemp 555002501                                                                           
+    13    1005 httemp 555005001                                                                           
     14    *                                                                                               
-    15    1007 httemp 555000101                                                                           
-    16    1008 httemp 555002501                                                                           
-    17    1009 httemp 555005001                                                                           
+    15    1006 httemp 555000108                   $ Temperatura max cladding (low, medium, high)          
+    16    1007 httemp 555002508                                                                           
+    17    1008 httemp 555005008                                                                           
     18    *                                                                                               
-    19    1010 cntrlvar 101                                                                               
-    20    1011 cntrlvar 102                                                                               
-    21    1012 cntrlvar 103                                                                               
-    22    1013 cntrlvar 110                                                                               
-    23    *                                                                                               
-    24    *                                                                                               
-    25    .                                                                                               
+    19    1009 httemp 555002501                   $ Profilo temperatura rod (volume 25)                   
+    20    1010 httemp 555002502                                                                           
+    21    1011 httemp 555002503                                                                           
+    22    1012 httemp 555002504                                                                           
+    23    1013 httemp 555002505                                                                           
+    24    1014 httemp 555002506                                                                           
+    25    1015 httemp 555002507                                                                           
+    26    1016 httemp 555002508                                                                           
+    27    1017 httemp 555002509                                                                           
+    28    1018 httemp 555002510                                                                           
+    29    *                                                                                               
+    30    1019 cntrlvar 120                       $ Caduta di pressione                                   
+    31    *                                                                                               
+    32    1020 htmode 555000101                   $ Heat transfer mode (low, medium, high)                
+    33    1021 htmode 555002501                                                                           
+    34    1022 htmode 555005001                                                                           
+    35    *                                                                                               
+    36    1023 htchfr 555000101                   $ CHFR (low, medium, high)                              
+    37    1024 htchfr 555002501                                                                           
+    38    1025 htchfr 555005001                                                                           
+    39    *                                                                                               
+    40    *                                                                                               
+    41    .                                                                                               
 0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     21-Apr-22    14:15:10      
+  strip_input                                                                     21-Apr-22    16:23:05      
 1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     21-Apr-22    14:15:10      
+  strip_input                                                                     21-Apr-22    16:23:05      
 0Processing type is strip   
 +                                       problem option is fmtout  
 0inp-chk, run option is run.    
-0Restart input file was written by program   RELAP5/3.3gl           on 21-Apr-22    14:13:51   , transient run.
+0Restart input file was written by program   RELAP5/3.3gl           on 21-Apr-22    16:22:52   , transient run.
 0         Strip variable requests
  req.num.    variable code    parameter
-     1001      tempf          555010000
-     1002      tempf          555250000
-     1003      tempf          555500000
-     1004      htvat            5550001
-     1005      htvat            5550025
-     1006      htvat            5550050
-     1007      httemp         555000101
-     1008      httemp         555002501
-     1009      httemp         555005001
-     1010      cntrlvar             101
-     1011      cntrlvar             102
-     1012      cntrlvar             103
-     1013      cntrlvar             110
+     1001      cntrlvar             110
+     1002      tempf          555500000
+     1003      httemp         555000101
+     1004      httemp         555002501
+     1005      httemp         555005001
+     1006      httemp         555000108
+     1007      httemp         555002508
+     1008      httemp         555005008
+     1009      httemp         555002501
+     1010      httemp         555002502
+     1011      httemp         555002503
+     1012      httemp         555002504
+     1013      httemp         555002505
+     1014      httemp         555002506
+     1015      httemp         555002507
+     1016      httemp         555002508
+     1017      httemp         555002509
+     1018      httemp         555002510
+     1019      cntrlvar             120
+     1020      htmode         555000101
+     1021      htmode         555002501
+     1022      htmode         555005001
+     1023      htchfr         555000101
+     1024      htchfr         555002501
+     1025      htchfr         555005001
 0$$$$$$$$ Input processing completed successfully.
 
 0Successful end of strip processing.
