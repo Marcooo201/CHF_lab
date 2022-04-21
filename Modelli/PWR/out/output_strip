@@ -55,25 +55,23 @@
     16    1008 httemp 555002501                                                                           
     17    1009 httemp 555005001                                                                           
     18    *                                                                                               
-    19    1010 httemp 555000108                                                                           
-    20    1011 httemp 555002508                                                                           
-    21    1012 httemp 555005008                                                                           
-    22    *                                                                                               
-    23    * Additional input variables card for interior meshing points                                   
-    24    20800001 httemp 5550001                                                                         
-    25    *20800002 httemp 555002508                                                                      
-    26    *                                                                                               
-    27    .                                                                                               
+    19    1010 cntrlvar 101                                                                               
+    20    1011 cntrlvar 102                                                                               
+    21    1012 cntrlvar 103                                                                               
+    22    1013 cntrlvar 110                                                                               
+    23    *                                                                                               
+    24    *                                                                                               
+    25    .                                                                                               
 0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     20-Apr-22    17:44:13      
+  strip_input                                                                     21-Apr-22    14:15:10      
 1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     20-Apr-22    17:44:13      
+  strip_input                                                                     21-Apr-22    14:15:10      
 0Processing type is strip   
 +                                       problem option is fmtout  
 0inp-chk, run option is run.    
-0Restart input file was written by program   RELAP5/3.3gl           on 20-Apr-22    17:30:55   , transient run.
+0Restart input file was written by program   RELAP5/3.3gl           on 21-Apr-22    14:13:51   , transient run.
 0         Strip variable requests
  req.num.    variable code    parameter
      1001      tempf          555010000
@@ -85,9 +83,10 @@
      1007      httemp         555000101
      1008      httemp         555002501
      1009      httemp         555005001
-     1010      httemp         555000108
-     1011      httemp         555002508
-     1012      httemp         555005008
-0******** the following cards were not used:
-           20800001        
-0******** Errors detected during input processing.
+     1010      cntrlvar             101
+     1011      cntrlvar             102
+     1012      cntrlvar             103
+     1013      cntrlvar             110
+0$$$$$$$$ Input processing completed successfully.
+
+0Successful end of strip processing.
