@@ -65,25 +65,26 @@
     26    1016 httemp 555002508                                                                           
     27    1017 httemp 555002509                                                                           
     28    1018 httemp 555002510                                                                           
-    29    *                                                                                               
-    30    1019 cntrlvar 120                       $ Caduta di pressione                                   
-    31    *                                                                                               
-    32    1020 htmode 555000101                   $ Heat transfer mode (low, medium, high)                
-    33    1021 htmode 555002501                                                                           
-    34    1022 htmode 555005001                                                                           
-    35    *                                                                                               
-    36    1023 htchfr 555000101                   $ CHFR (low, medium, high)                              
-    37    1024 htchfr 555002501                                                                           
-    38    1025 htchfr 555005001                                                                           
-    39    *                                                                                               
+    29    1019 tempf 555250000                                                                            
+    30    *                                                                                               
+    31    1020 cntrlvar 120                       $ Caduta di pressione                                   
+    32    *                                                                                               
+    33    1021 htmode 555000101                   $ Heat transfer mode (low, medium, high)                
+    34    1022 htmode 555002501                                                                           
+    35    1023 htmode 555005001                                                                           
+    36    *                                                                                               
+    37    1024 htchfr 555000101                   $ CHFR (low, medium, high)                              
+    38    1025 htchfr 555002501                                                                           
+    39    1026 htchfr 555005001                                                                           
     40    *                                                                                               
-    41    .                                                                                               
+    41    *                                                                                               
+    42    .                                                                                               
 0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     21-Apr-22    16:23:05      
+  strip_input                                                                     21-Apr-22    17:31:22      
 1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     21-Apr-22    16:23:05      
+  strip_input                                                                     21-Apr-22    17:31:22      
 0Processing type is strip   
 +                                       problem option is fmtout  
 0inp-chk, run option is run.    
@@ -108,13 +109,14 @@
      1016      httemp         555002508
      1017      httemp         555002509
      1018      httemp         555002510
-     1019      cntrlvar             120
-     1020      htmode         555000101
-     1021      htmode         555002501
-     1022      htmode         555005001
-     1023      htchfr         555000101
-     1024      htchfr         555002501
-     1025      htchfr         555005001
+     1019      tempf          555250000
+     1020      cntrlvar             120
+     1021      htmode         555000101
+     1022      htmode         555002501
+     1023      htmode         555005001
+     1024      htchfr         555000101
+     1025      htchfr         555002501
+     1026      htchfr         555005001
 0$$$$$$$$ Input processing completed successfully.
 
 0Successful end of strip processing.

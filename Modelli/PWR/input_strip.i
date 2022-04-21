@@ -26,16 +26,17 @@
 1016 httemp 555002508
 1017 httemp 555002509
 1018 httemp 555002510
+1019 tempf 555250000
 *
-1019 cntrlvar 120                       $ Caduta di pressione
+1020 cntrlvar 120                       $ Caduta di pressione
 *
-1020 htmode 555000101                   $ Heat transfer mode (low, medium, high)
-1021 htmode 555002501
-1022 htmode 555005001
+1021 htmode 555000101                   $ Heat transfer mode (low, medium, high)
+1022 htmode 555002501
+1023 htmode 555005001
 *
-1023 htchfr 555000101                   $ CHFR (low, medium, high)
-1024 htchfr 555002501
-1025 htchfr 555005001
+1024 htchfr 555000101                   $ CHFR (low, medium, high)
+1025 htchfr 555002501
+1026 htchfr 555005001
 *
 *
 .
