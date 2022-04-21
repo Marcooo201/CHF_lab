@@ -24,6 +24,7 @@ for i in range(len(nodes)-1):
 
 factors = factors/nv
 
+
 f = open('relap_distribution_input.txt', 'w+')
 
 for i, factor in enumerate(factors):
