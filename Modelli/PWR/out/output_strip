@@ -69,26 +69,121 @@
     30    *                                                                                               
     31    1020 cntrlvar 120                       $ Caduta di pressione                                   
     32    *                                                                                               
-    33    1021 htmode 555000101                   $ Heat transfer mode (low, medium, high)                
-    34    1022 htmode 555002501                                                                           
-    35    1023 htmode 555005001                                                                           
-    36    *                                                                                               
-    37    1024 htchfr 555000101                   $ CHFR (low, medium, high)                              
-    38    1025 htchfr 555002501                                                                           
-    39    1026 htchfr 555005001                                                                           
-    40    *                                                                                               
-    41    *                                                                                               
-    42    .                                                                                               
+    33    *                                                                                               
+    34    1021 httemp 555000101                   $ Profilo assiale temp max fuel                         
+    35    1022 httemp 555000201                                                                           
+    36    1024 httemp 555000401                                                                           
+    37    1025 httemp 555000501                                                                           
+    38    1026 httemp 555000601                                                                           
+    39    1027 httemp 555000701                                                                           
+    40    1028 httemp 555000801                                                                           
+    41    1029 httemp 555000901                                                                           
+    42    1030 httemp 555001001                                                                           
+    43    1031 httemp 555001101                                                                           
+    44    1032 httemp 555001201                                                                           
+    45    1033 httemp 555001301                                                                           
+    46    1034 httemp 555001401                                                                           
+    47    1035 httemp 555001501                                                                           
+    48    1036 httemp 555001601                                                                           
+    49    1037 httemp 555001701                                                                           
+    50    1038 httemp 555001801                                                                           
+    51    1039 httemp 555001901                                                                           
+    52    1040 httemp 555002001                                                                           
+    53    1041 httemp 555002101                                                                           
+    54    1042 httemp 555002201                                                                           
+    55    1043 httemp 555002301                                                                           
+    56    1044 httemp 555002401                                                                           
+    57    1045 httemp 555002501                                                                           
+    58    1046 httemp 555002601                                                                           
+    59    1047 httemp 555002701                                                                           
+    60    1048 httemp 555002801                                                                           
+    61    1049 httemp 555002901                                                                           
+    62    1050 httemp 555003001                                                                           
+    63    1051 httemp 555003101                                                                           
+    64    1052 httemp 555003201                                                                           
+    65    1053 httemp 555003301                                                                           
+    66    1054 httemp 555003401                                                                           
+    67    1055 httemp 555003501                                                                           
+    68    1056 httemp 555003601                                                                           
+    69    1057 httemp 555003701                                                                           
+    70    1058 httemp 555003801                                                                           
+    71    1059 httemp 555003901                                                                           
+    72    1060 httemp 555004001                                                                           
+    73    1061 httemp 555004101                                                                           
+    74    1062 httemp 555004201                                                                           
+    75    1063 httemp 555004301                                                                           
+    76    1064 httemp 555004401                                                                           
+    77    1065 httemp 555004501                                                                           
+    78    1066 httemp 555004601                                                                           
+    79    1067 httemp 555004701                                                                           
+    80    1068 httemp 555004801                                                                           
+    81    1069 httemp 555004901                                                                           
+    82    1070 httemp 555005001                                                                           
+    83    *                                                                                               
+    84    *                                                                                               
+    85    1071 htmode 555000101                     $ Profilo assiale heat transfer mode                  
+    86    1072 htmode 555000201                                                                           
+    87    1073 htmode 555000301                                                                           
+    88    1074 htmode 555000401                                                                           
+    89    1075 htmode 555000501                                                                           
+    90    1076 htmode 555000601                                                                           
+    91    1077 htmode 555000701                                                                           
+    92    1078 htmode 555000801                                                                           
+    93    1079 htmode 555000901                                                                           
+    94    1080 htmode 555001001                                                                           
+    95    1081 htmode 555001101                                                                           
+    96    1082 htmode 555001201                                                                           
+    97    1083 htmode 555001301                                                                           
+    98    1084 htmode 555001401                                                                           
+    99    1085 htmode 555001501                                                                           
+   100    1086 htmode 555001601                                                                           
+   101    1087 htmode 555001701                                                                           
+   102    1088 htmode 555001801                                                                           
+   103    1089 htmode 555001901                                                                           
+   104    1090 htmode 555002001                                                                           
+   105    1091 htmode 555002101                                                                           
+   106    1092 htmode 555002201                                                                           
+   107    1093 htmode 555002301                                                                           
+   108    1094 htmode 555002401                                                                           
+   109    1095 htmode 555002501                                                                           
+   110    1096 htmode 555002601                                                                           
+   111    1097 htmode 555002701                                                                           
+   112    1098 htmode 555002801                                                                           
+   113    1099 htmode 555002901                                                                           
+   114    1100 htmode 555003001                                                                           
+   115    1101 htmode 555003101                                                                           
+   116    1102 htmode 555003201                                                                           
+   117    1103 htmode 555003301                                                                           
+   118    1104 htmode 555003401                                                                           
+   119    1105 htmode 555003501                                                                           
+   120    1106 htmode 555003601                                                                           
+   121    1107 htmode 555003701                                                                           
+   122    1108 htmode 555003801                                                                           
+   123    1109 htmode 555003901                                                                           
+   124    1110 htmode 555004001                                                                           
+   125    1111 htmode 555004101                                                                           
+   126    1112 htmode 555004201                                                                           
+   127    1113 htmode 555004301                                                                           
+   128    1114 htmode 555004401                                                                           
+   129    1115 htmode 555004501                                                                           
+   130    1116 htmode 555004601                                                                           
+   131    1117 htmode 555004701                                                                           
+   132    1118 htmode 555004801                                                                           
+   133    1119 htmode 555004901                                                                           
+   134    1120 htmode 555005001                                                                           
+   135    *                                                                                               
+   136    *                                                                                               
+   137    .                                                                                               
 0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     22-Apr-22    18:43:53      
+  strip_input                                                                     22-Apr-22    20:51:02      
 1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     22-Apr-22    18:43:53      
+  strip_input                                                                     22-Apr-22    20:51:02      
 0Processing type is strip   
 +                                       problem option is fmtout  
 0inp-chk, run option is run.    
-0Restart input file was written by program   RELAP5/3.3gl           on 22-Apr-22    18:07:34   , transient run.
+0Restart input file was written by program   RELAP5/3.3gl           on 22-Apr-22    19:39:05   , transient run.
 0         Strip variable requests
  req.num.    variable code    parameter
      1001      cntrlvar             110
@@ -111,12 +206,105 @@
      1018      httemp         555002510
      1019      tempf          555250000
      1020      cntrlvar             120
-     1021      htmode         555000101
-     1022      htmode         555002501
-     1023      htmode         555005001
-     1024      htchfr         555000101
-     1025      htchfr         555002501
-     1026      htchfr         555005001
+     1021      httemp         555000101
+     1022      httemp         555000201
+     1024      httemp         555000401
+     1025      httemp         555000501
+     1026      httemp         555000601
+     1027      httemp         555000701
+     1028      httemp         555000801
+     1029      httemp         555000901
+     1030      httemp         555001001
+     1031      httemp         555001101
+     1032      httemp         555001201
+     1033      httemp         555001301
+     1034      httemp         555001401
+     1035      httemp         555001501
+     1036      httemp         555001601
+     1037      httemp         555001701
+     1038      httemp         555001801
+     1039      httemp         555001901
+     1040      httemp         555002001
+     1041      httemp         555002101
+     1042      httemp         555002201
+     1043      httemp         555002301
+     1044      httemp         555002401
+     1045      httemp         555002501
+     1046      httemp         555002601
+     1047      httemp         555002701
+     1048      httemp         555002801
+     1049      httemp         555002901
+     1050      httemp         555003001
+     1051      httemp         555003101
+     1052      httemp         555003201
+     1053      httemp         555003301
+     1054      httemp         555003401
+     1055      httemp         555003501
+     1056      httemp         555003601
+     1057      httemp         555003701
+     1058      httemp         555003801
+     1059      httemp         555003901
+     1060      httemp         555004001
+     1061      httemp         555004101
+     1062      httemp         555004201
+     1063      httemp         555004301
+     1064      httemp         555004401
+     1065      httemp         555004501
+     1066      httemp         555004601
+     1067      httemp         555004701
+     1068      httemp         555004801
+     1069      httemp         555004901
+     1070      httemp         555005001
+     1071      htmode         555000101
+     1072      htmode         555000201
+     1073      htmode         555000301
+     1074      htmode         555000401
+     1075      htmode         555000501
+     1076      htmode         555000601
+     1077      htmode         555000701
+     1078      htmode         555000801
+     1079      htmode         555000901
+     1080      htmode         555001001
+     1081      htmode         555001101
+     1082      htmode         555001201
+     1083      htmode         555001301
+     1084      htmode         555001401
+     1085      htmode         555001501
+     1086      htmode         555001601
+     1087      htmode         555001701
+     1088      htmode         555001801
+     1089      htmode         555001901
+     1090      htmode         555002001
+     1091      htmode         555002101
+     1092      htmode         555002201
+     1093      htmode         555002301
+     1094      htmode         555002401
+     1095      htmode         555002501
+     1096      htmode         555002601
+     1097      htmode         555002701
+     1098      htmode         555002801
+     1099      htmode         555002901
+     1100      htmode         555003001
+     1101      htmode         555003101
+     1102      htmode         555003201
+     1103      htmode         555003301
+     1104      htmode         555003401
+     1105      htmode         555003501
+     1106      htmode         555003601
+     1107      htmode         555003701
+     1108      htmode         555003801
+     1109      htmode         555003901
+     1110      htmode         555004001
+     1111      htmode         555004101
+     1112      htmode         555004201
+     1113      htmode         555004301
+     1114      htmode         555004401
+     1115      htmode         555004501
+     1116      htmode         555004601
+     1117      htmode         555004701
+     1118      htmode         555004801
+     1119      htmode         555004901
+     1120      htmode         555005001
 0$$$$$$$$ Input processing completed successfully.
 
 0Successful end of strip processing.

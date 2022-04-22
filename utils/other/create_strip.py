@@ -2,13 +2,13 @@
 #                 INPUT              #
 ######################################
 
-vol_vars = ['p', 'tempf', 'tempv', 'tempv']
+vol_vars = ['httemp', 'htmode']
 jun_vars = []
 
 CCC = '555'
 nv = 50
 nj = nv-1
-initial_card = 1001
+initial_card = 1021
 
 
 
