@@ -1,3 +1,5 @@
+addpath(genpath('../../utils/'));
+
 data = readtable('data.csv');
 
 time = data.time;
