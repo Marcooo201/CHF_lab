@@ -40,18 +40,24 @@ HT_mode_med = floor(data.htmode555002501);
 HT_mode_up = floor(data.htmode555005001);
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                      PLOT                     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-figure(1)
-plot(time,power, 'LineWidth', 1.3, 'Color', 'r');
-title('TOTAL POWER [kW]')
 
-figure(2)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            %
+%                           PLOTS                            %
+%                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure('Position', [10 10 900 900])
+plot(time,power, 'LineWidth', 1.3, 'Color', 'r');
+title('TOTAL POWER EXCHANGED [kW]')
+
+figure('Position', [10 10 900 900])
 plot(time,T_out, 'LineWidth', 1.3, 'Color', 'r');
 title('OUTLET TEMPERATURE [K]')
 
-figure(3)
+figure('Position', [10 10 900 900])
 hold on
 plot(time,HT_mode_do, 'LineWidth', 1.3, 'Color', 'b');
 plot(time,HT_mode_med, 'LineWidth', 1.3, 'Color', 'g');
@@ -60,7 +66,7 @@ hold off
 legend('down', 'med', 'up')
 title('HEAT TRANSFER MODE')
 
-figure(4)
+figure('Position', [10 10 900 900])
 hold on
 plot(time,T_fuel_max_do, 'LineWidth', 1.3, 'Color', 'b');
 plot(time,T_fuel_max_med, 'LineWidth', 1.3, 'Color', 'g');
@@ -69,7 +75,7 @@ hold off
 legend('down', 'med', 'up')
 title('MAX FUEL TEMPERATURE [K]')
 
-figure(5)
+figure('Position', [10 10 900 900])
 hold on
 plot(time,T_clad_max_do, 'LineWidth', 1.3, 'Color', 'b');
 plot(time,T_clad_max_med, 'LineWidth', 1.3, 'Color', 'g');
