@@ -116,13 +116,11 @@ p_drop = data.cntrlvar120;
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH AXIAL PROFILE MAX FUEL TEMPERATURE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 T_max_fuel_axial = table2array(data);
-T_max_fuel_axial = T_max_fuel_axial(201,22:70);
+T_max_fuel_axial = T_max_fuel_axial(:,22:71);
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH AXIAL PROFILE HT MODE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 HTMODE_axial = table2array(data);
-HTMODE_axial = HTMODE_axial(201, 71:120);
-
-
+HTMODE_axial = HTMODE_axial(:, 72:120);
 
 
 
@@ -169,13 +167,22 @@ title('MAX CLAD TEMPERATURE [K]')
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- AXIAL PROFILE MAX TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 figure('Position', [10 10 300 900])
-axial_plot(T_max_fuel_axial, false, false, 'Axial Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
+axial_plot(T_max_fuel_axial(end,:), false, 'Axial Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
 
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- AXIAL PROFILE HTMODE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 figure('Position', [10 10 300 900])
-axial_plot(HTMODE_axial, false, true, 'Axial Profile - Heat Transfer Mode', '', 1)
+htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', '', 1)
 
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- ANIMATION PROFILE MAX TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+% figure('Position', [10 10 300 900])
+% axial_plot(horzcat(time, T_max_fuel_axial), true, 'Animation Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- ANIMATION PROFILE HTMODE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+% figure('Position', [10 10 300 900])
+% htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- ANIMATION PROFILE RADIAL TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 % figure(10)
 % radial_plot_fuel(table2array(T_profile), true, 'pwr')
 ##### SOURCE END #####

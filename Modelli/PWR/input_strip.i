@@ -33,6 +33,7 @@
 *
 1021 httemp 555000101                   $ Profilo assiale temp max fuel
 1022 httemp 555000201
+1023 httemp 555000301
 1024 httemp 555000401
 1025 httemp 555000501
 1026 httemp 555000601

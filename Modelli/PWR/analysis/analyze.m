@@ -45,13 +45,11 @@ p_drop = data.cntrlvar120;
 
 % ---- AXIAL PROFILE MAX FUEL TEMPERATURE ----
 T_max_fuel_axial = table2array(data);
-T_max_fuel_axial = T_max_fuel_axial(201,22:70);
+T_max_fuel_axial = T_max_fuel_axial(:,22:71);
 
 % ---- AXIAL PROFILE HT MODE ------
 HTMODE_axial = table2array(data);
-HTMODE_axial = HTMODE_axial(201, 71:120);
-
-
+HTMODE_axial = HTMODE_axial(:, 72:120);
 
 
 
@@ -98,12 +96,21 @@ title('MAX CLAD TEMPERATURE [K]')
 
 % ----- AXIAL PROFILE MAX TEMP FUEL -------
 figure('Position', [10 10 300 900])
-axial_plot(T_max_fuel_axial, false, false, 'Axial Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
+axial_plot(T_max_fuel_axial(end,:), false, 'Axial Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
 
 
 % ----- AXIAL PROFILE HTMODE -------
 figure('Position', [10 10 300 900])
-axial_plot(HTMODE_axial, false, true, 'Axial Profile - Heat Transfer Mode', '', 1)
+htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', '', 1)
 
+% ----- ANIMATION PROFILE MAX TEMP FUEL -------
+% figure('Position', [10 10 300 900])
+% axial_plot(horzcat(time, T_max_fuel_axial), true, 'Animation Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
+
+% ----- ANIMATION PROFILE HTMODE -------
+% figure('Position', [10 10 300 900])
+% htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
+
+% ----- ANIMATION PROFILE RADIAL TEMP FUEL ------
 % figure(10)
 % radial_plot_fuel(table2array(T_profile), true, 'pwr')
