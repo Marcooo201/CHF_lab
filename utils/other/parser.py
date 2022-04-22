@@ -48,4 +48,4 @@ matrix = np.array(matrix, dtype=np.float32)
 #         CSV           #
 #########################
 
-np.savetxt('data.csv', matrix, delimiter=';', fmt='%.6e', comments='', header=header)
+np.savetxt('out/data.csv', matrix, delimiter=';', fmt='%.6e', comments='', header=header)
