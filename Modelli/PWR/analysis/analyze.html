@@ -1,0 +1,390 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>analyze</title><meta name="generator" content="MATLAB 9.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-04-22"><meta name="DC.source" content="analyze.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeoutput">
+time =
+
+         0
+    0.5002
+    1.0002
+    1.5071
+    2.0039
+    2.5007
+    3.0049
+    3.5017
+    4.0060
+    4.5028
+    5.0071
+    5.5039
+    6.0007
+    6.5050
+    7.0018
+    7.5061
+    8.0029
+    8.5072
+    9.0040
+    9.5008
+   10.0051
+   10.5094
+   11.0062
+   11.5106
+   12.0074
+   12.5117
+   13.0085
+   13.5053
+   14.0097
+   14.5065
+   15.0108
+   15.5076
+   16.0120
+   16.5088
+   17.0056
+   17.5099
+   18.0068
+   18.5111
+   19.0079
+   19.5123
+   20.0091
+   20.5059
+   21.0103
+   21.5071
+   22.0115
+   22.5083
+   23.0051
+   23.5095
+   24.0063
+   24.5107
+   25.0075
+   25.5118
+   26.0087
+   26.5055
+   27.0099
+   27.5067
+   28.0111
+   28.5079
+   29.0123
+   29.5091
+   30.0059
+   30.5103
+   31.0071
+   31.5115
+   32.0083
+   32.5052
+   33.0095
+   33.5064
+   34.0107
+   34.5076
+   35.0119
+   35.5088
+   36.0056
+   36.5100
+   37.0068
+   37.5112
+   38.0080
+   38.5124
+   39.0092
+   39.5061
+   40.0104
+   40.5073
+   41.0117
+   41.5085
+   42.0053
+   42.5097
+   43.0066
+   43.5109
+   44.0078
+   44.5121
+   45.0090
+   45.5058
+   46.0102
+   46.5070
+   47.0114
+   47.5083
+   48.0051
+   48.5095
+   49.0063
+   49.5107
+   50.0075
+   50.5119
+   51.0088
+   51.5056
+   52.0100
+   52.5068
+   53.0112
+   53.5080
+   54.0124
+   54.5093
+   55.0061
+   55.5105
+   56.0073
+   56.5117
+   57.0085
+   57.5054
+   58.0098
+   58.5066
+   59.0110
+   59.5078
+   60.0122
+   60.5091
+   61.0059
+   61.5103
+   62.0071
+   62.5115
+   63.0084
+   63.5052
+   64.0096
+   64.5064
+   65.0108
+   65.5076
+   66.0120
+   66.5089
+   67.0057
+   67.5101
+   68.0069
+   68.5113
+   69.0082
+   69.5125
+   70.0094
+   70.5062
+   71.0106
+   71.5075
+   72.0118
+   72.5087
+   73.0055
+   73.5099
+   74.0068
+   74.5111
+   75.0080
+   75.5124
+   76.0092
+   76.5061
+   77.0104
+   77.5073
+   78.0117
+   78.5085
+   79.0054
+   79.5097
+   80.0066
+   80.5110
+   81.0078
+   81.5122
+   82.0090
+   82.5059
+   83.0103
+   83.5071
+   84.0115
+   84.5083
+   85.0052
+   85.5096
+   86.0064
+   86.5108
+   87.0076
+   87.5120
+   88.0089
+   88.5057
+   89.0101
+   89.5069
+   90.0113
+   90.5082
+   91.0125
+   91.5094
+   92.0062
+   92.5106
+   93.0075
+   93.5118
+   94.0087
+   94.5055
+   95.0099
+   95.5068
+   96.0112
+   96.5080
+   97.0124
+   97.5092
+   98.0061
+   98.5104
+   99.0073
+   99.5117
+  100.0010
+
+
+h = 
+
+  AnimatedLine with properties:
+
+               Color: [1 0 0]
+           LineStyle: '-'
+           LineWidth: 1.5000
+              Marker: 'none'
+          MarkerSize: 6
+     MarkerFaceColor: 'none'
+    MaximumNumPoints: 1000000
+
+  Use GET to show all properties
+
+
+j = 
+
+  AnimatedLine with properties:
+
+               Color: [1 0 0]
+           LineStyle: '--'
+           LineWidth: 1.5000
+              Marker: 'none'
+          MarkerSize: 6
+     MarkerFaceColor: 'none'
+    MaximumNumPoints: 1000000
+
+  Use GET to show all properties
+
+</pre><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+addpath(genpath('../../../utils/'));
+warning('OFF', 'MATLAB:table:ModifiedAndSavedVarnames')
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                DATA EXCTRACTION               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+data = readtable('../out/data.csv');
+
+time = data.time;
+power = data.cntrlvar110;
+T_out = data.tempf555500000;
+
+T_fuel_max_do = data.httemp555000101;
+T_fuel_max_med = data.httemp555002501;
+T_fuel_max_up = data.httemp555005001;
+
+T_clad_max_do = data.httemp555000108;
+T_clad_max_med = data.httemp555002508;
+T_clad_max_up = data.httemp555005008;
+
+T_profile = data(:,{'httemp555002501', ...
+                    'httemp555002502', ...
+                    'httemp555002503', ...
+                    'httemp555002504', ...
+                    'httemp555002505', ...
+                    'httemp555002506', ...
+                    'httemp555002507', ...
+                    'httemp555002508', ...
+                    'httemp555002509', ...
+                    'httemp555002510', ...
+                    'tempf555250000', ...
+                    'time'});
+
+p_drop = data.cntrlvar120;
+
+HT_mode_do = floor(data.htmode555000101);
+HT_mode_med = floor(data.htmode555002501);
+HT_mode_up = floor(data.htmode555005001);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                      PLOT                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+figure(1)
+plot(time,power, 'LineWidth', 1.3, 'Color', 'r');
+title('TOTAL POWER [kW]')
+
+figure(2)
+plot(time,T_out, 'LineWidth', 1.3, 'Color', 'r');
+title('OUTLET TEMPERATURE [K]')
+
+figure(3)
+hold on
+plot(time,HT_mode_do, 'LineWidth', 1.3, 'Color', 'b');
+plot(time,HT_mode_med, 'LineWidth', 1.3, 'Color', 'g');
+plot(time,HT_mode_up, 'LineWidth', 1.3, 'Color', 'r');
+hold off
+legend('down', 'med', 'up')
+title('HEAT TRANSFER MODE')
+
+figure(4)
+hold on
+plot(time,T_fuel_max_do, 'LineWidth', 1.3, 'Color', 'b');
+plot(time,T_fuel_max_med, 'LineWidth', 1.3, 'Color', 'g');
+plot(time,T_fuel_max_up, 'LineWidth', 1.3, 'Color', 'r');
+hold off
+legend('down', 'med', 'up')
+title('MAX FUEL TEMPERATURE [K]')
+
+figure(5)
+hold on
+plot(time,T_clad_max_do, 'LineWidth', 1.3, 'Color', 'b');
+plot(time,T_clad_max_med, 'LineWidth', 1.3, 'Color', 'g');
+plot(time,T_clad_max_up, 'LineWidth', 1.3, 'Color', 'r');
+hold off
+legend('down', 'med', 'up')
+title('MAX CLAD TEMPERATURE [K]')
+
+figure(10)
+radial_plot_fuel(table2array(T_profile), true, 'pwr')
+##### SOURCE END #####
+--></body></html>

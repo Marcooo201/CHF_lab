@@ -23,7 +23,7 @@ function [] = radial_plot_fuel(tt, animate, reactor_type)
     end
     
         
-    time = tt(:,12)
+    time = tt(:,12);
 
     if animate
         hold on
@@ -33,8 +33,8 @@ function [] = radial_plot_fuel(tt, animate, reactor_type)
         patch([rr(10) rr(11) rr(11) rr(10)], [0 0 3000 3000], [0 138 230]./255, 'LineStyle', 'none')
         hold off
         alpha(.85)
-        h = animatedline('LineWidth', 1.5, 'Color', 'r')
-        j = animatedline('LineWidth', 1.5, 'Color', 'r', 'LineStyle','--')
+        h = animatedline('LineWidth', 1.5, 'Color', 'r');
+        j = animatedline('LineWidth', 1.5, 'Color', 'r', 'LineStyle','--');
         
         ylim([0 3000])
         xlim([0 rr(11)])

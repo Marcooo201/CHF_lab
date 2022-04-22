@@ -78,5 +78,5 @@ hold off
 legend('down', 'med', 'up')
 title('MAX CLAD TEMPERATURE [K]')
 
-%figure(3)
-%radial_plot_fuel(table2array(T_profile), true, 'pwr')
+% figure(10)
+% radial_plot_fuel(table2array(T_profile), true, 'pwr')

@@ -5,4 +5,4 @@ del out\output_strip
 
 py ..\..\utils\other\parser.py
 
-matlab -nosplash -nodesktop -r "cd analysis; publish('analyze.m', 'outputDir','../analysis', 'format','pdf', 'showCode', false); exit;"
+matlab -nosplash -nodesktop -r "cd analysis; publish('analyze.m', 'outputDir','../analysis', 'format','html', 'showCode', false); exit;"
