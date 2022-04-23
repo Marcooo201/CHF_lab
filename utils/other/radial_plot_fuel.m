@@ -19,7 +19,7 @@ function [] = radial_plot_fuel(tt, animate, reactor_type)
         rr = [0 0.67817 1.35633 2.03450 2.71267 3.39083 4.06900 4.17860 4.4646 4.7506 5.7506];
     end
     if strcmp(reactor_type, 'bwr')
-        rr = [] %% DA INSERIRE VALORI BWR
+        rr = [0 0.8 1.6 2.4 3.2 4.0 4.8 4.89 5.245 5.6]
     end
     
         
