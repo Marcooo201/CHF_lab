@@ -139,5 +139,5 @@ axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 30)
 % htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
 
 % ----- ANIMATION PROFILE RADIAL TEMP FUEL ------
-figure(10)
-radial_plot_fuel(table2array(T_profile), true, 'pwr')
+%figure(10)
+%radial_plot_fuel(table2array(T_profile), true, 'pwr')
