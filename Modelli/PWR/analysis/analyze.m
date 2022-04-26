@@ -49,7 +49,7 @@ T_max_fuel_axial = T_max_fuel_axial(:,22:71);
 
 % ---- AXIAL PROFILE HT MODE ------
 HTMODE_axial = table2array(data);
-HTMODE_axial = HTMODE_axial(:, 72:120);
+HTMODE_axial = HTMODE_axial(:, 72:121);
 
 
 
