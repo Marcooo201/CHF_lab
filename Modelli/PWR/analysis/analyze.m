@@ -128,7 +128,7 @@ htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', ''
 
 % ----- AXIAL CHFR -------
 figure('Position', [10 10 300 900])
-axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 10)
+axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 30)
 
 % ----- ANIMATION PROFILE MAX TEMP FUEL -------
 % figure('Position', [10 10 300 900])
@@ -139,5 +139,5 @@ axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 10)
 % htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
 
 % ----- ANIMATION PROFILE RADIAL TEMP FUEL ------
-% figure(10)
-% radial_plot_fuel(table2array(T_profile), true, 'pwr')
+figure(10)
+radial_plot_fuel(table2array(T_profile), true, 'pwr')
