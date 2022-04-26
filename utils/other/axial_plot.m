@@ -13,6 +13,7 @@ if animate
     h = animatedline('LineWidth', 1.5, 'Color', 'r');
     grid on
     grid minor
+    ylim([1/length(data) 1])
     xlim([0 xlim_value])
     xlabel(xlable_string)
     title(title_string)
@@ -30,6 +31,7 @@ if animate
     end
 else
     plot(data,(1:length(data))./length(data), 'LineWidth', 1.5, 'Color', 'r')
+    ylim([1/length(data) 1])
     xlim([0 xlim_value])
     xlabel(xlable_string)
     title(title_string)

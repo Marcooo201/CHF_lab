@@ -23,6 +23,8 @@ if animate
         hold on
         for j=1:length(data(i,:))
           patch([0 100 100 0], [j-1 j-1 j j]./length(data(i,:)), ht_colors(data(i,j),:), 'LineStyle', 'none')
+          text(20,(i-0.5)/length(data),ht_texts(data(i)), 'FontSize', 8, 'FontWeight','bold')
+          text(70,(i-0.5)/length(data),ht_texts(data(i)), 'FontSize', 8, 'FontWeight','bold')
         end
         hold off
         alpha(.75)

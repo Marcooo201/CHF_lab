@@ -148,8 +148,8 @@ htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', ''
 % axial_plot(horzcat(time, T_max_fuel_axial), true, 'Animation Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
 
 % ----- ANIMATION PROFILE HTMODE -------
-% figure('Position', [10 10 300 900])
-% htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
+figure('Position', [10 10 300 900])
+htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
 
 % ----- ANIMATION PROFILE RADIAL TEMP FUEL ------
 % figure(10)

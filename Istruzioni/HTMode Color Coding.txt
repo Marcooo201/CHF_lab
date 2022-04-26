@@ -7,3 +7,7 @@ TRANSITION BOILING (HTMODES 5,6) - Yellow
 FILM BOILING (HTMODES 7,8) - Red
 
 CONVECTION WITH SINGLE PHASE VAPOUR (HTMODE 9) - Purple
+
+Oltre a questo possono comparire delle scritte:
+	- SAT: significa che la modalità di scambio termico avviene con la temperatura adiabatica di miscelamento (bulk) pari a quella di saturazione
+	- VAP: significa che lo scambio termico avviene con vapore monofase (ad esempio quando abbiamo dryout)
