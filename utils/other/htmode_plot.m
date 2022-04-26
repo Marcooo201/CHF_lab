@@ -11,8 +11,8 @@ function [] = axial_plot(data, animate, title_string, xlable_string, xlim_value)
 %   - htmode: è un booleano che indica se i dati da plottare indicano
 %             il tipo di heat transfer 
 
-ht_colors = [[3 132 252]; [3 132 252]; [99 214 71]; [99 214 71]; [242 236 65]; [242 236 65]; [255 52 41]; [255 52 41]]./255;
-
+ht_colors = [[3 132 252]; [3 132 252]; [99 214 71]; [99 214 71]; [242 236 65]; [242 236 65]; [255 52 41]; [255 52 41]; [235 52 225]]./255;
+ht_texts = ["", "", "", "SAT", "", "SAT", "", "SAT", "VAP"];
 
 if animate
     time = data(:,1);
@@ -43,6 +43,8 @@ else
     hold on
     for i=1:length(data)
         patch([0 100 100 0], [i-1 i-1 i i]./length(data), ht_colors(data(i),:), 'LineStyle', 'none')
+        text(20,(i-0.5)/length(data),ht_texts(data(i)), 'FontSize', 8, 'FontWeight','bold')
+        text(70,(i-0.5)/length(data),ht_texts(data(i)), 'FontSize', 8, 'FontWeight','bold')
     end
     hold off
     alpha(.75)
