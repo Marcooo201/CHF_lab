@@ -49,13 +49,15 @@ T_max_fuel_axial = T_max_fuel_axial(:,22:71);
 
 % ---- AXIAL PROFILE HT MODE ------
 HTMODE_axial = table2array(data);
-HTMODE_axial = HTMODE_axial(:, 72:120);
+HTMODE_axial = HTMODE_axial(:, 72:121);
 
 % ---- OUTLET QUALITY AND VOID FRACTION ----
 out_quality = data.quale555500000;
 out_voidf = data.voidg555500000;
 
-
+% ---- AXIAL CHFR ------
+chfr = table2array(data);
+chfr = chfr(:,124:173);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,17 +142,25 @@ axial_plot(T_max_fuel_axial(end,:), false, 'Axial Profile - Max Fuel Temperature
 
 % ----- AXIAL PROFILE HTMODE -------
 figure('Position', [10 10 300 900])
-HTMODE_axial(end,40:end) = 9; % Scommentare per provare cosa succede se ho dryout
+%HTMODE_axial(end,40:end) = 9; % Scommentare per provare cosa succede se ho dryout
 htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', '', 1)
+
+% ----- AXIAL CHFR -------
+figure('Position', [10 10 300 900])
+axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 30)
 
 % ----- ANIMATION PROFILE MAX TEMP FUEL -------
 % figure('Position', [10 10 300 900])
 % axial_plot(horzcat(time, T_max_fuel_axial), true, 'Animation Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
 
 % ----- ANIMATION PROFILE HTMODE -------
-figure('Position', [10 10 300 900])
-htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
+% figure('Position', [10 10 300 900])
+% htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
 
 % ----- ANIMATION PROFILE RADIAL TEMP FUEL ------
 % figure(10)
 % radial_plot_fuel(table2array(T_profile), true, 'pwr')
+
+% ----- ANIMATION PROFILE MAX TEMP FUEL -------
+% figure('Position', [10 10 300 900])
+% axial_plot(horzcat(time, chfr), true, 'Animation Profile - CHFR', 'CHFR', 30)

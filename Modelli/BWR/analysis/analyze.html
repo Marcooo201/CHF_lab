@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <img vspace="5" hspace="5" src="analyze_07.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+  </style></head><body><div class="content"><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <img vspace="5" hspace="5" src="analyze_07.png" alt=""> <img vspace="5" hspace="5" src="analyze_08.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 addpath(genpath('../../../utils/'));
 warning('OFF', 'MATLAB:table:ModifiedAndSavedVarnames')
@@ -120,13 +120,15 @@ T_max_fuel_axial = T_max_fuel_axial(:,22:71);
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH AXIAL PROFILE HT MODE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 HTMODE_axial = table2array(data);
-HTMODE_axial = HTMODE_axial(:, 72:120);
+HTMODE_axial = HTMODE_axial(:, 72:121);
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH OUTLET QUALITY AND VOID FRACTION REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 out_quality = data.quale555500000;
 out_voidf = data.voidg555500000;
 
-
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH AXIAL CHFR REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+chfr = table2array(data);
+chfr = chfr(:,124:173);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -211,8 +213,12 @@ axial_plot(T_max_fuel_axial(end,:), false, 'Axial Profile - Max Fuel Temperature
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- AXIAL PROFILE HTMODE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 figure('Position', [10 10 300 900])
-HTMODE_axial(end,40:end) = 9; % Scommentare per provare cosa succede se ho dryout
+%HTMODE_axial(end,40:end) = 9; % Scommentare per provare cosa succede se ho dryout
 htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', '', 1)
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- AXIAL CHFR REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+figure('Position', [10 10 300 900])
+axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 30)
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- ANIMATION PROFILE MAX TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 % figure('Position', [10 10 300 900])
@@ -225,5 +231,9 @@ htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', ''
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- ANIMATION PROFILE RADIAL TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 % figure(10)
 % radial_plot_fuel(table2array(T_profile), true, 'pwr')
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- ANIMATION PROFILE MAX TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+% figure('Position', [10 10 300 900])
+% axial_plot(horzcat(time, chfr), true, 'Animation Profile - CHFR', 'CHFR', 30)
 ##### SOURCE END #####
 --></body></html>

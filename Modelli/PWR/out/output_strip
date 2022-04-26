@@ -174,17 +174,67 @@
    135    1120 htmode 555005001                                                                           
    136    *                                                                                               
    137    *                                                                                               
-   138    .                                                                                               
+   138    1271 htchfr 555000101                     $ Profilo assiale CHFR                                
+   139    1272 htchfr 555000201                                                                           
+   140    1273 htchfr 555000301                                                                           
+   141    1274 htchfr 555000401                                                                           
+   142    1275 htchfr 555000501                                                                           
+   143    1276 htchfr 555000601                                                                           
+   144    1277 htchfr 555000701                                                                           
+   145    1278 htchfr 555000801                                                                           
+   146    1279 htchfr 555000901                                                                           
+   147    1280 htchfr 555001001                                                                           
+   148    1281 htchfr 555001101                                                                           
+   149    1282 htchfr 555001201                                                                           
+   150    1283 htchfr 555001301                                                                           
+   151    1284 htchfr 555001401                                                                           
+   152    1285 htchfr 555001501                                                                           
+   153    1286 htchfr 555001601                                                                           
+   154    1287 htchfr 555001701                                                                           
+   155    1288 htchfr 555001801                                                                           
+   156    1289 htchfr 555001901                                                                           
+   157    1290 htchfr 555002001                                                                           
+   158    1291 htchfr 555002101                                                                           
+   159    1292 htchfr 555002201                                                                           
+   160    1293 htchfr 555002301                                                                           
+   161    1294 htchfr 555002401                                                                           
+   162    1295 htchfr 555002501                                                                           
+   163    1296 htchfr 555002601                                                                           
+   164    1297 htchfr 555002701                                                                           
+   165    1298 htchfr 555002801                                                                           
+   166    1299 htchfr 555002901                                                                           
+   167    1300 htchfr 555003001                                                                           
+   168    1301 htchfr 555003101                                                                           
+   169    1302 htchfr 555003201                                                                           
+   170    1303 htchfr 555003301                                                                           
+   171    1304 htchfr 555003401                                                                           
+   172    1305 htchfr 555003501                                                                           
+   173    1306 htchfr 555003601                                                                           
+   174    1307 htchfr 555003701                                                                           
+   175    1308 htchfr 555003801                                                                           
+   176    1309 htchfr 555003901                                                                           
+   177    1310 htchfr 555004001                                                                           
+   178    1311 htchfr 555004101                                                                           
+   179    1312 htchfr 555004201                                                                           
+   180    1313 htchfr 555004301                                                                           
+   181    1314 htchfr 555004401                                                                           
+   182    1315 htchfr 555004501                                                                           
+   183    1316 htchfr 555004601                                                                           
+   184    1317 htchfr 555004701                                                                           
+   185    1318 htchfr 555004801                                                                           
+   186    1319 htchfr 555004901                                                                           
+   187    1320 htchfr 555005001                                                                           
+   188    .                                                                                               
 0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     26-Apr-22    16:17:34      
+  strip_input                                                                     26-Apr-22    18:46:09      
 1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     26-Apr-22    16:17:34      
+  strip_input                                                                     26-Apr-22    18:46:09      
 0Processing type is strip   
 +                                       problem option is fmtout  
 0inp-chk, run option is run.    
-0Restart input file was written by program   RELAP5/3.3gl           on 26-Apr-22    12:53:23   , transient run.
+0Restart input file was written by program   RELAP5/3.3gl           on 26-Apr-22    18:45:49   , transient run.
 0         Strip variable requests
  req.num.    variable code    parameter
      1001      cntrlvar             110
@@ -307,6 +357,56 @@
      1118      htmode         555004801
      1119      htmode         555004901
      1120      htmode         555005001
+     1271      htchfr         555000101
+     1272      htchfr         555000201
+     1273      htchfr         555000301
+     1274      htchfr         555000401
+     1275      htchfr         555000501
+     1276      htchfr         555000601
+     1277      htchfr         555000701
+     1278      htchfr         555000801
+     1279      htchfr         555000901
+     1280      htchfr         555001001
+     1281      htchfr         555001101
+     1282      htchfr         555001201
+     1283      htchfr         555001301
+     1284      htchfr         555001401
+     1285      htchfr         555001501
+     1286      htchfr         555001601
+     1287      htchfr         555001701
+     1288      htchfr         555001801
+     1289      htchfr         555001901
+     1290      htchfr         555002001
+     1291      htchfr         555002101
+     1292      htchfr         555002201
+     1293      htchfr         555002301
+     1294      htchfr         555002401
+     1295      htchfr         555002501
+     1296      htchfr         555002601
+     1297      htchfr         555002701
+     1298      htchfr         555002801
+     1299      htchfr         555002901
+     1300      htchfr         555003001
+     1301      htchfr         555003101
+     1302      htchfr         555003201
+     1303      htchfr         555003301
+     1304      htchfr         555003401
+     1305      htchfr         555003501
+     1306      htchfr         555003601
+     1307      htchfr         555003701
+     1308      htchfr         555003801
+     1309      htchfr         555003901
+     1310      htchfr         555004001
+     1311      htchfr         555004101
+     1312      htchfr         555004201
+     1313      htchfr         555004301
+     1314      htchfr         555004401
+     1315      htchfr         555004501
+     1316      htchfr         555004601
+     1317      htchfr         555004701
+     1318      htchfr         555004801
+     1319      htchfr         555004901
+     1320      htchfr         555005001
 0$$$$$$$$ Input processing completed successfully.
 
 0Successful end of strip processing.

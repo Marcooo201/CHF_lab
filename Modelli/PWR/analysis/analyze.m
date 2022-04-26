@@ -51,6 +51,9 @@ T_max_fuel_axial = T_max_fuel_axial(:,22:71);
 HTMODE_axial = table2array(data);
 HTMODE_axial = HTMODE_axial(:, 72:121);
 
+% ---- AXIAL CHFR ------
+chfr = table2array(data);
+chfr = chfr(:,122:171);
 
 
 
@@ -122,6 +125,10 @@ axial_plot(T_max_fuel_axial(end,:), false, 'Axial Profile - Max Fuel Temperature
 % ----- AXIAL PROFILE HTMODE -------
 figure('Position', [10 10 300 900])
 htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', '', 1)
+
+% ----- AXIAL CHFR -------
+figure('Position', [10 10 300 900])
+axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 10)
 
 % ----- ANIMATION PROFILE MAX TEMP FUEL -------
 % figure('Position', [10 10 300 900])
