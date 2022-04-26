@@ -34,11 +34,11 @@ header = ';'.join(header)
 #########################
 
 n_rows = len(body)
-n_cols = len(body[0].split("   "))
+n_cols = len(body[0].split())
 matrix = np.empty((n_rows,n_cols))
 
 for i, rec in enumerate(body):
-    matrix[i,:] = rec.split("   ")
+    matrix[i,:] = rec.split()
 
 matrix = np.array(matrix, dtype=np.float32)
 

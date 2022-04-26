@@ -1,0 +1,193 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>analyze</title><meta name="generator" content="MATLAB 9.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-04-26"><meta name="DC.source" content="analyze.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+addpath(genpath('../../../utils/'));
+warning('OFF', 'MATLAB:table:ModifiedAndSavedVarnames')
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                DATA EXCTRACTION               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+data = readtable('../out/data.csv');
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-TIMEREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+time = data.time;
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHTOTAL POWER REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+power = data.cntrlvar110;
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHOUTLET TEMPERATURE REPLACE_WITH_DASH_DASH-
+T_out = data.tempf555500000;
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- MAX FUEL TEMP REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+T_fuel_max_do = data.httemp555000101;
+T_fuel_max_med = data.httemp555002501;
+T_fuel_max_up = data.httemp555005001;
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- MAX CLAD TEMP REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+T_clad_max_do = data.httemp555000108;
+T_clad_max_med = data.httemp555002508;
+T_clad_max_up = data.httemp555005008;
+
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH MIDDLE FUEL ROD RADIAL TEMPERATURE PROFILE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+T_profile = data(:,{'httemp555002501', ...
+                    'httemp555002502', ...
+                    'httemp555002503', ...
+                    'httemp555002504', ...
+                    'httemp555002505', ...
+                    'httemp555002506', ...
+                    'httemp555002507', ...
+                    'httemp555002508', ...
+                    'httemp555002509', ...
+                    'httemp555002510', ...
+                    'tempf555250000', ...
+                    'time'});
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH PRESSURE DROP REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+p_drop = data.cntrlvar120;
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH AXIAL PROFILE MAX FUEL TEMPERATURE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+T_max_fuel_axial = table2array(data);
+T_max_fuel_axial = T_max_fuel_axial(:,22:71);
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH AXIAL PROFILE HT MODE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+HTMODE_axial = table2array(data);
+HTMODE_axial = HTMODE_axial(:, 72:120);
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH OUTLET QUALITY AND VOID FRACTION REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+out_quality = [];
+out_voidf = [];
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            %
+%                           PLOTS                            %
+%                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHTOTAL POWER REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+figure('Position', [10 10 900 900])
+plot(time,power, 'LineWidth', 1.3, 'Color', 'r');
+xlabel('Time [s]')
+title('TOTAL POWER EXCHANGED [kW]')
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHOUTLET TEMPERATURE REPLACE_WITH_DASH_DASH
+figure('Position', [10 10 900 900])
+plot(time,T_out, 'LineWidth', 1.3, 'Color', 'r');
+xlabel('Time [s]')
+title('OUTLET TEMPERATURE [K]')
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- MAX FUEL TEMP REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+figure('Position', [10 10 900 900])
+hold on
+plot(time,T_fuel_max_do, 'LineWidth', 1.3, 'Color', 'b');
+plot(time,T_fuel_max_med, 'LineWidth', 1.3, 'Color', 'g');
+plot(time,T_fuel_max_up, 'LineWidth', 1.3, 'Color', 'r');
+hold off
+legend('bottom', 'center', 'top')
+xlabel('Time [s]')
+title('MAX FUEL TEMPERATURE [K]')
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- MAX CLAD TEMP REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+figure('Position', [10 10 900 900])
+hold on
+plot(time,T_clad_max_do, 'LineWidth', 1.3, 'Color', 'b');
+plot(time,T_clad_max_med, 'LineWidth', 1.3, 'Color', 'g');
+plot(time,T_clad_max_up, 'LineWidth', 1.3, 'Color', 'r');
+hold off
+legend('bottom', 'center', 'top')
+xlabel('Time [s]')
+title('MAX CLAD TEMPERATURE [K]')
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- AXIAL PROFILE MAX TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+figure('Position', [10 10 300 900])
+axial_plot(T_max_fuel_axial(end,:), false, 'Axial Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
+
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- AXIAL PROFILE HTMODE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+figure('Position', [10 10 300 900])
+htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', '', 1)
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- ANIMATION PROFILE MAX TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+% figure('Position', [10 10 300 900])
+% axial_plot(horzcat(time, T_max_fuel_axial), true, 'Animation Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- ANIMATION PROFILE HTMODE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+% figure('Position', [10 10 300 900])
+% htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- ANIMATION PROFILE RADIAL TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+% figure(10)
+% radial_plot_fuel(table2array(T_profile), true, 'pwr')
+##### SOURCE END #####
+--></body></html>
