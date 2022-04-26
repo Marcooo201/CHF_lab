@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+  </style></head><body><div class="content"><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <img vspace="5" hspace="5" src="analyze_07.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 addpath(genpath('../../../utils/'));
 warning('OFF', 'MATLAB:table:ModifiedAndSavedVarnames')
@@ -123,8 +123,8 @@ HTMODE_axial = table2array(data);
 HTMODE_axial = HTMODE_axial(:, 72:120);
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH OUTLET QUALITY AND VOID FRACTION REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
-out_quality = [];
-out_voidf = [];
+out_quality = data.quale555500000;
+out_voidf = data.voidg555500000;
 
 
 
@@ -135,17 +135,30 @@ out_voidf = [];
 %                                                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHTOTAL POWER REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH TOTAL POWER REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 figure('Position', [10 10 900 900])
 plot(time,power, 'LineWidth', 1.3, 'Color', 'r');
+grid on, grid minor
 xlabel('Time [s]')
 title('TOTAL POWER EXCHANGED [kW]')
 
-% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHOUTLET TEMPERATURE REPLACE_WITH_DASH_DASH
+% REPLACE_WITH_DASH_DASH- -OUTLET TEMPERATURE REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 figure('Position', [10 10 900 900])
 plot(time,T_out, 'LineWidth', 1.3, 'Color', 'r');
+grid on, grid minor
 xlabel('Time [s]')
 title('OUTLET TEMPERATURE [K]')
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH OUTLET QUALITY AND VOID FRACTION REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+figure('Position', [10 10 900 900])
+hold on 
+plot(time, out_quality, 'LineWidth', 1.3, 'Color', 'r');
+plot(time, out_voidf, 'LineWidth', 1.3, 'Color', 'b');
+hold off
+grid on, grid minor
+legend('Equilibrium Quality', 'Void Fraction')
+xlabel('Time [s]')
+title('OUTLET QUALITY AND VOID FRACTION')
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- MAX FUEL TEMP REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 figure('Position', [10 10 900 900])
@@ -154,6 +167,7 @@ plot(time,T_fuel_max_do, 'LineWidth', 1.3, 'Color', 'b');
 plot(time,T_fuel_max_med, 'LineWidth', 1.3, 'Color', 'g');
 plot(time,T_fuel_max_up, 'LineWidth', 1.3, 'Color', 'r');
 hold off
+grid on, grid minor
 legend('bottom', 'center', 'top')
 xlabel('Time [s]')
 title('MAX FUEL TEMPERATURE [K]')
@@ -165,6 +179,7 @@ plot(time,T_clad_max_do, 'LineWidth', 1.3, 'Color', 'b');
 plot(time,T_clad_max_med, 'LineWidth', 1.3, 'Color', 'g');
 plot(time,T_clad_max_up, 'LineWidth', 1.3, 'Color', 'r');
 hold off
+grid on, grid minor
 legend('bottom', 'center', 'top')
 xlabel('Time [s]')
 title('MAX CLAD TEMPERATURE [K]')
