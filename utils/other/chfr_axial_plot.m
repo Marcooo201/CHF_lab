@@ -34,10 +34,11 @@ else
     data(look==1)=NaN;
     plot(data,(1:length(data))./length(data), 'LineWidth', 1.5, 'Color', 'r')
     data(look==1)=12.34567;
-    if(sum(data)==12.34567*length(data))
+    if(data == 12.34567)
         patch([0 xlim_value xlim_value 0], [0 0 length(data) length(data)]./length(data), [143 143 143]./255, 'LineStyle', 'none')
+        text(xlim_value/2-5, 0.5, 'UNDEFINED', 'FontSize',10, 'FontWeight','bold')
     else
-        logic=find(data~=12.34567)
+        logic=find(data~=12.34567);
         hold on
         patch([0 xlim_value xlim_value 0], [0 0 logic(1) logic(1)]./length(data), [143 143 143]./255, 'LineStyle', 'none')
         if(logic(1)-0~=0)
