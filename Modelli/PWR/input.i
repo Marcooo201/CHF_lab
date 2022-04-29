@@ -266,7 +266,7 @@ $ steady-state condition $
 15550400         0
 *
 *crdno   Initial T[K]    MeshPointNo
-15550401   1000.0             10
+15550401    600.0             10
 *
 *
 *---------------------- LEFT BOUNDARY CONDITION -------------------------
