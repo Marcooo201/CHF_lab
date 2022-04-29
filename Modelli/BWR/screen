@@ -1,10 +1,15 @@
 0======== Execute file name = ..\..\utils\execution\relap5.exe                                                
-            Input file name = input_strip.i                                                                           
+            Input file name = input.i                                                                                 
 
  Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
 
 0$$$$$$$$ Input processing completed successfully.
   RELAP5/3.3gl          Reactor Loss Of Coolant Analysis Program                                
  Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-= strip_input                                                                     26-Apr-22    18:47:27      
+= bwr_channel                                                                     29-Apr-22    14:35:16      
 
+ cpuT_(s)  probTime  dTime_(s) dTCournt VolCoP  PresCo_MPa VoidCo  emass_kg  VolEr PresEr_MPa  VoidEr    QualaEr   NSteps   Reason
+      0.1  0.0000     1.00E-08  0.0     10001    7.140     0.0000   0.00     10001    7.14   0.00    g  0.00    a       0         
+     10.1  57.978     5.86E-03 5.86E-03 55550F   6.962     0.8768  7.385E-06 10001    7.14   0.00    g  0.00    a   10788  Courant
+Transient terminated by end of time step cards.
+ At time     100.005     seconds; Step     17958
