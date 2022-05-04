@@ -372,6 +372,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 20111100  uo2
 20122200  tbl/fctn  3   1       * gas mixture
 20122201  helium  1.0
+20122202  xenon   0.0
 20122251  10.126
 20133300  zr
 $ la card 001 della heat structure richiede che la W2 della card 00 sia 3. Ma la W2 in teoria è necessaria solo se inseriamo manualmente $
