@@ -61,7 +61,8 @@ htc_axial = table2array(data);
 htc_axial = htc_axial(:, 172:221)./1000;
 
 % ---- FLOW REGIMES ----
-
+flow_reg_axial = table2array(data);
+flow_reg_axial = flow_reg_axial(:, 222:271);
 
 
 % ---- AXIAL CHFR ------
@@ -146,6 +147,10 @@ axial_plot(heat_flux_axial(end,:), false, 'Axial Profile - Heat Flux [kW/m^2]', 
 % ----- AXIAL PROFILE HTC -------
 figure('Position', [10 10 300 900])
 axial_plot(htc_axial(end,:), false, 'Axial Profile - HTC [kW/m^2/K]', 'Heat Transfer Coefficient [kW/m^2/K]', 100)
+
+% ----- AXIAL PROFILE FLOW REGIME -------
+figure('Position', [10 10 300 900])
+flowreg_plot(flow_reg_axial(end,:), false, 'Axial Profile - Flow Regime', '', 1)
 
 % ----- PROFILE RADIAL TEMP FUEL ------
 figure()
