@@ -1,4 +1,4 @@
-function [] = axial_plot(data, animate, title_string, xlable_string, xlim_value)
+function [] = htmode_plot(data, animate, title_string, xlable_string, xlim_value)
 % La funzione richiede i seguenti input:
 %
 %   - data: array contenente i dati che si vogliono plottare.

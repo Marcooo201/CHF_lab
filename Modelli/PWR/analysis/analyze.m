@@ -39,6 +39,7 @@ T_profile = data(:,{'httemp555002501', ...
                     'httemp555002510', ...
                     'tempf555250000', ...
                     'time'});
+T_profile = table2array(T_profile);
 
 % ---- PRESSURE DROP ----
 p_drop = data.cntrlvar120;
@@ -51,9 +52,21 @@ T_max_fuel_axial = T_max_fuel_axial(:,22:71);
 HTMODE_axial = table2array(data);
 HTMODE_axial = HTMODE_axial(:, 72:121);
 
+% ---- HEAT FLUX [kW/mq] ------
+heat_flux_axial = table2array(data);
+heat_flux_axial = heat_flux_axial(:,122:171)./1000;
+
+% -------- HTC [kW/mq/K]--------
+htc_axial = table2array(data);
+htc_axial = htc_axial(:, 172:221)./1000;
+
+% ---- FLOW REGIMES ----
+
+
+
 % ---- AXIAL CHFR ------
-chfr = table2array(data);
-chfr = chfr(:,122:171);
+% chfr = table2array(data);
+% chfr = chfr(:,122:171);
 
 
 
@@ -126,9 +139,21 @@ axial_plot(T_max_fuel_axial(end,:), false, 'Axial Profile - Max Fuel Temperature
 figure('Position', [10 10 300 900])
 htmode_plot(HTMODE_axial(end,:), false, 'Axial Profile - Heat Transfer Mode', '', 1)
 
-% ----- AXIAL CHFR -------
+% ----- AXIAL PROFILE HEAT FLUX -------
 figure('Position', [10 10 300 900])
-chfr_axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 30)
+axial_plot(heat_flux_axial(end,:), false, 'Axial Profile - Heat Flux [kW/m^2]', 'Heat Flux [kW/m^2]', 1000)
+
+% ----- AXIAL PROFILE HTC -------
+figure('Position', [10 10 300 900])
+axial_plot(htc_axial(end,:), false, 'Axial Profile - HTC [kW/m^2/K]', 'Heat Transfer Coefficient [kW/m^2/K]', 100)
+
+% ----- PROFILE RADIAL TEMP FUEL ------
+figure()
+radial_plot_fuel(T_profile(end,:), false, 'pwr')
+
+% ----- AXIAL CHFR -------
+% figure('Position', [10 10 300 900])
+% chfr_axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 30)
 
 % ----- ANIMATION PROFILE MAX TEMP FUEL -------
 % figure('Position', [10 10 300 900])
@@ -139,5 +164,5 @@ chfr_axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 30)
 % htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
 
 % ----- ANIMATION PROFILE RADIAL TEMP FUEL ------
-%figure(10)
-%radial_plot_fuel(table2array(T_profile), true, 'pwr')
+% figure(10)
+% radial_plot_fuel(T_profile, true, 'pwr')
