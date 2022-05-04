@@ -331,14 +331,14 @@
    292    .                                                                                               
 0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     04-May-22    17:43:42      
+  strip_input                                                                     04-May-22    18:39:29      
 1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     04-May-22    17:43:42      
+  strip_input                                                                     04-May-22    18:39:29      
 0Processing type is strip   
 +                                       problem option is fmtout  
 0inp-chk, run option is run.    
-0Restart input file was written by program   RELAP5/3.3gl           on 04-May-22    17:40:32   , transient run.
+0Restart input file was written by program   RELAP5/3.3gl           on 04-May-22    18:37:04   , transient run.
 0         Strip variable requests
  req.num.    variable code    parameter
      1001      cntrlvar             110
