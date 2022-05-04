@@ -1,0 +1,11 @@
+- per il BWR mettiamo il grafico di potenza particolare a mano (diventa un casino perché nei transitori cambierebbe) o lo imponiamo con la cinetica?
+- creare foglio excel dove studiare l'andamento di T radiale e far quadrare le resistenze (un coeff di scambio col fluido di 20'000-30'000 annulla le altre resistenze)
+- transitorio: la depressurizzazione avviene alla stessa velocità in in w out con andamento esponenziale (da provare con diversi esponenti a seconda della rapidità di depressurizzazione e quindi della grandezza dell'apertura). Facciamo finire la simulazione a p_atm
+- simulare lo scram in caso di depressurizzazione e porre la potenza pari a quella deil'heat decay 
+- RIA: 
+transitori veloci con costanti di tempo dell'ordine dei 10^-1 s
+- ... discorso sui transitori e lo scram ...
+- offset: spostiamo arbitrariamente il grafico della potenza in alto mantenendo costante la potenza totale generata
+la T max delle pastiglie è sui 1400°C
+analisi di sensitività: rapporto tra variazione dei dati in output al variare dei dati in input -> risultati > implicano grandi sensibilità della funzione dai parametri in ingresso considerati ==> potremmo concentrarci particolarmente su alcuni parametri e scoprire quanto e come il sistema si modifica in funzione di questi
+la conducibilità del fuel diminuisce col passare del tempo e il grafico di T si appiattisce, anche la composizione del gap cambia e varia la sua conducibilità
