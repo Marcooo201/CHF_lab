@@ -95,7 +95,7 @@ str = strcat({'   '}, num2str(out_voidf(end),3));
 text(time(end), out_voidf(end), str, "FontSize", 12, 'FontWeight','bold');
 hold off
 grid on, grid minor
-legend('Equilibrium Quality', 'Void Fraction')
+legend('Equilibrium Quality', 'Void Fraction','Location','southeast')
 xlabel('Time [s]')
 title('OUTLET QUALITY AND VOID FRACTION')
 
@@ -113,7 +113,7 @@ text(time(end), T_fuel_max_do(end), str, "FontSize", 12, 'FontWeight','bold');
 str = strcat({'   '}, num2str(T_fuel_max_up(end),3));
 text(time(end), T_fuel_max_up(end), str, "FontSize", 12, 'FontWeight','bold');
 grid on, grid minor
-legend('bottom', 'center', 'top')
+legend('bottom', 'center', 'top','Location','northwest')
 xlabel('Time [s]')
 title('MAX FUEL TEMPERATURE [K]')
 
@@ -131,7 +131,7 @@ text(time(end), T_clad_max_med(end), str, "FontSize", 12, 'FontWeight','bold');
 str = strcat({'   '}, num2str(T_clad_max_up(end),3));
 text(time(end), T_clad_max_up(end), str, "FontSize", 12, 'FontWeight','bold');
 grid on, grid minor
-legend('bottom', 'center', 'top')
+legend('bottom', 'center', 'top','Location','northwest')
 xlabel('Time [s]')
 title('MAX CLAD TEMPERATURE [K]')
 
