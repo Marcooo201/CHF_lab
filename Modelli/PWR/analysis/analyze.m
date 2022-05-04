@@ -64,6 +64,10 @@ htc_axial = htc_axial(:, 172:221)./1000;
 flow_reg_axial = table2array(data);
 flow_reg_axial = flow_reg_axial(:, 222:271);
 
+% ---- VOID FRACTION ----
+void_axial = table2array(data);
+void_axial = void_axial(:, 272:321);
+
 
 % ---- AXIAL CHFR ------
 % chfr = table2array(data);
@@ -151,6 +155,10 @@ axial_plot(htc_axial(end,:), false, 'Axial Profile - HTC [kW/m^2/K]', 'Heat Tran
 % ----- AXIAL PROFILE FLOW REGIME -------
 figure('Position', [10 10 300 900])
 flowreg_plot(flow_reg_axial(end,:), false, 'Axial Profile - Flow Regime', '', 1)
+
+% ----- AXIAL PROFILE VOID FRACTION -------
+figure('Position', [10 10 300 900])
+axial_plot(void_axial(end,:), false, 'Axial Profile - Void Fraction', 'Void Fraction', 1)
 
 % ----- PROFILE RADIAL TEMP FUEL ------
 figure()

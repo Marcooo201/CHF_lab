@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <img vspace="5" hspace="5" src="analyze_07.png" alt=""> <img vspace="5" hspace="5" src="analyze_08.png" alt=""> <img vspace="5" hspace="5" src="analyze_09.png" alt=""> <img vspace="5" hspace="5" src="analyze_10.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+  </style></head><body><div class="content"><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <img vspace="5" hspace="5" src="analyze_07.png" alt=""> <img vspace="5" hspace="5" src="analyze_08.png" alt=""> <img vspace="5" hspace="5" src="analyze_09.png" alt=""> <img vspace="5" hspace="5" src="analyze_10.png" alt=""> <img vspace="5" hspace="5" src="analyze_11.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 addpath(genpath('../../../utils/'));
 warning('OFF', 'MATLAB:table:ModifiedAndSavedVarnames')
@@ -134,6 +134,10 @@ htc_axial = htc_axial(:, 172:221)./1000;
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH FLOW REGIMES REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 flow_reg_axial = table2array(data);
 flow_reg_axial = flow_reg_axial(:, 222:271);
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH VOID FRACTION REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+void_axial = table2array(data);
+void_axial = void_axial(:, 272:321);
 
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH AXIAL CHFR REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
@@ -222,6 +226,10 @@ axial_plot(htc_axial(end,:), false, 'Axial Profile - HTC [kW/m^2/K]', 'Heat Tran
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- AXIAL PROFILE FLOW REGIME REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 figure('Position', [10 10 300 900])
 flowreg_plot(flow_reg_axial(end,:), false, 'Axial Profile - Flow Regime', '', 1)
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- AXIAL PROFILE VOID FRACTION REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+figure('Position', [10 10 300 900])
+axial_plot(void_axial(end,:), false, 'Axial Profile - Void Fraction', 'Void Fraction', 1)
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- PROFILE RADIAL TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 figure()
