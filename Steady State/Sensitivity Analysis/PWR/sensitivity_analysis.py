@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import sys
 sys.path.append('../../../utils/other/')
 from python_RELAP_functions import *
@@ -6,7 +7,8 @@ sys.path.append('../../"Steady State"/"Sensitivity Analysis"/PWR')
 
 
 copy_input_command = r"copy ..\..\Modelli\PWR\input.i input.i"
-simulate_command = r"..\..\..\utils\execution\relap5.exe -i input.i -o output -r rstplt -Z ..\..\..\utils\execution\tpfh2onew"
+simulate_command = r"..\..\..\utils\execution\relap5.exe -i input.i -o out\output -r out\rstplt -Z ..\..\..\utils\execution\tpfh2onew"
+extract_command = r"py ..\..\..\utils\other\parser.py"
 
 ##############################################
 #           DEFINIZIONE PARAMETRI            #
@@ -70,9 +72,13 @@ parameters = [p_in, p_out, T_in, m_dot, power]
 
 ################### Faccio una prova con T_in
 # Pulisco la cartella
+os.system("mkdir out")
 os.system("del input.i")
-os.system("del output")
-os.system("del rstplt")
+os.system(r"del out\output")
+os.system(r"del out\output_strip")
+os.system(r"del out\rstplt")
+os.system(r"del out\stripf")
+
 
 # Copio il file di input e modifico il tempo di simulazione (riduco a 40s per ottimizzare)
 os.system(copy_input_command)
@@ -81,7 +87,22 @@ modify_RELAP_parameter(time, "input.i")
 # Modifico il parametro di riferimento
 modify_RELAP_parameter(T_in, "input.i")
 
-
+# Eseguo simulazione relap
 os.system(simulate_command)
 os.system("del read_steam_comment.o")
-os.system("del screen")
+
+# Estraggo i dati
+os.system(r"..\..\..\utils\execution\relap5.exe -i input_strip.i -o out\output_strip -r out\rstplt -s out\stripf")
+os.system(extract_command)
+
+# Leggo i dati
+data = np.genfromtxt("out\data.csv", delimiter=';')
+data = data[-1, :] # seleziono gli elementi dell'ultima riga (risultati steady state)
+
+fuel_temp = data[1:51]
+clad_temp = data[51:101]
+max_fuel = max(fuel_temp)
+max_clad = max(clad_temp)
+print(max_fuel)
+print(max_clad)
+#os.system("del screen")
