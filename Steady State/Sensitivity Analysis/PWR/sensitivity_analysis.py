@@ -74,10 +74,14 @@ os.system("del input.i")
 os.system("del output")
 os.system("del rstplt")
 
-# Copio il file di input e modifico il tempo di simulazione
+# Copio il file di input e modifico il tempo di simulazione (riduco a 40s per ottimizzare)
 os.system(copy_input_command)
 modify_RELAP_parameter(time, "input.i")
 
-#os.system(simulate_command)
+# Modifico il parametro di riferimento
+modify_RELAP_parameter(T_in, "input.i")
+
+
+os.system(simulate_command)
 os.system("del read_steam_comment.o")
 os.system("del screen")
