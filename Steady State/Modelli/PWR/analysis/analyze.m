@@ -68,6 +68,23 @@ flow_reg_axial = flow_reg_axial(:, 222:271);
 void_axial = table2array(data);
 void_axial = void_axial(:, 272:321);
 
+% ---- EQUILIBRIUM QUALITY ----
+quality_axial = table2array(data);
+quality_axial = quality_axial(:, 322:371);
+
+% ---- SPECIFIC ENTHALPY ----
+enthalpy_axial = table2array(data);
+enthalpy_axial = enthalpy_axial(:, 372:421);
+
+% ---- PRESSURE AXIAL ----
+pressure_axial = table2array(data);
+pressure_axial = pressure_axial(:, 422:471);
+
+
+% ---- AXIAL CHFR ------
+CHF_W3 = chf_W3(pressure_axial(end,:), quality_axial(end,:), 0.335, enthalpy_axial(end,:), heat_flux_axial(end,:), 8.79e-5, 1.17808e-2, 3.876);
+CHFR = 1000*CHF_W3(1:48)./heat_flux_axial(end,1:48);
+
 
 % ---- AXIAL CHFR ------
 % chfr = table2array(data);
@@ -160,6 +177,18 @@ flowreg_plot(flow_reg_axial(end,:), false, 'Axial Profile - Flow Regime', '', 1)
 figure('Position', [10 10 300 900])
 axial_plot(void_axial(end,:), false, 'Axial Profile - Void Fraction', 'Void Fraction', 1)
 
+% ----- AXIAL PROFILE ENTHALPY -------
+figure('Position', [10 10 300 900])
+axial_plot(enthalpy_axial(end,:), false, 'Axial Profile - Specific Enthalpy [J/kg]', 'Enthalpy [J/kg]', 2000000)
+
+% ----- AXIAL PROFILE CHF W-3 -------
+figure('Position', [10 10 300 900])
+axial_plot(CHF_W3, false, 'Axial Profile - CHF W-3 [kJ/kg]', 'CHF W-3 [kJ/kg]', 4)
+
+% ----- AXIAL PROFILE CHFR -------
+figure('Position', [10 10 300 900])
+axial_plot(CHFR, false, 'Axial Profile - CHFR', 'CHFR', 6)
+
 % ----- PROFILE RADIAL TEMP FUEL ------
 figure()
 radial_plot_fuel(T_profile(end,:), false, 'pwr')
@@ -167,15 +196,15 @@ radial_plot_fuel(T_profile(end,:), false, 'pwr')
 % ----- AXIAL CHFR -------
 % figure('Position', [10 10 300 900])
 % chfr_axial_plot(chfr(end,:), false, 'Axial Profile - CHFR', 'CHFR', 30)
-
+% 
 % ----- ANIMATION PROFILE MAX TEMP FUEL -------
 % figure('Position', [10 10 300 900])
 % axial_plot(horzcat(time, T_max_fuel_axial), true, 'Animation Profile - Max Fuel Temperature', 'Fuel Temperature [K]', 3000)
-
-% ----- ANIMATION PROFILE HTMODE -------
-% figure('Position', [10 10 300 900])
-% htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
-
-% ----- ANIMATION PROFILE RADIAL TEMP FUEL ------
-% figure(10)
-% radial_plot_fuel(T_profile, true, 'pwr')
+% 
+% % ----- ANIMATION PROFILE HTMODE -------
+% % figure('Position', [10 10 300 900])
+% % htmode_plot(horzcat(time, HTMODE_axial), true, 'Animation Profile - Heat Transfer Mode', '', 1)
+% 
+% % ----- ANIMATION PROFILE RADIAL TEMP FUEL ------
+% % figure(10)
+% % radial_plot_fuel(T_profile, true, 'pwr')
