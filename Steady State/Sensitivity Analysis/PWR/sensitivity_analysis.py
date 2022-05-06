@@ -77,11 +77,14 @@ power = {
         "table_rep" : True
 }
 
-parameters = [nominale, T_in, m_dot, power]
+parameters = [T_in, m_dot, power, nominale]
 
 ###### OUTPUT ######
 max_fuel_temperature = {}
 max_clad_temperature = {}
+
+
+
 
 
 ##############################################
@@ -127,5 +130,36 @@ for parameter in parameters:
     max_fuel_temperature[parameter['name']] = max_fuel
     max_clad_temperature[parameter['name']] = max_clad
 
-    print(max_fuel_temperature)
-    print(max_clad_temperature)
+
+print(max_fuel_temperature)
+print(max_clad_temperature)
+
+##############################################
+#          ELABORO E SALVO RISULTATI         #
+##############################################
+
+for parameter in parameters:
+    delta_input = parameter['final_value'] - parameter['initial_value']
+    delta_ft = np.subtract(max_fuel_temperature[parameter['name']], max_fuel_temperature['nominale'])
+    delta_ct = np.subtract(max_clad_temperature[parameter['name']], max_clad_temperature['nominale'])
+    max_fuel_temperature[parameter['name']] = np.divide(delta_ft,delta_input)
+    max_clad_temperature[parameter['name']] = np.divide(delta_ct,delta_input)
+
+print(max_fuel_temperature)
+print(max_clad_temperature)
+
+
+##############################################
+#             PULISCO LA CARTELLA            #
+##############################################
+# elimino file superflui
+os.system(r"del screen")
+os.system(r"del input.i")
+while len(os.listdir('out/')) != 0:
+    os.system("del input.i")
+    os.system(r"del out\output")
+    os.system(r"del out\output_strip")
+    os.system(r"del out\rstplt")
+    os.system(r"del out\stripf")
+    os.system(r"del out\data.csv")
+os.system(r"rd out")
