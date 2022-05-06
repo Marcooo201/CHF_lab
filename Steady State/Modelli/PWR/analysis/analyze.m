@@ -187,7 +187,9 @@ axial_plot(CHF_W3, false, 'Axial Profile - CHF W-3 [kJ/kg]', 'CHF W-3 [kJ/kg]', 
 
 % ----- AXIAL PROFILE CHFR -------
 figure('Position', [10 10 300 900])
-axial_plot(CHFR, false, 'Axial Profile - CHFR', 'CHFR', 6)
+MDNBR = min(CHFR);
+title = strcat(["MDNBR:{ }", num2str(MDNBR)]);
+axial_plot(CHFR, false, 'Axial Profile - CHFR', title, 6)
 
 % ----- PROFILE RADIAL TEMP FUEL ------
 figure()
