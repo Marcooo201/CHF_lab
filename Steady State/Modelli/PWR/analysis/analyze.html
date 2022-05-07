@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>analyze</title><meta name="generator" content="MATLAB 9.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-05-07"><meta name="DC.source" content="analyze.m"><style type="text/css">
+      --><title>analyze</title><meta name="generator" content="MATLAB 9.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-05-08"><meta name="DC.source" content="analyze.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,31 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <img vspace="5" hspace="5" src="analyze_07.png" alt=""> <img vspace="5" hspace="5" src="analyze_08.png" alt=""> <img vspace="5" hspace="5" src="analyze_09.png" alt=""> <img vspace="5" hspace="5" src="analyze_10.png" alt=""> <img vspace="5" hspace="5" src="analyze_11.png" alt=""> <img vspace="5" hspace="5" src="analyze_12.png" alt=""> <img vspace="5" hspace="5" src="analyze_13.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+  </style></head><body><div class="content"><pre class="codeoutput">
+sens_analysis_absolute =
+
+  3x4 table
+
+    inlet_temperature    mass_flow_rate       power        pressure  
+    _________________    ______________    ___________    ___________
+
+           1.0314              -128           0.017639     -8.551e-07
+          0.82886           -111.52          0.0012462     2.1367e-07
+        -0.027651            8.4839        -5.6499e-05    -6.5244e-06
+
+
+sens_analysis_relative =
+
+  3x4 table
+
+    inlet_temperature    mass_flow_rate      power      pressure
+    _________________    ______________    _________    ________
+
+          5.8405             -0.4288          11.704    -0.13263
+          4.6934            -0.37359         0.82688    0.033141
+        -0.15657            0.028421       -0.037488     -1.0119
+
+</pre><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <img vspace="5" hspace="5" src="analyze_07.png" alt=""> <img vspace="5" hspace="5" src="analyze_08.png" alt=""> <img vspace="5" hspace="5" src="analyze_09.png" alt=""> <img vspace="5" hspace="5" src="analyze_10.png" alt=""> <img vspace="5" hspace="5" src="analyze_11.png" alt=""> <img vspace="5" hspace="5" src="analyze_12.png" alt=""> <img vspace="5" hspace="5" src="analyze_13.png" alt=""> <img vspace="5" hspace="5" src="analyze_14.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 addpath(genpath('../../../../utils/'));
 warning('OFF', 'MATLAB:table:ModifiedAndSavedVarnames')
@@ -165,11 +189,63 @@ CHFR = CHF_W3(1:48)./heat_flux_axial(end,1:48);
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
+sens_analysis_absolute = readtable("../../../Sensitivity Analysis/PWR/sensitivity_absolute.csv")
+sens_analysis_relative = readtable("../../../Sensitivity Analysis/PWR/sensitivity_relative.csv")
+sens_analysis_absolute = table2array(sens_analysis_absolute);
+sens_analysis_relative = table2array(sens_analysis_relative);
+
+sa_abs_max_fuel = sens_analysis_absolute(1,:);
+sa_abs_max_clad = sens_analysis_absolute(2,:);
+sa_abs_mdnbr = sens_analysis_absolute(3,:);
+sa_rel_max_fuel = sens_analysis_relative(1,:);
+sa_rel_max_clad = sens_analysis_relative(2,:);
+sa_rel_mdnbr = sens_analysis_relative(3,:);
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                            %
 %                           PLOTS                            %
 %                                                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
+
+parameter_lables = ["Inlet Temperature","Mass Flow Rate","Power","Pressure"];
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- RELATIVE PLOT REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+figure('Position', [10 10 900 900])
+tiledlayout(3,1, 'TileSpacing', 'loose')
+
+% Relative Fuel Temp
+nexttile
+Y = sa_rel_max_fuel;
+X = categorical(sort(Y), Y, parameter_lables);
+X = reordercats(X,string(X));
+barh(X,sort(Y))
+xlabel("Temperature Variation [ ^{°K}/_{%} ]")
+title("Max Fuel Temperature")
+
+% Relative Clad Temp
+nexttile
+Y = sa_rel_max_clad;
+X = categorical(sort(Y), Y, parameter_lables);
+X = reordercats(X,string(X));
+barh(X,sort(Y))
+title("Max Clad Temperature")
+xlabel("Temperature Variation [ ^{°K}/_{%} ]")
+
+% Relative MDNBR
+nexttile
+Y = sa_rel_mdnbr;
+X = categorical(sort(Y), Y, parameter_lables);
+X = reordercats(X,string(X));
+barh(X,sort(Y))
+title("MDNBR")
+xlabel("MDNBR Variation [ ^{1}/_{%} ]")
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OTHER %%%%%%%%%%%%%%%%%%%%%%%%
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH TOTAL POWER REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 figure('Position', [10 10 900 900])
@@ -263,6 +339,8 @@ axial_plot(CHFR, false, 'Axial Profile - CHFR', title, 6)
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- PROFILE RADIAL TEMP FUEL REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 figure()
 radial_plot_fuel(T_profile(end,:), false, 'pwr')
+
+
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- AXIAL CHFR REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
 % figure('Position', [10 10 300 900])

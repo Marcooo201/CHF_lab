@@ -52,7 +52,7 @@ C = 185.6.*((1-x_e).^(4.31))./(G.^0.478);
 
 % Compute denominator
 D = q.*(1-exp(-C.*Z));
-D
+
 
 % Compute integral
 I = [];
@@ -64,7 +64,7 @@ for i=1:length(Z)
     end
     I = [I I_i];
 end
-I
+
 
 % Compute F
 % I have to eliminate the last two elements since they do not produce power

@@ -94,11 +94,63 @@ CHFR = CHF_W3(1:48)./heat_flux_axial(end,1:48);
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
+sens_analysis_absolute = readtable("../../../Sensitivity Analysis/PWR/sensitivity_absolute.csv")
+sens_analysis_relative = readtable("../../../Sensitivity Analysis/PWR/sensitivity_relative.csv")
+sens_analysis_absolute = table2array(sens_analysis_absolute);
+sens_analysis_relative = table2array(sens_analysis_relative);
+
+sa_abs_max_fuel = sens_analysis_absolute(1,:);
+sa_abs_max_clad = sens_analysis_absolute(2,:);
+sa_abs_mdnbr = sens_analysis_absolute(3,:);
+sa_rel_max_fuel = sens_analysis_relative(1,:);
+sa_rel_max_clad = sens_analysis_relative(2,:);
+sa_rel_mdnbr = sens_analysis_relative(3,:);
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                            %
 %                           PLOTS                            %
 %                                                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
+
+parameter_lables = ["Inlet Temperature","Mass Flow Rate","Power","Pressure"];
+
+% --------- RELATIVE PLOT ------------
+figure('Position', [10 10 900 900])
+tiledlayout(3,1, 'TileSpacing', 'loose')
+
+% Relative Fuel Temp
+nexttile
+Y = sa_rel_max_fuel;
+X = categorical(sort(Y), Y, parameter_lables);
+X = reordercats(X,string(X));
+barh(X,sort(Y))
+xlabel("Temperature Variation [ ^{°K}/_{%} ]")
+title("Max Fuel Temperature")
+
+% Relative Clad Temp
+nexttile
+Y = sa_rel_max_clad;
+X = categorical(sort(Y), Y, parameter_lables);
+X = reordercats(X,string(X));
+barh(X,sort(Y))
+title("Max Clad Temperature")
+xlabel("Temperature Variation [ ^{°K}/_{%} ]")
+
+% Relative MDNBR
+nexttile
+Y = sa_rel_mdnbr;
+X = categorical(sort(Y), Y, parameter_lables);
+X = reordercats(X,string(X));
+barh(X,sort(Y))
+title("MDNBR")
+xlabel("MDNBR Variation [ ^{1}/_{%} ]")
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OTHER %%%%%%%%%%%%%%%%%%%%%%%%
 
 % ---- TOTAL POWER -----
 figure('Position', [10 10 900 900])
@@ -192,6 +244,8 @@ axial_plot(CHFR, false, 'Axial Profile - CHFR', title, 6)
 % ----- PROFILE RADIAL TEMP FUEL ------
 figure()
 radial_plot_fuel(T_profile(end,:), false, 'pwr')
+
+
 
 % ----- AXIAL CHFR -------
 % figure('Position', [10 10 300 900])

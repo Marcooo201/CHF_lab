@@ -199,35 +199,45 @@ header = [parameter['name'] for parameter in parameters]
 header.append('pressure')
 header = ';'.join(header)
 
-fuel_data = []
-clad_data = []
-MDNBR_data = []
+fuel_absolute = []
+fuel_relative = []
+clad_absolute = []
+clad_relative = []
+MDNBR_absolute = []
+MDNBR_relative = []
 
 for parameter in parameters:
     delta_input = parameter['final_value'] - parameter['initial_value']
+    delta_input_rel = 100*delta_input/parameter['initial_value'] # pctg points
     delta_ft = np.subtract(max_fuel_temperature[parameter['name']], max_fuel_temperature['nominale'])
     delta_ct = np.subtract(max_clad_temperature[parameter['name']], max_clad_temperature['nominale'])
     delta_mdnbr = np.subtract(MDNBR[parameter['name']], MDNBR['nominale'])
-    fuel_data = np.append(fuel_data, np.divide(delta_ft,delta_input))
-    clad_data = np.append(clad_data, np.divide(delta_ct,delta_input))
-    MDNBR_data = np.append(MDNBR_data, np.divide(delta_mdnbr,delta_input))
+    fuel_absolute = np.append(fuel_absolute, np.divide(delta_ft,delta_input))
+    fuel_relative = np.append(fuel_relative, np.divide(delta_ft,delta_input_rel))
+    clad_absolute = np.append(clad_absolute, np.divide(delta_ct,delta_input))
+    clad_relative = np.append(clad_relative, np.divide(delta_ct,delta_input_rel))
+    MDNBR_absolute = np.append(MDNBR_absolute, np.divide(delta_mdnbr,delta_input))
+    MDNBR_relative = np.append(MDNBR_relative, np.divide(delta_mdnbr,delta_input_rel))
 
 # Eseguo per la pressione
 delta_input = p_in['final_value'] - p_in['initial_value']
+delta_input_rel = 100*delta_input/p_in['initial_value']
 delta_ft = np.subtract(max_fuel_temperature['pressure'], max_fuel_temperature['nominale'])
 delta_ct = np.subtract(max_clad_temperature['pressure'], max_clad_temperature['nominale'])
 delta_mdnbr = np.subtract(MDNBR['pressure'], MDNBR['nominale'])
-fuel_data = np.append(fuel_data, np.divide(delta_ft,delta_input))
-clad_data = np.append(clad_data, np.divide(delta_ct,delta_input))
-MDNBR_data = np.append(MDNBR_data, np.divide(delta_mdnbr,delta_input))
+fuel_absolute = np.append(fuel_absolute, np.divide(delta_ft,delta_input))
+fuel_relative = np.append(fuel_relative, np.divide(delta_ft,delta_input_rel))
+clad_absolute = np.append(clad_absolute, np.divide(delta_ct,delta_input))
+clad_relative = np.append(clad_relative, np.divide(delta_ct,delta_input_rel))
+MDNBR_absolute = np.append(MDNBR_absolute, np.divide(delta_mdnbr,delta_input))
+MDNBR_relative = np.append(MDNBR_relative, np.divide(delta_mdnbr,delta_input_rel))
 
 
 # SALVO IL CSV
-body = np.vstack((fuel_data,clad_data,MDNBR_data))
-print(header)
-print(body)
-np.savetxt('sensitivity_results.csv', body, delimiter=';', comments='', fmt='%.6e', header=header)
-
+body_asbolute = np.vstack((fuel_absolute,clad_absolute,MDNBR_absolute))
+body_relative = np.vstack((fuel_relative,clad_relative,MDNBR_relative))
+np.savetxt('sensitivity_absolute.csv', body_asbolute, delimiter=';', comments='', fmt='%.6e', header=header)
+np.savetxt('sensitivity_relative.csv', body_relative, delimiter=';', comments='', fmt='%.6e', header=header)
 
 
 
