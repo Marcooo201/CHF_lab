@@ -84,6 +84,7 @@ parameters = [T_in, m_dot, power, nominale]
 ###### OUTPUT ######
 max_fuel_temperature = {}
 max_clad_temperature = {}
+MDNBR = {}
 
 
 
@@ -125,12 +126,20 @@ for parameter in parameters:
 
     fuel_temp = data[1:51]
     clad_temp = data[51:101]
+    p_output = data[101:151]
+    x_output = data[151:201]
+    hf_output = data[201:251]
+    heat_flux_output = data[251:301]
+    mass_flow_output = data[301]
+
     max_fuel = max(fuel_temp)
     max_clad = max(clad_temp)
+    chf = CHF_W3(p_output, x_output, mass_flow_output, hf_output, heat_flux_output, 8.79e-5, 1.17808e-2, 3.876)
+    chfr = np.divide(chf,heat_flux_output)
 
     max_fuel_temperature[parameter['name']] = max_fuel
     max_clad_temperature[parameter['name']] = max_clad
-
+    MDNBR[parameter['name']] = np.min(chfr)
 
 # ESEGUO PER LA PRESSIONE
 # Pulisco la cartella
@@ -166,11 +175,20 @@ data = data[-1, :] # seleziono gli elementi dell'ultima riga (risultati steady s
 
 fuel_temp = data[1:51]
 clad_temp = data[51:101]
+p_output = data[101:151]
+x_output = data[151:201]
+hf_output = data[201:251]
+heat_flux_output = data[251:301]
+mass_flow_output = data[301]
+
 max_fuel = max(fuel_temp)
 max_clad = max(clad_temp)
+chf = CHF_W3(p_output, x_output, mass_flow_output, hf_output, heat_flux_output, 8.79e-5, 1.17808e-2, 3.876)
+chfr = np.divide(chf,heat_flux_output)
 
 max_fuel_temperature['pressure'] = max_fuel
 max_clad_temperature['pressure'] = max_clad
+MDNBR['pressure'] = np.min(chfr)
 
 
 ##############################################
@@ -184,23 +202,30 @@ header = ';'.join(header)
 
 fuel_data = []
 clad_data = []
+MDNBR_data = []
+print("========================MDNBRRRRRRRRR=====================")
+print(MDNBR)
 for parameter in parameters:
     delta_input = parameter['final_value'] - parameter['initial_value']
     delta_ft = np.subtract(max_fuel_temperature[parameter['name']], max_fuel_temperature['nominale'])
     delta_ct = np.subtract(max_clad_temperature[parameter['name']], max_clad_temperature['nominale'])
+    delta_mdnbr = np.subtract(MDNBR[parameter['name']], MDNBR['nominale'])
     fuel_data = np.append(fuel_data, np.divide(delta_ft,delta_input))
     clad_data = np.append(clad_data, np.divide(delta_ct,delta_input))
+    MDNBR_data = np.append(MDNBR_data, np.divide(delta_mdnbr,delta_input))
 
 # Eseguo per la pressione
 delta_input = p_in['final_value'] - p_in['initial_value']
 delta_ft = np.subtract(max_fuel_temperature['pressure'], max_fuel_temperature['nominale'])
 delta_ct = np.subtract(max_clad_temperature['pressure'], max_clad_temperature['nominale'])
+delta_mdnbr = np.subtract(MDNBR['pressure'], MDNBR['nominale'])
 fuel_data = np.append(fuel_data, np.divide(delta_ft,delta_input))
 clad_data = np.append(clad_data, np.divide(delta_ct,delta_input))
+MDNBR_data = np.append(MDNBR_data, np.divide(delta_mdnbr,delta_input))
 
 
 # SALVO IL CSV
-body = np.vstack((fuel_data,clad_data))
+body = np.vstack((fuel_data,clad_data,MDNBR_data))
 print(header)
 print(body)
 np.savetxt('sensitivity_results.csv', body, delimiter=';', comments='', fmt='%.6e', header=header)
