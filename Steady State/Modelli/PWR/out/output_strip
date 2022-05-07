@@ -539,10 +539,10 @@
    500    .                                                                                               
 0    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 0 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     07-May-22    18:42:02      
+  strip_input                                                                     07-May-22    22:15:40      
 1    RBIC/3.3gl          RELAP5 Based Integrated Code                                            
 1 Copyright (C) 2001-2006  Information Systems Laboratories, Inc.
-  strip_input                                                                     07-May-22    18:42:02      
+  strip_input                                                                     07-May-22    22:15:40      
 0Processing type is strip   
 +                                       problem option is fmtout  
 0inp-chk, run option is run.    

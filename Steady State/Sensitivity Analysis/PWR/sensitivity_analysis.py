@@ -80,7 +80,6 @@ power = {
 }
 
 parameters = [T_in, m_dot, power, nominale]
-
 ###### OUTPUT ######
 max_fuel_temperature = {}
 max_clad_temperature = {}
@@ -135,7 +134,7 @@ for parameter in parameters:
     max_fuel = max(fuel_temp)
     max_clad = max(clad_temp)
     chf = CHF_W3(p_output, x_output, mass_flow_output, hf_output, heat_flux_output, 8.79e-5, 1.17808e-2, 3.876)
-    chfr = np.divide(chf,heat_flux_output)
+    chfr = np.divide(chf,heat_flux_output)*1000
 
     max_fuel_temperature[parameter['name']] = max_fuel
     max_clad_temperature[parameter['name']] = max_clad
@@ -203,8 +202,7 @@ header = ';'.join(header)
 fuel_data = []
 clad_data = []
 MDNBR_data = []
-print("========================MDNBRRRRRRRRR=====================")
-print(MDNBR)
+
 for parameter in parameters:
     delta_input = parameter['final_value'] - parameter['initial_value']
     delta_ft = np.subtract(max_fuel_temperature[parameter['name']], max_fuel_temperature['nominale'])

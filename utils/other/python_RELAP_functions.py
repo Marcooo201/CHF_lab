@@ -106,22 +106,13 @@ def CHF_W3(p, x_e, m_dot, h_f, q, A, D_e, L):
     D = q*(1-np.exp(-C*Z))
 
     # Compute integral
-    I = np.zeros([1,50])
-    print("======================= DEBUG =========================")
-    print("======================= DEBUG =========================")
-    print("======================= DEBUG =========================")
+    I = []
 
-    for i in range(Z.size):
+    for i in range(50):
         I_i = 0
-        for j in range(i):
-            I_i = I_i + q[j]*np.exp(-C[j]*(Z[i]-Z[j]))*delta_Z;
-            print(-C[j]*(Z[i]-Z[j]))
-        np.append(I, I_i)
-
-    print("======================= DEBUG =========================")
-    print("======================= DEBUG =========================")
-    print("======================= DEBUG =========================")
-    print('I: {}'.format(I))
+        for j in range(i+1):
+            I_i = I_i + q[j]*np.exp(-C[i]*(Z[i]-Z[j]))*delta_Z;
+        I.append(I_i)
 
     # Compute F
     F = C*I/D
