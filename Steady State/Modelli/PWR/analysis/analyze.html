@@ -70,26 +70,26 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
   </style></head><body><div class="content"><pre class="codeoutput">
 sens_analysis_absolute =
 
-  3x4 table
+  3x6 table
 
-    inlet_temperature    mass_flow_rate       power        pressure  
-    _________________    ______________    ___________    ___________
+    InletTemperature    MassFlowRate       Power       He_pressure    InitialHeatStrctTemperature     Pressure  
+    ________________    ____________    ___________    ___________    ___________________________    ___________
 
-           1.0314              -128           0.017639     -8.551e-07
-          0.82886           -111.52          0.0012462     2.1367e-07
-        -0.027651            8.4839        -5.6499e-05    -6.5244e-06
+          1.0314             -128         0.0061519         -1e-06                 0.0003             -8.551e-07
+         0.82886          -111.52         0.0004493              0                1.5e-05             2.1367e-07
+       -0.027651           8.4839       -2.0661e-05    -9.8506e-13            -7.2599e-07            -6.5244e-06
 
 
 sens_analysis_relative =
 
-  3x4 table
+  3x6 table
 
-    inlet_temperature    mass_flow_rate      power      pressure
-    _________________    ______________    _________    ________
+    InletTemperature    MassFlowRate      Power      He_pressure    InitialHeatStrctTemperature    Pressure
+    ________________    ____________    _________    ___________    ___________________________    ________
 
-          5.8405             -0.4288          11.704    -0.13263
-          4.6934            -0.37359         0.82688    0.033141
-        -0.15657            0.028421       -0.037488     -1.0119
+          5.8405           -0.4288         4.0819       -0.0241                  0.0018            -0.13263
+          4.6934          -0.37359        0.29812             0                   9e-05            0.033141
+        -0.15657          0.028421      -0.013709    -2.374e-08             -4.3559e-06             -1.0119
 
 </pre><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <img vspace="5" hspace="5" src="analyze_07.png" alt=""> <img vspace="5" hspace="5" src="analyze_08.png" alt=""> <img vspace="5" hspace="5" src="analyze_09.png" alt=""> <img vspace="5" hspace="5" src="analyze_10.png" alt=""> <img vspace="5" hspace="5" src="analyze_11.png" alt=""> <img vspace="5" hspace="5" src="analyze_12.png" alt=""> <img vspace="5" hspace="5" src="analyze_13.png" alt=""> <img vspace="5" hspace="5" src="analyze_14.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
@@ -193,6 +193,7 @@ CHFR = CHF_W3(1:48)./heat_flux_axial(end,1:48);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
 sens_analysis_absolute = readtable("../../../Sensitivity Analysis/PWR/sensitivity_absolute.csv")
 sens_analysis_relative = readtable("../../../Sensitivity Analysis/PWR/sensitivity_relative.csv")
+parameter_lables = sens_analysis_relative.Properties.VariableNames;
 sens_analysis_absolute = table2array(sens_analysis_absolute);
 sens_analysis_relative = table2array(sens_analysis_relative);
 
@@ -211,7 +212,7 @@ sa_rel_mdnbr = sens_analysis_relative(3,:);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
 
-parameter_lables = ["Inlet Temperature","Mass Flow Rate","Power","Pressure"];
+% parameter_lables = ["Inlet Temperature","Mass Flow Rate","Power","Pressure"];
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- RELATIVE PLOT REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 figure('Position', [10 10 900 900])

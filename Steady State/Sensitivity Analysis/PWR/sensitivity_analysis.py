@@ -53,7 +53,7 @@ p_out = {
 }
 
 T_in = {
-        "name" : "inlet_temperature",
+        "name" : "Inlet Temperature",
         "line" : 84,
         "word" : 3,
         "initial_value" : 566.25,
@@ -62,7 +62,7 @@ T_in = {
 }
 
 m_dot = {
-        "name" : "mass_flow_rate",
+        "name" : "Mass Flow Rate",
         "line" : 108,
         "word" : 2,
         "initial_value" : 0.335,
@@ -71,7 +71,7 @@ m_dot = {
 }
 
 power = {
-        "name" : "power",
+        "name" : "Power",
         "line" : 392,
         "word" : 2,
         "initial_value" : 66351.88,
@@ -79,7 +79,25 @@ power = {
         "table_rep" : True
 }
 
-parameters = [T_in, m_dot, power, nominale]
+He_pressure = {
+        "name" : "He Pressure",
+        "line" : 244,
+        "word" : 1,
+        "initial_value" : 2410000.0,
+        "final_value" : 2440000.0,
+        "table_rep" : False
+}
+
+T_init_hs = {
+        "name" : "Initial Heat Strct Temperature",
+        "line" : 269,
+        "word" : 1,
+        "initial_value" : 600.0,
+        "final_value" : 620.0,
+        "table_rep" : False
+}
+
+parameters = [T_in, m_dot, power, He_pressure, T_init_hs, nominale]
 ###### OUTPUT ######
 max_fuel_temperature = {}
 max_clad_temperature = {}
@@ -196,7 +214,7 @@ MDNBR['pressure'] = np.min(chfr)
 
 parameters.pop() # elimino il parametro nominale
 header = [parameter['name'] for parameter in parameters]
-header.append('pressure')
+header.append('Pressure')
 header = ';'.join(header)
 
 fuel_absolute = []

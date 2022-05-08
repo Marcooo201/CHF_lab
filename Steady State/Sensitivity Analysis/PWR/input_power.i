@@ -353,7 +353,6 @@ $$$$$ PROFILO ASSIALE DELLA POTENZA TERMICA NELLA FUEL ROD DA SISTEMARE $$$$$
 *
 *crdno       Dth[m]      W2   W3   W4  W5  W6  W7   W8   Heatstno
 15550901   1.17808e-2    15.  15.  0.  0.  0.  0.   1.     50
-$$$$$ LA W2 e W3 SONO DA RIFAREEEEE $$$$$
 *
 *
 *--------------------------------------------------------------------------
@@ -389,9 +388,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 20288800     power
 *
 *crdno         t[s]     Power [W]
-20288801   0.   68000.0   
+20288801        0.      66351.88
 20288802   100.   68000.0   
-$ potenza ottenuta moltiplicando la potenza media del core (17.86 kW/m) per la l'altezza totale della fuel rod (3.658 m) basandosi sui dati del Kazimi $
+$   potenza   68000.0   moltiplicando   la   potenza   media   del   core   (17.86   kW/m)   per   la   l'altezza   totale   della   fuel   rod   (3.658   m)   basandosi   sui   dati   del   Kazimi   $   
 $ 100 secondi è il tempo finale della simulazione $
 *
 *

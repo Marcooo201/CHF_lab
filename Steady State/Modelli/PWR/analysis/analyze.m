@@ -98,6 +98,7 @@ CHFR = CHF_W3(1:48)./heat_flux_axial(end,1:48);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
 sens_analysis_absolute = readtable("../../../Sensitivity Analysis/PWR/sensitivity_absolute.csv")
 sens_analysis_relative = readtable("../../../Sensitivity Analysis/PWR/sensitivity_relative.csv")
+parameter_lables = sens_analysis_relative.Properties.VariableNames;
 sens_analysis_absolute = table2array(sens_analysis_absolute);
 sens_analysis_relative = table2array(sens_analysis_relative);
 
@@ -116,7 +117,7 @@ sa_rel_mdnbr = sens_analysis_relative(3,:);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
 
-parameter_lables = ["Inlet Temperature","Mass Flow Rate","Power","Pressure"];
+% parameter_lables = ["Inlet Temperature","Mass Flow Rate","Power","Pressure"];
 
 % --------- RELATIVE PLOT ------------
 figure('Position', [10 10 900 900])

@@ -353,7 +353,6 @@ $$$$$ PROFILO ASSIALE DELLA POTENZA TERMICA NELLA FUEL ROD DA SISTEMARE $$$$$
 *
 *crdno       Dth[m]      W2   W3   W4  W5  W6  W7   W8   Heatstno
 15550901   1.17808e-2    15.  15.  0.  0.  0.  0.   1.     50
-$$$$$ LA W2 e W3 SONO DA RIFAREEEEE $$$$$
 *
 *
 *--------------------------------------------------------------------------
