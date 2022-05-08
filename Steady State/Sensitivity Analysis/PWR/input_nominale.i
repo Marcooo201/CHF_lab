@@ -34,7 +34,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$[Mazzocco, Musile Tanzi, Tagliabue]$$$$$$
 202        10.       1.e-8     0.01     00003    50       50      50
 *
 *crdno   Endtime[s] Mindt[s]  Maxdt[s]   ctrl  Minedit  Majedit   Rst
-203   40.0   1.e-8   0.05   00003   10   10   10   
+203   100.0   1.e-8   0.05   00003   10   10   10   
 *
 * (201 writes every 0.5 s)
 * (202 writes every 0.5 s)

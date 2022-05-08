@@ -30,12 +30,12 @@ time = {
         "line" : 37,
         "word" : 1,
         "initial_value" : 100.,
-        "final_value" : 40.,
+        "final_value" : 100.,
         "table_rep" : False
 }
 
 p_in = {
-        "name" : "inlet_pressure",
+        "name" : "InletPressure",
         "line" : 84,
         "word" : 2,
         "initial_value" : 1.551e+7,
@@ -44,7 +44,7 @@ p_in = {
 }
 
 p_out = {
-        "name" : "outlet_pressure",
+        "name" : "OutletPressure",
         "line" : 197,
         "word" : 2,
         "initial_value" : 1.5313e+7,
@@ -53,7 +53,7 @@ p_out = {
 }
 
 T_in = {
-        "name" : "Inlet Temperature",
+        "name" : "InletTemperature",
         "line" : 84,
         "word" : 3,
         "initial_value" : 566.25,
@@ -62,7 +62,7 @@ T_in = {
 }
 
 m_dot = {
-        "name" : "Mass Flow Rate",
+        "name" : "MassFlowRate",
         "line" : 108,
         "word" : 2,
         "initial_value" : 0.335,
@@ -80,16 +80,16 @@ power = {
 }
 
 He_pressure = {
-        "name" : "He Pressure",
+        "name" : "GapPressure",
         "line" : 244,
         "word" : 1,
         "initial_value" : 2410000.0,
-        "final_value" : 2440000.0,
+        "final_value" : 2500000.0,
         "table_rep" : False
 }
 
 T_init_hs = {
-        "name" : "Initial Heat Strct Temperature",
+        "name" : "InitialHeatStrTemperature",
         "line" : 269,
         "word" : 1,
         "initial_value" : 600.0,
@@ -97,7 +97,25 @@ T_init_hs = {
         "table_rep" : False
 }
 
-parameters = [T_in, m_dot, power, He_pressure, T_init_hs, nominale]
+gap_composition_he = {
+        "name" : "GapCompositionHe",
+        "line" : 373,
+        "word" : 2,
+        "initial_value" : 1.0,
+        "final_value" : 0.9,
+        "table_rep" : False
+}
+
+gap_composition_xe = {
+        "name" : "GapCompositionXe",
+        "line" : 374,
+        "word" : 2,
+        "initial_value" : 0.0,
+        "final_value" : 0.1,
+        "table_rep" : False
+}
+
+parameters = [[T_in], [m_dot], [power], [He_pressure], [T_init_hs], [p_in, p_out], [gap_composition_he, gap_composition_xe], [nominale]]
 ###### OUTPUT ######
 max_fuel_temperature = {}
 max_clad_temperature = {}
@@ -121,13 +139,14 @@ for parameter in parameters:
         os.system(r"del out\stripf")
         os.system(r"del out\data.csv")
 
-    # Copio il file di input e modifico il tempo di simulazione (riduco a 40s per ottimizzare)
+    # Copio il file di input e modifico il tempo di simulazione (riduco per ottimizzare)
     os.system(copy_input_command)
     modify_RELAP_parameter(time, "input.i")
 
     # Modifico il parametro di riferimento
-    modify_RELAP_parameter(parameter, "input.i")
-    os.system("copy input.i input_{}.i".format(parameter['name']))
+    for _ in parameter:
+        modify_RELAP_parameter(_, "input.i")
+    os.system("copy input.i input_{}.i".format(parameter[0]['name']))
 
     # Eseguo simulazione relap
     os.system(simulate_command)
@@ -154,58 +173,9 @@ for parameter in parameters:
     chf = CHF_W3(p_output, x_output, mass_flow_output, hf_output, heat_flux_output, 8.79e-5, 1.17808e-2, 3.876)
     chfr = np.divide(chf,heat_flux_output)*1000
 
-    max_fuel_temperature[parameter['name']] = max_fuel
-    max_clad_temperature[parameter['name']] = max_clad
-    MDNBR[parameter['name']] = np.min(chfr)
-
-# ESEGUO PER LA PRESSIONE
-# Pulisco la cartella
-os.system("mkdir out")
-while len(os.listdir('out/')) != 0:
-    os.system("del input.i")
-    os.system(r"del out\output")
-    os.system(r"del out\output_strip")
-    os.system(r"del out\rstplt")
-    os.system(r"del out\stripf")
-    os.system(r"del out\data.csv")
-
-# Copio il file di input e modifico il tempo di simulazione (riduco a 40s per ottimizzare)
-os.system(copy_input_command)
-modify_RELAP_parameter(time, "input.i")
-
-# Modifico il parametro di riferimento
-modify_RELAP_parameter(p_in, "input.i")
-modify_RELAP_parameter(p_out, "input.i")
-os.system("copy input.i input_{}.i".format('pressure'))
-
-# Eseguo simulazione relap
-os.system(simulate_command)
-os.system("del read_steam_comment.o")
-
-# Estraggo i dati
-os.system(r"..\..\..\utils\execution\relap5.exe -i input_strip.i -o out\output_strip -r out\rstplt -s out\stripf")
-os.system(extract_command)
-
-# Leggo i dati
-data = np.genfromtxt("out\data.csv", delimiter=';')
-data = data[-1, :] # seleziono gli elementi dell'ultima riga (risultati steady state)
-
-fuel_temp = data[1:51]
-clad_temp = data[51:101]
-p_output = data[101:151]
-x_output = data[151:201]
-hf_output = data[201:251]
-heat_flux_output = data[251:301]
-mass_flow_output = data[301]
-
-max_fuel = max(fuel_temp)
-max_clad = max(clad_temp)
-chf = CHF_W3(p_output, x_output, mass_flow_output, hf_output, heat_flux_output, 8.79e-5, 1.17808e-2, 3.876)
-chfr = np.divide(chf,heat_flux_output)
-
-max_fuel_temperature['pressure'] = max_fuel
-max_clad_temperature['pressure'] = max_clad
-MDNBR['pressure'] = np.min(chfr)
+    max_fuel_temperature[parameter[0]['name']] = max_fuel
+    max_clad_temperature[parameter[0]['name']] = max_clad
+    MDNBR[parameter[0]['name']] = np.min(chfr)
 
 
 ##############################################
@@ -213,8 +183,7 @@ MDNBR['pressure'] = np.min(chfr)
 ##############################################
 
 parameters.pop() # elimino il parametro nominale
-header = [parameter['name'] for parameter in parameters]
-header.append('Pressure')
+header = [parameter[0]['name'] for parameter in parameters]
 header = ';'.join(header)
 
 fuel_absolute = []
@@ -225,30 +194,17 @@ MDNBR_absolute = []
 MDNBR_relative = []
 
 for parameter in parameters:
-    delta_input = parameter['final_value'] - parameter['initial_value']
-    delta_input_rel = 100*delta_input/parameter['initial_value'] # pctg points
-    delta_ft = np.subtract(max_fuel_temperature[parameter['name']], max_fuel_temperature['nominale'])
-    delta_ct = np.subtract(max_clad_temperature[parameter['name']], max_clad_temperature['nominale'])
-    delta_mdnbr = np.subtract(MDNBR[parameter['name']], MDNBR['nominale'])
+    delta_input = parameter[0]['final_value'] - parameter[0]['initial_value']
+    delta_input_rel = 100*delta_input/parameter[0]['initial_value'] # pctg points
+    delta_ft = np.subtract(max_fuel_temperature[parameter[0]['name']], max_fuel_temperature['nominale'])
+    delta_ct = np.subtract(max_clad_temperature[parameter[0]['name']], max_clad_temperature['nominale'])
+    delta_mdnbr = np.subtract(MDNBR[parameter[0]['name']], MDNBR['nominale'])
     fuel_absolute = np.append(fuel_absolute, np.divide(delta_ft,delta_input))
     fuel_relative = np.append(fuel_relative, np.divide(delta_ft,delta_input_rel))
     clad_absolute = np.append(clad_absolute, np.divide(delta_ct,delta_input))
     clad_relative = np.append(clad_relative, np.divide(delta_ct,delta_input_rel))
     MDNBR_absolute = np.append(MDNBR_absolute, np.divide(delta_mdnbr,delta_input))
     MDNBR_relative = np.append(MDNBR_relative, np.divide(delta_mdnbr,delta_input_rel))
-
-# Eseguo per la pressione
-delta_input = p_in['final_value'] - p_in['initial_value']
-delta_input_rel = 100*delta_input/p_in['initial_value']
-delta_ft = np.subtract(max_fuel_temperature['pressure'], max_fuel_temperature['nominale'])
-delta_ct = np.subtract(max_clad_temperature['pressure'], max_clad_temperature['nominale'])
-delta_mdnbr = np.subtract(MDNBR['pressure'], MDNBR['nominale'])
-fuel_absolute = np.append(fuel_absolute, np.divide(delta_ft,delta_input))
-fuel_relative = np.append(fuel_relative, np.divide(delta_ft,delta_input_rel))
-clad_absolute = np.append(clad_absolute, np.divide(delta_ct,delta_input))
-clad_relative = np.append(clad_relative, np.divide(delta_ct,delta_input_rel))
-MDNBR_absolute = np.append(MDNBR_absolute, np.divide(delta_mdnbr,delta_input))
-MDNBR_relative = np.append(MDNBR_relative, np.divide(delta_mdnbr,delta_input_rel))
 
 
 # SALVO IL CSV

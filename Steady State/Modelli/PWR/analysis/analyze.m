@@ -102,6 +102,13 @@ parameter_lables = sens_analysis_relative.Properties.VariableNames;
 sens_analysis_absolute = table2array(sens_analysis_absolute);
 sens_analysis_relative = table2array(sens_analysis_relative);
 
+% Sostituisco agli zeri numeri piccolissimi in modo da non avere rogne con
+% le funzioni di plotting
+R = rand(3,length(parameter_lables))*1e-10;
+sens_analysis_absolute(sens_analysis_absolute == 0) = R(sens_analysis_absolute == 0);
+sens_analysis_relative(sens_analysis_relative == 0) = R(sens_analysis_relative == 0);
+
+
 sa_abs_max_fuel = sens_analysis_absolute(1,:);
 sa_abs_max_clad = sens_analysis_absolute(2,:);
 sa_abs_mdnbr = sens_analysis_absolute(3,:);
@@ -117,7 +124,6 @@ sa_rel_mdnbr = sens_analysis_relative(3,:);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
 
-% parameter_lables = ["Inlet Temperature","Mass Flow Rate","Power","Pressure"];
 
 % --------- RELATIVE PLOT ------------
 figure('Position', [10 10 900 900])
@@ -126,8 +132,12 @@ tiledlayout(3,1, 'TileSpacing', 'loose')
 % Relative Fuel Temp
 nexttile
 Y = sa_rel_max_fuel;
-X = categorical(sort(Y), Y, parameter_lables);
-X = reordercats(X,string(X));
+if length(Y) == length(unique(Y))
+    X = categorical(sort(Y), Y, parameter_lables);
+    X = reordercats(X,string(X));
+else
+    X = categorical(Y);
+end
 barh(X,sort(Y))
 xlabel("Temperature Variation [ ^{°K}/_{%} ]")
 title("Max Fuel Temperature")
@@ -135,8 +145,12 @@ title("Max Fuel Temperature")
 % Relative Clad Temp
 nexttile
 Y = sa_rel_max_clad;
-X = categorical(sort(Y), Y, parameter_lables);
-X = reordercats(X,string(X));
+if length(Y) == length(unique(Y))
+    X = categorical(sort(Y), Y, parameter_lables);
+    X = reordercats(X,string(X));
+else
+    X = categorical(Y);
+end
 barh(X,sort(Y))
 title("Max Clad Temperature")
 xlabel("Temperature Variation [ ^{°K}/_{%} ]")
@@ -144,8 +158,12 @@ xlabel("Temperature Variation [ ^{°K}/_{%} ]")
 % Relative MDNBR
 nexttile
 Y = sa_rel_mdnbr;
-X = categorical(sort(Y), Y, parameter_lables);
-X = reordercats(X,string(X));
+if length(Y) == length(unique(Y))
+    X = categorical(sort(Y), Y, parameter_lables);
+    X = reordercats(X,string(X));
+else
+    X = categorical(Y);
+end
 barh(X,sort(Y))
 title("MDNBR")
 xlabel("MDNBR Variation [ ^{1}/_{%} ]")

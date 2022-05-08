@@ -70,26 +70,26 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
   </style></head><body><div class="content"><pre class="codeoutput">
 sens_analysis_absolute =
 
-  3x6 table
+  3x7 table
 
-    InletTemperature    MassFlowRate       Power       He_pressure    InitialHeatStrctTemperature     Pressure  
-    ________________    ____________    ___________    ___________    ___________________________    ___________
+    InletTemperature    MassFlowRate       Power       GapPressure    InitialHeatStrTemperature    InletPressure    GapCompositionHe
+    ________________    ____________    ___________    ___________    _________________________    _____________    ________________
 
-          1.0314             -128         0.0061519         -1e-06                 0.0003             -8.551e-07
-         0.82886          -111.52         0.0004493              0                1.5e-05             2.1367e-07
-       -0.027651           8.4839       -2.0661e-05    -9.8506e-13            -7.2599e-07            -6.5244e-06
+           1.032           -128.2          0.016743    -9.5556e-07                0                 -8.551e-07            -687.34   
+         0.82886          -111.56         0.0011967              0                0                 2.1347e-07                  0   
+       -0.027649           8.4833       -5.4291e-05              0                0                 7.1347e-08         -5.101e-10   
 
 
 sens_analysis_relative =
 
-  3x6 table
+  3x7 table
 
-    InletTemperature    MassFlowRate      Power      He_pressure    InitialHeatStrctTemperature    Pressure
-    ________________    ____________    _________    ___________    ___________________________    ________
+    InletTemperature    MassFlowRate      Power      GapPressure    InitialHeatStrTemperature    InletPressure    GapCompositionHe
+    ________________    ____________    _________    ___________    _________________________    _____________    ________________
 
-          5.8405           -0.4288         4.0819       -0.0241                  0.0018            -0.13263
-          4.6934          -0.37359        0.29812             0                   9e-05            0.033141
-        -0.15657          0.028421      -0.013709    -2.374e-08             -4.3559e-06             -1.0119
+          5.8437          -0.42947         11.109     -0.023029                 0                  -0.13263             -6.8734   
+          4.6934          -0.37373        0.79403             0                 0                  0.033109                   0   
+        -0.15656          0.028419      -0.036023             0                 0                  0.011066          -5.101e-12   
 
 </pre><img vspace="5" hspace="5" src="analyze_01.png" alt=""> <img vspace="5" hspace="5" src="analyze_02.png" alt=""> <img vspace="5" hspace="5" src="analyze_03.png" alt=""> <img vspace="5" hspace="5" src="analyze_04.png" alt=""> <img vspace="5" hspace="5" src="analyze_05.png" alt=""> <img vspace="5" hspace="5" src="analyze_06.png" alt=""> <img vspace="5" hspace="5" src="analyze_07.png" alt=""> <img vspace="5" hspace="5" src="analyze_08.png" alt=""> <img vspace="5" hspace="5" src="analyze_09.png" alt=""> <img vspace="5" hspace="5" src="analyze_10.png" alt=""> <img vspace="5" hspace="5" src="analyze_11.png" alt=""> <img vspace="5" hspace="5" src="analyze_12.png" alt=""> <img vspace="5" hspace="5" src="analyze_13.png" alt=""> <img vspace="5" hspace="5" src="analyze_14.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
@@ -197,6 +197,13 @@ parameter_lables = sens_analysis_relative.Properties.VariableNames;
 sens_analysis_absolute = table2array(sens_analysis_absolute);
 sens_analysis_relative = table2array(sens_analysis_relative);
 
+% Sostituisco agli zeri numeri piccolissimi in modo da non avere rogne con
+% le funzioni di plotting
+R = rand(3,length(parameter_lables))*1e-10;
+sens_analysis_absolute(sens_analysis_absolute == 0) = R(sens_analysis_absolute == 0);
+sens_analysis_relative(sens_analysis_relative == 0) = R(sens_analysis_relative == 0);
+
+
 sa_abs_max_fuel = sens_analysis_absolute(1,:);
 sa_abs_max_clad = sens_analysis_absolute(2,:);
 sa_abs_mdnbr = sens_analysis_absolute(3,:);
@@ -212,7 +219,6 @@ sa_rel_mdnbr = sens_analysis_relative(3,:);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS %%%%%%%%%%%%%%%%%%%%%%%%
 
-% parameter_lables = ["Inlet Temperature","Mass Flow Rate","Power","Pressure"];
 
 % REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH- RELATIVE PLOT REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
 figure('Position', [10 10 900 900])
@@ -221,8 +227,12 @@ tiledlayout(3,1, 'TileSpacing', 'loose')
 % Relative Fuel Temp
 nexttile
 Y = sa_rel_max_fuel;
-X = categorical(sort(Y), Y, parameter_lables);
-X = reordercats(X,string(X));
+if length(Y) == length(unique(Y))
+    X = categorical(sort(Y), Y, parameter_lables);
+    X = reordercats(X,string(X));
+else
+    X = categorical(Y);
+end
 barh(X,sort(Y))
 xlabel("Temperature Variation [ ^{°K}/_{%} ]")
 title("Max Fuel Temperature")
@@ -230,8 +240,12 @@ title("Max Fuel Temperature")
 % Relative Clad Temp
 nexttile
 Y = sa_rel_max_clad;
-X = categorical(sort(Y), Y, parameter_lables);
-X = reordercats(X,string(X));
+if length(Y) == length(unique(Y))
+    X = categorical(sort(Y), Y, parameter_lables);
+    X = reordercats(X,string(X));
+else
+    X = categorical(Y);
+end
 barh(X,sort(Y))
 title("Max Clad Temperature")
 xlabel("Temperature Variation [ ^{°K}/_{%} ]")
@@ -239,8 +253,12 @@ xlabel("Temperature Variation [ ^{°K}/_{%} ]")
 % Relative MDNBR
 nexttile
 Y = sa_rel_mdnbr;
-X = categorical(sort(Y), Y, parameter_lables);
-X = reordercats(X,string(X));
+if length(Y) == length(unique(Y))
+    X = categorical(sort(Y), Y, parameter_lables);
+    X = reordercats(X,string(X));
+else
+    X = categorical(Y);
+end
 barh(X,sort(Y))
 title("MDNBR")
 xlabel("MDNBR Variation [ ^{1}/_{%} ]")
