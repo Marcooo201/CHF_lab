@@ -72,7 +72,7 @@ labels = [labels "SCRAM"];
 
 
 % ------ TOTAL POWER -------
-f = figure('Position', [10 10 900 900], 'Visible','off');
+figure('Position', [10 10 900 900])
 hold on
 for i=1:length(data)
     plot(data(i).time,data(i).power, 'LineWidth', 1.3);
@@ -83,7 +83,7 @@ grid on, grid minor
 xlabel('Time [s]')
 title('TOTAL POWER EXCHANGED [kW]')
 legend(labels)
-saveas(f, "TOTAL POWER.png")
+
 
 
 % --- -OUTLET TEMPERATURE ----
@@ -136,35 +136,24 @@ legend(labels)
 %                    ANIMATIONS                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% % ----- PROFILE CHFR -------
+% % ----- ANIMATION PROFILE CHFR -------
 % idx = 2;
 % figure('Position', [10 10 300 900])
 % axial_plot(horzcat(data(idx).time, data(idx).CHFR), true, 'Animation Profile - CHFR (W3)', 'CHFR', 10)
 % 
 % 
-% % ----- PROFILE HTMODE -------
+% % ----- ANIMATION PROFILE HTMODE -------
 % idx = 1;
 % f0 = 180; % initial frame (timestep)
 % figure('Position', [10 10 300 900])
 % htmode_plot(horzcat(data(idx).time(f0:end,:), data(idx).ht_mode_axial(f0:end,:)), true, 'Animation Profile - Heat Transfer Mode', '', 1)
 %
-% % ----- PROFILE HTC -------
+% % ----- ANIMATION PROFILE HTC -------
 % idx = 1;
 % f0 = 1; % initial frame (timestep)
 % figure('Position', [10 10 300 900])
 % axial_plot(horzcat(data(idx).time(f0:end,:), data(idx).htc_axial(f0:end,:)), true, 'Animation Profile - HTC [kW/m^2/°K]', 'HTC [kW/m^2/°K]', 60)
-%
-% % ----- PROFILE VOID FRACTION -------
-% idx = 1;
-% f0 = 1; % initial frame (timestep)
-% figure('Position', [10 10 300 900])
-% axial_plot(horzcat(data(idx).time(f0:end,:), data(idx).void_fraction_axial(f0:end,:)), true, 'Animation Profile - Void Fraction ( \alpha )', 'Void Fraction ( \alpha )', 1)
-%
-% % ----- PROFILE RADIAL TEMPERATURE -------
-% idx = 1;
-% f0 = 1; % initial frame (timestep)
-% figure(10)
-% radial_plot_fuel(horzcat(data(idx).center_radial_temp_profile, data(idx).time), true, 'pwr')
+
 
 
 
