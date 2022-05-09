@@ -83,7 +83,7 @@ grid on, grid minor
 xlabel('Time [s]')
 title('TOTAL POWER EXCHANGED [kW]')
 legend(labels)
-saveas(f, "TOTAL POWER.png")
+%saveas(f, "TOTAL POWER.png")
 
 
 % --- -OUTLET TEMPERATURE ----
@@ -140,7 +140,7 @@ legend(labels)
 % idx = 2;
 % figure('Position', [10 10 300 900])
 % axial_plot(horzcat(data(idx).time, data(idx).CHFR), true, 'Animation Profile - CHFR (W3)', 'CHFR', 10)
-% 
+
 % 
 % % ----- PROFILE HTMODE -------
 % idx = 1;
