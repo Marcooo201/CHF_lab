@@ -9,7 +9,6 @@ clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 lambdas = [0.01, 0.05, 0.1, 0.2];
-scram_time = 101; % [s]
 
 % Creo una struct. Ogni elemento di questa struct rappresenta un
 % esperimento di depressurizzazione. Esiste un field principale detto
@@ -48,123 +47,8 @@ for i=1:length(lambdas)
     end
 
     data(i).CHFR = data(i).CHF_W3./data(i).heat_flux_axial;
-    data(i).CHF_W3 = data(i).CHF_W3(:,1:48);
-    data(i).CHFR = data(i).CHFR(:,1:48);
+
 end
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                            %
-%                           PLOTS                            %
-%                                                            %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% ------ LEGEND LABELS -------
-labels = [];
-for i=1:length(lambdas)
-    new = sprintf("\\lambda = %s", string(lambdas(i)));
-    labels = [labels new];
-end
-labels = [labels "SCRAM"];
-
-
-
-% ------ TOTAL POWER -------
-f = figure('Position', [10 10 900 900], 'Visible','off');
-hold on
-for i=1:length(data)
-    plot(data(i).time,data(i).power, 'LineWidth', 1.3);
-end
-xline(scram_time, 'LineWidth', 1.4, 'LineStyle', '--', 'Color', 'k')
-hold off
-grid on, grid minor
-xlabel('Time [s]')
-title('TOTAL POWER EXCHANGED [kW]')
-legend(labels)
-%saveas(f, "TOTAL POWER.png")
-
-
-% --- -OUTLET TEMPERATURE ----
-figure('Position', [10 10 900 900])
-hold on
-for i=1:length(data)
-    plot(data(i).time,data(i).outlet_temperature, 'LineWidth', 1.3);
-end
-xline(scram_time, 'LineWidth', 1.4, 'LineStyle', '--', 'Color', 'k')
-hold off
-grid on, grid minor
-xlabel('Time [s]')
-title('OUTLET TEMPERATURE [K]')
-legend(labels)
-
-
-
-
-% ---- MAX FUEL TEMPERATURE ----
-figure('Position', [10 10 900 900])
-hold on
-for i=1:length(data)
-    plot(data(i).time,max(data(i).max_fuel_temp_axial, [], 2), 'LineWidth', 1.3);
-end
-xline(scram_time, 'LineWidth', 1.4, 'LineStyle', '--', 'Color', 'k')
-hold off
-grid on, grid minor
-xlabel('Time [s]')
-title('MAX FUEL TEMPERATURE [K]')
-legend(labels)
-
-
-% ------- MDNBR -------
-figure('Position', [10 10 900 900])
-hold on
-for i=1:length(data)
-    plot(data(i).time,min(data(i).CHFR, [], 2), 'LineWidth', 1.3);
-end
-xline(scram_time, 'LineWidth', 1.4, 'LineStyle', '--', 'Color', 'k')
-hold off
-grid on, grid minor
-xlabel('Time [s]')
-title('MDNBR (W-3 Correlation)')
-legend(labels)
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                    ANIMATIONS                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% % ----- PROFILE CHFR -------
-% idx = 2;
-% figure('Position', [10 10 300 900])
-% axial_plot(horzcat(data(idx).time, data(idx).CHFR), true, 'Animation Profile - CHFR (W3)', 'CHFR', 10)
-
-% 
-% % ----- PROFILE HTMODE -------
-% idx = 1;
-% f0 = 180; % initial frame (timestep)
-% figure('Position', [10 10 300 900])
-% htmode_plot(horzcat(data(idx).time(f0:end,:), data(idx).ht_mode_axial(f0:end,:)), true, 'Animation Profile - Heat Transfer Mode', '', 1)
-%
-% % ----- PROFILE HTC -------
-% idx = 1;
-% f0 = 1; % initial frame (timestep)
-% figure('Position', [10 10 300 900])
-% axial_plot(horzcat(data(idx).time(f0:end,:), data(idx).htc_axial(f0:end,:)), true, 'Animation Profile - HTC [kW/m^2/°K]', 'HTC [kW/m^2/°K]', 60)
-%
-% % ----- PROFILE VOID FRACTION -------
-% idx = 1;
-% f0 = 1; % initial frame (timestep)
-% figure('Position', [10 10 300 900])
-% axial_plot(horzcat(data(idx).time(f0:end,:), data(idx).void_fraction_axial(f0:end,:)), true, 'Animation Profile - Void Fraction ( \alpha )', 'Void Fraction ( \alpha )', 1)
-%
-% % ----- PROFILE RADIAL TEMPERATURE -------
-% idx = 1;
-% f0 = 1; % initial frame (timestep)
-% figure(10)
-% radial_plot_fuel(horzcat(data(idx).center_radial_temp_profile, data(idx).time), true, 'pwr')
 
 
 
