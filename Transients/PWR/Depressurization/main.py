@@ -3,7 +3,9 @@ from iapws import IAPWS97 as XSteam
 import numpy as np
 
 #####################################################
-#                   VARIABILI                       #
+#                                                   #
+#                     VARIABILI                     #
+#                                                   #
 #####################################################
 
 # TERMODINAMICA
@@ -34,6 +36,12 @@ delta_trans = 100 # [s] durata transitorio dopo la stabilizzazione della pressio
 
 
 
+
+
+
+
+
+
 for l in lambdas:
     #####################################################
     #                   PRE-PROCESSING                  #
@@ -55,7 +63,7 @@ for l in lambdas:
 
     # Trovo il vettore di temperature
     h0 = XSteam(T=T0, P=p0/10).h    #[kJ/kg]
-    T_in = [];
+    T_in = []
 
     for pi in p_in:
         T_in.append(XSteam(P=pi/10, h=h0).T)
@@ -66,7 +74,7 @@ for l in lambdas:
 
     # Genero il vettore di potenza
     t_power = np.linspace(100+delta_t0_scram+delta_t_scram, t_fin+delta_trans ,97)
-    P_decay = 0.0622*P0*(((t_power-(100+delta_t0_scram))**(-0.2)) - ((t_active_core + t_power - (100+delta_t0_scram))**(-0.2)))
+    P_decay = 0.0622*P0*(((t_power-(100+delta_t0_scram))**(-0.2)) - ((t_active_core + t_power - (100+delta_t0_scram))**(-0.2))) # formula di Wigner-Way
 
 
     ############### GENERO CODICE DA SOSTITUIRE IN RELAP INPUT #############
@@ -77,7 +85,7 @@ for l in lambdas:
 
     for i in range(len(t)):
         cardno = cardno+1
-        line = "{}  {:.1f}   {:.5e}   {:.2f}\n".format(cardno, t[i], p_in[i]*1e5, T_in[i])
+        line = "{}  {:.1f}   {:.5e}   {:.2f} \n".format(cardno, t[i], p_in[i]*1e5, T_in[i])
         add_pressureinlet.append(line)
 
 
@@ -87,17 +95,17 @@ for l in lambdas:
 
     for i in range(len(t)):
         cardno = cardno+1
-        line = "{}  {:.1f}   {:.5e}   {:.2f}\n".format(cardno, t[i], p_out[i]*1e5, T0)
+        line = "{}  {:.1f}   {:.5e}   {:.2f} \n".format(cardno, t[i], p_out[i]*1e5, T0)
         add_pressureoutlet.append(line)
 
     # Power
     add_power = []
-    add_power.append("{}    {:.1f}     {:.2f}\n".format(card_power_100, 100+delta_t0_scram, P0)) #aggiungo la prima line per il delay di delta_t_scram
+    add_power.append("{}    {:.1f}     {:.2f} \n".format(card_power_100, 100+delta_t0_scram, P0)) #aggiungo la prima line per il delay di delta_t_scram
 
     cardno = card_power_100
     for i in range(len(t_power)):
         cardno = cardno+1
-        line = "{}    {:.1f}     {:.2f}\n".format(cardno, t_power[i], P_decay[i])
+        line = "{}    {:.1f}     {:.2f} \n".format(cardno, t_power[i], P_decay[i])
         add_power.append(line)
 
 
@@ -128,10 +136,44 @@ for l in lambdas:
         r_lines.insert(line_pressureinlet_100, add_pressureinlet[len(add_pressureinlet)-1-i])
 
     # ALLUNGO LA SIMULAZIONE AGGIUNGENDO LA CARD 204
-    r_lines.insert(38, "204     {}     1.e-8   0.05   00003   10    10    10\n".format(t_fin+delta_trans))
+    r_lines.insert(38, "204     {}     1.e-8   0.05   00003   10    10    10 \n".format(t_fin+delta_trans))
 
 
     # SCRIVO FILE
     w_file = open(r'lambda_{}\input.i'.format(l), 'w')
     w_file.writelines(r_lines)
     w_file.close()
+
+
+    #####################################################
+    #                    SIMULAZIONE                    #
+    #####################################################
+
+    ########### CREO STRUTTURA FOLDER ############
+    # Pulisco
+    os.system(r'mkdir lambda_{}\out'.format(l))
+    while len(os.listdir(r'lambda_{}\out'.format(l))) != 0:
+        os.system(r'del lambda_{}\out\output'.format(l))
+        os.system(r'del lambda_{}\out\output_strip'.format(l))
+        os.system(r'del lambda_{}\out\rstplt'.format(l))
+        os.system(r'del lambda_{}\out\stripf'.format(l))
+        os.system(r'del lambda_{}\out\data.csv'.format(l))
+        os.system(r'del lambda_{}\out\screen_simulation'.format(l))
+        os.system(r'del lambda_{}\out\screen_stripf'.format(l))
+
+    # Lancio simulazione
+    os.system(r"..\..\..\utils\execution\relap5.exe -i lambda_{}\input.i -o lambda_{}\out\output -r lambda_{}\out\rstplt -Z ..\..\..\utils\execution\tpfh2onew".format(l,l,l))
+
+    # Pulisco file inutili e ordino
+    os.system(r'del read_steam_comment.o')
+    os.system(r'move screen lambda_{}\out\screen_simulation'.format(l))
+
+    # Creo stripf tramite RELAP
+    os.system(r"..\..\..\utils\execution\relap5.exe -i input_strip.i -o lambda_{}\out\output_strip -r lambda_{}\out\rstplt -s lambda_{}\out\stripf".format(l,l,l))
+    os.system(r'move screen lambda_{}\out\screen_stripf'.format(l))
+
+    # Estraggo i dati (creo data.csv)
+    os.system(r"cd lambda_{} & py ..\..\..\..\utils\other\parser.py".format(l))
+
+    # Elimino rstplt per alleggerire la cartella
+    os.system(r'del lambda_{}\out\rstplt'.format(l))
